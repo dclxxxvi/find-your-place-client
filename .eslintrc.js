@@ -15,13 +15,14 @@ module.exports = {
 	},
 	plugins: ['react', 'react-hooks'],
 	rules: {
-		semi: ['error', 'always'],
+		semi: ['off'],
 		'@typescript-eslint/semi': ['error', 'always'],
 		indent: ['error', 'tab'],
 		'@typescript-eslint/indent': ['error', 'tab'],
 		'no-tabs': 'off',
 		'no-console': 'error',
 		'brace-style': 'error',
+		'no-extra-semi': 'error',
 		'comma-dangle': 'off',
 		'@typescript-eslint/comma-dangle': ['error', 'always-multiline'],
 		'array-bracket-newline': 'error',
@@ -39,5 +40,18 @@ module.exports = {
 		'react-hooks/exhaustive-deps': 'warn',
 		'react/prop-types': 'off',
 		'eol-last': 'error',
+		'@typescript-eslint/member-delimiter-style': [
+			'warn',
+			{
+				multiline: {
+					delimiter: 'semi',
+					requireLast: true,
+				},
+				singleline: {
+					delimiter: 'semi',
+					requireLast: false,
+				},
+			},
+		],
 	},
 };

@@ -5,7 +5,6 @@ const AppRouter: React.FC = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
-
 			</Routes>
 		</BrowserRouter>
 	);
