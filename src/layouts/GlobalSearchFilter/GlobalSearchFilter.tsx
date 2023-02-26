@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { Outlet } from 'react-router-dom';
 
-const Navbar: React.FC = () => {
+const GlobalSearchFilter: React.FC = () => {
 	return (
 		<div>
-			Навигационная панель
+			Глобальный фильтр
 			<Outlet />
 		</div>
 	);
 };
 
-export default Navbar;
+export default GlobalSearchFilter;
