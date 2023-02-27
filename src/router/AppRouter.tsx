@@ -7,6 +7,7 @@ import {
 	CoworkingsList,
 	Main,
 	MapSearch,
+	NotFound,
 	SuggestedPlaces,
 	UserInformation,
 	Visitations,
@@ -31,6 +32,7 @@ const AppRouter: React.FC = () => {
 							<Route path={'visitations'} element={<Visitations />}/>
 						</Route>
 					</Route>
+					<Route path={'*'} element={<NotFound />}/>
 				</Route>
 			</Routes>
 		</BrowserRouter>

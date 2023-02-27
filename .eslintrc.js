@@ -35,7 +35,7 @@ module.exports = {
 		'no-shadow': 'off',
 		'@typescript-eslint/no-shadow': ['error'],
 		'@typescript-eslint/explicit-function-return-type': ['error', { allowExpressions: true }],
-		'max-len': ['warn', { code: 100 }],
+		'max-len': ['warn', { code: 120 }],
 		'react-hooks/rules-of-hooks': 'error',
 		'react-hooks/exhaustive-deps': 'warn',
 		'react/prop-types': 'off',

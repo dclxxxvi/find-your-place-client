@@ -4,6 +4,8 @@ import CoworkingsList from './CoworkingsList';
 import Coworking from './Coworking';
 import MapSearch from './MapSearch';
 import AddCoworking from './AddCoworking';
+import NotFound from './NotFound';
+import ErrorPage from './ErrorPage';
 
 export {
 	Main,
@@ -14,4 +16,6 @@ export {
 	Coworking,
 	MapSearch,
 	AddCoworking,
+	NotFound,
+	ErrorPage,
 };
