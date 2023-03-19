@@ -1,25 +1,25 @@
 import * as React from 'react';
 import { Col, Input, Row } from 'antd';
-import { type BaseType } from '../../types';
+import { type IBaseType } from '../../types';
 import BaseTypeMultiSelect from '../../shared/BaseTypeMultiSelect';
 import BaseTypeSelect from '../../shared/BaseTypeSelect';
 import { type ChangeEvent, useCallback } from 'react';
 import { type TFilterFieldType, updateFilter, useAppDispatch, useAppSelector } from '../../redux';
 
-const dictMocks: BaseType[] = [
+const dictMocks: IBaseType[] = [
 	{ id: '1', code: 'ExampleCode1', name: 'Первый пример' },
 	{ id: '2', code: 'ExampleCode2', name: 'Второй пример' },
 	{ id: '3', code: 'ExampleCode3', name: 'Третий пример' },
 	{ id: '4', code: 'ExampleCode4', name: 'Четвертый пример' },
 	{ id: '5', code: 'ExampleCode5', name: 'Пятый пример' },
 	{ id: '6', code: 'ExampleCode6', name: 'Шестой пример' },
-] as BaseType[];
+] as IBaseType[];
 
 const SearchFilter: React.FC = () => {
 	const dispatch = useAppDispatch();
 	const { search, params, cost, format } = useAppSelector(state => state.searchFilterReducer);
 
-	const onSelectChange = useCallback((filterName: TFilterFieldType) => (value: BaseType | BaseType[]) => {
+	const onSelectChange = useCallback((filterName: TFilterFieldType) => (value: IBaseType | IBaseType[]) => {
 		dispatch(updateFilter({ field: filterName, value }));
 	}, [dispatch]);
 

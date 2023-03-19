@@ -46,7 +46,7 @@ const Main: React.FC = () => {
 								</Button>
 							</Col>
 							<Col>
-								<Button type={'primary'}>
+								<Button type={'primary'} onClick={() => navigate('/workspaces')}>
 									Найти место
 								</Button>
 							</Col>

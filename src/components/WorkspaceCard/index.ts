@@ -1,1 +1,3 @@
-export default './WorkspaceCard';
+import WorkspaceCard from './WorkspaceCard';
+
+export default WorkspaceCard;

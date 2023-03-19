@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { type BaseType } from '../../types';
+import { type IBaseType } from '../../types';
 import { Select, type SelectProps } from 'antd';
 import { useCallback, useMemo } from 'react';
 
@@ -9,9 +9,9 @@ interface OptionType {
 }
 
 interface Props extends Omit<SelectProps<string, OptionType>, 'options' | 'onChange' | 'value'> {
-	dictionary: BaseType[];
-	handleChange: (value: BaseType) => void;
-	initialValue?: BaseType;
+	dictionary: IBaseType[];
+	handleChange: (value: IBaseType) => void;
+	initialValue?: IBaseType;
 }
 
 const BaseTypeSelect: React.FC<Props> = ({ dictionary, handleChange, initialValue, ...rest }) => {

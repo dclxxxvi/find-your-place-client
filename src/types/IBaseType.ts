@@ -1,6 +1,6 @@
-import { type BaseEntity } from './baseEntity';
+import { type IBaseEntity } from './IBaseEntity';
 
-export interface BaseType extends BaseEntity {
+export interface IBaseType extends IBaseEntity {
 	category_id: string;
 	code: string;
 	name: string;

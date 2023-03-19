@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { type BaseType } from '../../types';
+import { type IBaseType } from '../../types';
 import { Select, type SelectProps } from 'antd';
 import { useCallback, useMemo } from 'react';
 
@@ -9,9 +9,9 @@ interface OptionType {
 }
 
 interface Props extends Omit<SelectProps<string[], OptionType>, 'children' | 'options' | 'filterOption' | 'value'> {
-	dictionary: BaseType[];
-	handleChange: (values: BaseType[]) => void;
-	initialValue?: BaseType[];
+	dictionary: IBaseType[];
+	handleChange: (values: IBaseType[]) => void;
+	initialValue?: IBaseType[];
 }
 
 const BaseTypeMultiSelect: React.FC<Props> = ({ dictionary, handleChange, initialValue, ...rest }) => {
@@ -22,7 +22,7 @@ const BaseTypeMultiSelect: React.FC<Props> = ({ dictionary, handleChange, initia
 
 	const onChange = useCallback((values: string[]) => {
 		const valuesToBaseTypes = values
-			.map(value => dictionary.find(baseType => baseType.id === value)) as BaseType[];
+			.map(value => dictionary.find(baseType => baseType.id === value)) as IBaseType[];
 		handleChange(valuesToBaseTypes);
 	}, [handleChange, dictionary]);
 

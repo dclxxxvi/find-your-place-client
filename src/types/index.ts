@@ -1,2 +1,4 @@
-export * from './baseType';
-export * from './baseEntity';
+export * from './IBaseType';
+export * from './IBaseEntity';
+export * from './IWorkspace';
+export * from './IAddress';
