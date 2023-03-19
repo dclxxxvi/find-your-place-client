@@ -1,10 +1,9 @@
 import * as React from 'react';
+import WorkspaceMapSearch from '../../modules/WorkspaceMapSearch';
 
 const MapSearch: React.FC = () => {
 	return (
-		<div>
-			Карта
-		</div>
+		<WorkspaceMapSearch />
 	);
 };
 
