@@ -1,0 +1,37 @@
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { type BaseType } from '../../types';
+
+interface SearchFilterState {
+	search?: string;
+	format?: BaseType;
+	cost?: BaseType;
+	params?: BaseType[];
+}
+
+const initialState: SearchFilterState = {
+	search: undefined,
+	format: undefined,
+	cost: undefined,
+	params: [],
+};
+
+type TFilterValueType = SearchFilterState[keyof SearchFilterState];
+export type TFilterFieldType = keyof SearchFilterState;
+
+interface UpdateFilterPayload {
+	field: TFilterFieldType;
+	value: TFilterValueType;
+}
+
+const searchFilterSlice = createSlice({
+	name: 'searchFilter',
+	initialState,
+	reducers: {
+		updateFilter(state: SearchFilterState, { payload }: PayloadAction<UpdateFilterPayload>) {
+			state[payload.field] = payload.value as any; // поправить типизацию
+		},
+	},
+});
+
+export const { updateFilter } = searchFilterSlice.actions;
+export const searchFilterReducer = searchFilterSlice.reducer;

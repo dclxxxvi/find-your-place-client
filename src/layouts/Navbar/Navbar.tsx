@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { Outlet } from 'react-router-dom';
+import ResponsibleNavbar from '../../modules/ResponsibleNavbar';
 
 const Navbar: React.FC = () => {
 	return (
-		<div>
-			Навигационная панель
+		<>
+			<ResponsibleNavbar />
 			<Outlet />
-		</div>
+		</>
 	);
 };
 

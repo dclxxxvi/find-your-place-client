@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { GlobalSearchFilter, Navbar, PersonalCabinetLayout } from '../layouts';
 import {
-	AddCoworking,
-	Coworking,
-	CoworkingsList,
+	AddWorkspace,
+	Workspace,
+	WorkspacesList,
 	Main,
 	MapSearch,
 	NotFound,
@@ -20,11 +20,11 @@ const AppRouter: React.FC = () => {
 				<Route element={<Navbar />}>
 					<Route index element={<Main />}/>
 					<Route element={<GlobalSearchFilter />}>
-						<Route path={'coworkings'} >
-							<Route index element={<CoworkingsList />}/>
-							<Route path={':id'} element={<Coworking />}/>
+						<Route path={'workspaces'} >
+							<Route index element={<WorkspacesList />}/>
+							<Route path={':id'} element={<Workspace />}/>
 							<Route path={'map'} element={<MapSearch />}/>
-							<Route path={'new'} element={<AddCoworking />}/>
+							<Route path={'new'} element={<AddWorkspace />}/>
 						</Route>
 						<Route path={'profile'} element={<PersonalCabinetLayout />}>
 							<Route path={'info'} element={<UserInformation />}/>

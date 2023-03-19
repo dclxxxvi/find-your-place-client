@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Link, type LinkProps } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { type PropsWithChildren, useCallback } from 'react';
+import Link, { type LinkProps } from 'antd/es/typography/Link';
 
 interface Props extends LinkProps {
 	to: string;
@@ -18,11 +18,10 @@ const BreadcrumbItem: React.FC<PropsWithChildren<Props>> = ({ to, active = false
 	return (
 		<Link
 			onClick={handleNavigateTo}
-			underline={'hover'}
 			color={active ? 'text.primary' : 'inherit'}
-			sx={{ cursor: 'pointer' }}
 			{...rest}
-		>{children}
+		>
+			{children}
 		</Link>
 	);
 };

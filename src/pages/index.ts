@@ -1,9 +1,9 @@
 import Main from './Main';
 import { Visitations, SuggestedPlaces, UserInformation } from './PersonalCabinet';
-import CoworkingsList from './CoworkingsList';
-import Coworking from './Coworking';
+import WorkspacesList from './WorkspacesList';
+import Workspace from './Workspace';
 import MapSearch from './MapSearch';
-import AddCoworking from './AddCoworking';
+import AddWorkspace from './AddWorkspace';
 import NotFound from './NotFound';
 import ErrorPage from './ErrorPage';
 
@@ -12,10 +12,10 @@ export {
 	Visitations,
 	SuggestedPlaces,
 	UserInformation,
-	CoworkingsList,
-	Coworking,
+	WorkspacesList,
+	Workspace,
 	MapSearch,
-	AddCoworking,
+	AddWorkspace,
 	NotFound,
 	ErrorPage,
 };

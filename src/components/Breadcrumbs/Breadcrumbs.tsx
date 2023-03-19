@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Breadcrumbs as MUIBreadcrumbs, type BreadcrumbsProps } from '@mui/material';
 import { type PropsWithChildren } from 'react';
+import { Breadcrumb as BreadcrumbAntD, type BreadcrumbProps } from 'antd';
 
-const Breadcrumbs: React.FC<PropsWithChildren<BreadcrumbsProps>> = ({ children, ...rest }) => {
+const Breadcrumbs: React.FC<PropsWithChildren<BreadcrumbProps>> = ({ children, ...rest }) => {
 	return (
-		<MUIBreadcrumbs aria-label="breadcrumb" {...rest}>
+		<BreadcrumbAntD {...rest}>
 			{children}
-		</MUIBreadcrumbs>
+		</BreadcrumbAntD>
 	);
 };
 
