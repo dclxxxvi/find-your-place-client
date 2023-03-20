@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { Controller, type ControllerRenderProps } from 'react-hook-form';
-import { Input, type InputProps, Space, Typography } from 'antd';
+import { Input, type InputProps } from 'antd';
 import { type ReactNode } from 'react';
+import Label from '../../components/Label';
+import FieldWrapper from '../../components/FieldWrapper';
+import ErrorMessage from '../../components/ErrorMessage';
 
 type ExcludedProps = keyof ControllerRenderProps | 'status';
 
@@ -17,17 +20,14 @@ const TextField: React.FC<Props> = ({ name, label, control, ...rest }) => {
 			name={name}
 			control={control}
 			render={({ field, fieldState }) => (
-				<Space direction={'vertical'} style={{ display: 'flex' }}>
-					{ label !== undefined && <Typography.Text>{ label }</Typography.Text> }
+				<FieldWrapper>
+					<Label label={label} />
 					<Input {...field} {...rest} status={fieldState.invalid ? 'error' : ''} />
-					{ fieldState.invalid && fieldState.error?.message !== undefined && (
-						<Typography.Text type={ 'danger' }>
-							{ fieldState.error?.message }
-						</Typography.Text>) }
-				</Space>
+					<ErrorMessage fieldState={fieldState} />
+				</FieldWrapper>
 			)}
 		/>
 	);
 };
 
-export default TextField;
+export default React.memo(TextField);
