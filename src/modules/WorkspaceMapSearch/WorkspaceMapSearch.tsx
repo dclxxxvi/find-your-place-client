@@ -27,15 +27,15 @@ const WorkspaceMapSearch: React.FC = () => {
 	};
 
 	return (
-		<YMaps query={{ lang: 'en_RU' }}>
+		<YMaps query={{ lang: 'ru_RU' }}>
 			<Map
 				state={{
 					center,
 					zoom: 9,
 					controls: [],
 				}}
-				width="100vw"
 				height="500px"
+				width={'100%'}
 			>
 				<Clusterer>
 					{workspacesMocks.map(ws => {

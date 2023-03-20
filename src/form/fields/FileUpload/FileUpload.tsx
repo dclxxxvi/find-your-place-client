@@ -119,10 +119,10 @@
 // 								style={{ width: '5rem' }}
 // 							/>
 // 						</div>
-// 						<Typography variant='body1' component='span'>
+// 						<Typography variant='body1' components='span'>
 // 							<strong>Supported Files</strong>
 // 						</Typography>
-// 						<Typography variant='body2' component='span'>
+// 						<Typography variant='body2' components='span'>
 // 							JPG, JPEG, PNG
 // 						</Typography>
 // 					</Stack>

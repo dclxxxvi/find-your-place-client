@@ -1,17 +1,21 @@
 import * as React from 'react';
 import { Content } from 'antd/es/layout/layout';
-import { PageWrapper } from '../../components';
+import { BreadcrumbItem, Breadcrumbs, PageWrapper } from '../../components';
 import WorkspaceList from '../../modules/WorkspaceList';
 import { Col, Row } from 'antd';
 import Title from 'antd/es/typography/Title';
+import PageHeader from '../../components/PageHeader';
 
 const WorkspacesList: React.FC = () => {
 	return (
 		<Content>
 			<PageWrapper>
-				<Row>
-					<Title level={2}>Коворкинги в Екатеринбурге</Title>
-				</Row>
+				<PageHeader title={'Коворкинги'} breadcrumbs={
+					<Breadcrumbs>
+						<BreadcrumbItem to={'/'} >Главная</BreadcrumbItem>
+						<BreadcrumbItem to={'/workspaces'}>Коворкинги</BreadcrumbItem>
+					</Breadcrumbs>
+				}/>
 				<Row gutter={{ sm: 16, md: 24 }} align={'middle'}>
 					<Col>
 						<Title level={4}>

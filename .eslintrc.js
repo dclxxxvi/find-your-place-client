@@ -57,5 +57,10 @@ module.exports = {
 		'@typescript-eslint/space-before-function-paren': ['error', 'never'],
 		'@typescript-eslint/no-confusing-void-expression': 'off',
 		'@typescript-eslint/no-unnecessary-type-assertion': 'off',
+		"@typescript-eslint/no-misused-promises": [2, {
+			"checksVoidReturn": {
+				"attributes": false
+			}
+		}],
 	},
 };

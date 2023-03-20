@@ -6,7 +6,6 @@
     "@ant-design/icons": "^5.0.1",
     "@hookform/resolvers": "^2.9.11",
     "@pbe/react-yandex-maps": "^1.2.2",
-    "@react-buddy/ide-toolbox": "^2.3.1",
     "@reduxjs/toolkit": "^1.9.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

@@ -9,7 +9,7 @@ const Logo: React.FC = () => {
 		// 	<Typography
 		// 		variant="h6"
 		// 		noWrap
-		// 		component="a"
+		// 		components="a"
 		// 		onClick={() => { navigate('/'); }}
 		// 	>
 		// 		LOGO
