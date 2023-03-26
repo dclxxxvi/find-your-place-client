@@ -6,15 +6,18 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorPage } from './pages';
 import { Layout } from 'antd';
 import ThemeProvider from './theme';
+import { YMaps } from '@pbe/react-yandex-maps';
 
 const App: React.FC = () => {
 	return (
 		<ErrorBoundary fallbackRender={ErrorPage}>
 			<Provider store={store}>
 				<ThemeProvider>
-					<Layout>
-						<AppRouter />
-					</Layout>
+					<YMaps query={{ lang: 'ru_RU', apikey: process.env.REACT_APP_YMAPS_API_KEY }}>
+						<Layout>
+							<AppRouter />
+						</Layout>
+					</YMaps>
 				</ThemeProvider>
 			</Provider>
 		</ErrorBoundary>

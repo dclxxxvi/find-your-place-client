@@ -25,7 +25,7 @@ module.exports = {
 		'no-extra-semi': 'error',
 		'comma-dangle': 'off',
 		'@typescript-eslint/comma-dangle': ['error', 'always-multiline'],
-		'array-bracket-newline': 'error',
+		'array-bracket-newline': ['error', 'consistent'],
 		'array-bracket-spacing': 'error',
 		'comma-style': 'error',
 		'comma-spacing': 'error',

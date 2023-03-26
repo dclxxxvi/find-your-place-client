@@ -10,7 +10,7 @@ const workspaceMocks: IWorkspace[] = Array.from({ length: 10 }).map((_, index) =
 	site_url: `http:/example/coworking${index}`,
 	rating: Math.random() * 5,
 	approved: true,
-	address: { latitude: 50, longitude: 50 },
+	address: { latitude: 50, longitude: 50, value: 'Адрес' },
 	createdAt: new Date(),
 	updatedAt: new Date(),
 }));

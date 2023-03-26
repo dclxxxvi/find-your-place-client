@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Clusterer, Map, Placemark, YMaps, ZoomControl } from '@pbe/react-yandex-maps';
+import { Clusterer, Map, Placemark, ZoomControl } from '@pbe/react-yandex-maps';
 import { useCallback, useState } from 'react';
 import WorkspaceDrawer from './components/WorkspaceDrawer';
 
@@ -27,14 +27,14 @@ const WorkspaceMapSearch: React.FC = () => {
 	};
 
 	return (
-		<YMaps query={{ lang: 'ru_RU' }}>
+		<>
 			<Map
 				state={{
 					center,
 					zoom: 9,
 					controls: [],
 				}}
-				height="500px"
+				height="500px" // TODO: придумать как задать чтобы занимала оставшуюся область
 				width={'100%'}
 			>
 				<Clusterer>
@@ -49,7 +49,7 @@ const WorkspaceMapSearch: React.FC = () => {
 				<ZoomControl/>
 			</Map>
 			<WorkspaceDrawer workspaceId={currentWorkspaceId} open={open} onClose={onClose} />
-		</YMaps>
+		</>
 	);
 };
 
