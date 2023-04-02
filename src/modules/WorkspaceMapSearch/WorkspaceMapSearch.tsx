@@ -2,17 +2,9 @@ import * as React from 'react';
 import { Clusterer, Map, Placemark, ZoomControl } from '@pbe/react-yandex-maps';
 import { useCallback, useState } from 'react';
 import WorkspaceDrawer from './components/WorkspaceDrawer';
+import { workspaceMocks } from '../../mocks/workspaces';
 
-const center = [56.836927, 60.599308];
-
-export const workspacesMocks = Array.from({ length: 50 }).map((_, index) => ({
-	id: String(index),
-	name: `Коворкинг номер ${index}`,
-	address: {
-		latitude: 56.836927 + Math.random() * 0.2 - 0.1,
-		longitude: 60.599308 + Math.random() * 0.2 - 0.1,
-	},
-}));
+const center = [56.836927, 60.599308]; // TODO: центр Еката, надо получать координаты пользователя
 
 const WorkspaceMapSearch: React.FC = () => {
 	const [open, setOpen] = useState(false);
@@ -38,7 +30,7 @@ const WorkspaceMapSearch: React.FC = () => {
 				width={'100%'}
 			>
 				<Clusterer>
-					{workspacesMocks.map(ws => {
+					{workspaceMocks.map(ws => {
 						return <Placemark
 							key={ws.id}
 							geometry={[ws.address.latitude, ws.address.longitude]}

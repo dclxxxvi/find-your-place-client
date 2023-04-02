@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { Button, Col, Row, Switch } from 'antd';
+import { Button, Col, Row, Space, Switch } from 'antd';
 import { toggleTheme as toggleThemeAction, useAppDispatch, useAppSelector } from '../../redux';
-import { Header } from 'antd/es/layout/layout';
+import { Content } from 'antd/es/layout/layout';
 import { UserOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { PersonalCabinetRoutes } from '../../router/routes';
+import { PageWrapper } from '../../components';
+import Typography from 'antd/es/typography';
 
 const ResponsibleNavbar: React.FC = () => {
 	const navigate = useNavigate();
@@ -14,45 +16,46 @@ const ResponsibleNavbar: React.FC = () => {
 	const toggleTheme = () => dispatch(toggleThemeAction());
 
 	return (
-		<Header style={isDarkMode ? {} : { backgroundColor: 'white' }}>
-			<Row justify={'space-between'}>
-				<Col>
-					<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-						<Col>
-							<span
-								style={{ fontSize: 24, cursor: 'pointer' }}
+		<Content>
+			<PageWrapper marginTop={16} marginBottom={16}>
+				<Row justify={'space-between'} align={'middle'}>
+					<Col xs={0} md={8}>
+						<Space size={'large'}>
+							<Typography.Title
+								style={{ cursor: 'pointer', margin: 0 }}
 								onClick={() => navigate('/')}
+								level={2}
 							>
 								Find your place
-							</span>
-						</Col>
-						<Col>
+							</Typography.Title>
+						</Space>
+					</Col>
+					<Col>
+						<Space size={'large'} wrap={true}>
+							<Button
+								onClick={() => navigate('workspaces/new')}
+								shape={'default'}
+								type={'primary'}
+							>
+								Добавить пространство
+							</Button>
 							<Switch
 								checked={isDarkMode}
 								onChange={toggleTheme}
 								checkedChildren="Dark"
 								unCheckedChildren="Light"
 							/>
-						</Col>
-					</Row>
-				</Col>
-				<Col>
-					<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-						<Col><Button
-							onClick={() => navigate('workspaces/new')}
-							shape={'default'}
-							type={'primary'}
-						>Добавить пространство</Button>
-						</Col>
-						<Col><Button
-							shape={'circle'}
-							icon={<UserOutlined />}
-							onClick={() => navigate(PersonalCabinetRoutes.PROFILE)} />
-						</Col>
-					</Row>
-				</Col>
-			</Row>
-		</Header>
+							<Button
+								shape={'circle'}
+								icon={<UserOutlined />}
+								onClick={() => navigate(
+									`${PersonalCabinetRoutes.PROFILE}/${PersonalCabinetRoutes.USER_DATA}`,
+								)} />
+						</Space>
+					</Col>
+				</Row>
+			</PageWrapper>
+		</Content>
 		// <Menu mode={'horizontal'} items={[
 		// 	{
 		// 		key: 'workspaces/add',

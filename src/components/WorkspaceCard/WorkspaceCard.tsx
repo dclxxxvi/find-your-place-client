@@ -12,7 +12,7 @@ interface Props {
 const WorkspaceCard: React.FC<Props> = ({ workspace }) => {
 	return (
 		<Card size={'small'}>
-			<Row gutter={24} align={'middle'}>
+			<Row gutter={24} align={'stretch'}>
 				<Col span={10}>
 					<Image src={exampleImage} placeholder={'Картинка'} />
 				</Col>
@@ -27,7 +27,9 @@ const WorkspaceCard: React.FC<Props> = ({ workspace }) => {
 									<Rate allowHalf defaultValue={workspace.rating} disabled></Rate>
 								</Row>
 								<Row justify={'end'}>
-									<Typography.Text type="secondary">{'8 отзывов'}</Typography.Text>
+									<Typography.Text type="secondary">
+										{`${workspace.feedback_count as number} отзывов`}
+									</Typography.Text>
 								</Row>
 							</Col>
 						</Row>
@@ -38,16 +40,12 @@ const WorkspaceCard: React.FC<Props> = ({ workspace }) => {
 						</Row>
 						<Row gutter={8}>
 							<Col span={24}>
-								<Row gutter={12}>
-									<Col>
-										<AimOutlined />
-									</Col>
-									<Col>
-										<Typography.Text>
-											{workspace.address.value}
-										</Typography.Text>
-									</Col>
-								</Row>
+								<Space>
+									<AimOutlined />
+									<Typography.Text>
+										{workspace.address.value}
+									</Typography.Text>
+								</Space>
 							</Col>
 							{/* <Col span={24}> */}
 							{/*	<Row gutter={12}> */}

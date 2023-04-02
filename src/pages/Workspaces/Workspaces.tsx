@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Content } from 'antd/es/layout/layout';
 import { BreadcrumbItem, Breadcrumbs, PageWrapper } from '../../components';
 import WorkspaceList from '../../modules/WorkspaceList';
-import { Card, Col, Row } from 'antd';
+import { Card, Col, Row, Space } from 'antd';
 import Title from 'antd/es/typography/Title';
 import PageHeader from '../../components/PageHeader';
 import Typography from 'antd/es/typography';
@@ -19,26 +19,20 @@ const Workspaces: React.FC = () => {
 				}/>
 			</PageWrapper>
 			<PageWrapper>
-				<Row gutter={{ sm: 16, md: 24 }} align={'middle'}>
-					<Col>
-						<Title style={{ margin: 0 }} level={5}>
+				<Space size={'large'}>
+					<Title style={{ margin: 0 }} level={5}>
 							Найдено 73 места
-						</Title>
-					</Col>
-					<Col>
-						<Title style={{ margin: 0 }} level={5}>
+					</Title>
+					<Title style={{ margin: 0 }} level={5}>
 							По популярности
-						</Title>
-					</Col>
-					<Col>
-						<Title style={{ margin: 0 }} level={5}>
+					</Title>
+					<Title style={{ margin: 0 }} level={5}>
 							Показать на карте
-						</Title>
-					</Col>
-				</Row>
+					</Title>
+				</Space>
 			</PageWrapper>
 			<PageWrapper marginTop={48}>
-				<Row gutter={48}>
+				<Row gutter={24}>
 					<Col span={6}>
 						<Card>
 							<Row><Typography.Text>Параметры</Typography.Text></Row>

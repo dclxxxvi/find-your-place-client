@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Drawer } from 'antd';
-import Title from 'antd/es/typography/Title';
-import { workspacesMocks } from '../WorkspaceMapSearch';
+import { workspaceMocks } from '../../../mocks/workspaces';
+import { WorkspaceCard } from '../../../components';
 
 interface Props {
 	open: boolean;
@@ -10,17 +10,17 @@ interface Props {
 }
 
 const WorkspaceDrawer: React.FC<Props> = ({ open, onClose, workspaceId }) => {
-	const workspace = workspacesMocks.find(ws => ws.id === workspaceId);
+	const workspace = workspaceMocks.find(ws => ws.id === workspaceId);
 
 	return (
 		<Drawer
-			title={workspace?.name}
+			title={workspace?.title}
 			placement={'left'}
 			closable={false}
 			onClose={onClose}
 			open={open}
 		>
-			<Title>Выбран коворкинг под номером {workspace?.id}</Title>
+			{ (workspace != null) && <WorkspaceCard workspace={ workspace }/> }
 		</Drawer>
 	);
 };
