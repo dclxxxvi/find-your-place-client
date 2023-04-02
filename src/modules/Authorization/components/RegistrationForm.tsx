@@ -34,7 +34,9 @@ const RegistrationForm: React.FC<Props> = ({ handleClose }) => {
 				<TextField name={'email'} control={control} label={'Почта'}/>
 				<TextField name={'password'} control={control} label={'Пароль'} type={'password'}/>
 				<TextField name={'confirm_password'} control={control} label={'Подтвердите пароль'} type={'password'}/>
-				<Button htmlType={'submit'}>Зарегистрироваться</Button>
+				<Button htmlType={'submit'} type={'primary'} style={{ width: '100%', marginTop: 24 }}>
+					Зарегистрироваться
+				</Button>
 			</Space>
 		</form>
 	);

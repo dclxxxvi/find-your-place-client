@@ -33,7 +33,9 @@ const LoginForm: React.FC<Props> = ({ handleClose }) => {
 			<Space direction={'vertical'} size={'middle'} style={{ display: 'flex' }}>
 				<TextField name={'email'} control={control} label={'Почта'}/>
 				<TextField name={'password'} control={control} label={'Пароль'} type={'password'}/>
-				<Button htmlType={'submit'}>Войти</Button>
+				<Button htmlType={'submit'} type={'primary'} style={{ width: '100%', marginTop: 24 }}>
+					Войти
+				</Button>
 			</Space>
 		</form>
 	);
