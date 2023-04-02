@@ -14,7 +14,7 @@ const PurchaseWorkspaceCard: React.FC<Props> = ({ workspace }) => {
 		<Card size={'small'}>
 			<Row gutter={24} align={'middle'}>
 				<Col span={6}>
-					<Image height={'100%'} width={'100%'} style={{ objectFit: 'cover' }} src={exampleImage} placeholder={'Картинка'} />
+					<Image src={exampleImage} placeholder={'Картинка'} />
 				</Col>
 				<Col span={18}>
 					<Row justify={'space-between'} align={'stretch'}>

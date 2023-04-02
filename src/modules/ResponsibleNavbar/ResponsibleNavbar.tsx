@@ -7,10 +7,14 @@ import { useNavigate } from 'react-router-dom';
 import { PersonalCabinetRoutes } from '../../router/routes';
 import { PageWrapper } from '../../components';
 import Typography from 'antd/es/typography';
+import AuthorizationModal from '../Authorization/AuthorizationModal';
+import { useState } from 'react';
 
 const ResponsibleNavbar: React.FC = () => {
 	const navigate = useNavigate();
 	const isDarkMode = useAppSelector(state => state.themeReducer.isDarkTheme);
+	const [authorizationModalOpen, setAuthorizationModalOpen] = useState(false);
+	const handleAuthorizationModalOpen = (open: boolean) => () => setAuthorizationModalOpen(open);
 
 	const dispatch = useAppDispatch();
 	const toggleTheme = () => dispatch(toggleThemeAction());
@@ -51,10 +55,14 @@ const ResponsibleNavbar: React.FC = () => {
 								onClick={() => navigate(
 									`${PersonalCabinetRoutes.PROFILE}/${PersonalCabinetRoutes.USER_DATA}`,
 								)} />
+							<Button onClick={handleAuthorizationModalOpen(true)}>
+								Авторизация
+							</Button>
 						</Space>
 					</Col>
 				</Row>
 			</PageWrapper>
+			<AuthorizationModal open={authorizationModalOpen} handleClose={handleAuthorizationModalOpen(false)}/>
 		</Content>
 		// <Menu mode={'horizontal'} items={[
 		// 	{
