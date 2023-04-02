@@ -4,6 +4,7 @@ import { toggleTheme as toggleThemeAction, useAppDispatch, useAppSelector } from
 import { Header } from 'antd/es/layout/layout';
 import { UserOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
+import { PersonalCabinetRoutes } from '../../router/routes';
 
 const ResponsibleNavbar: React.FC = () => {
 	const navigate = useNavigate();
@@ -46,7 +47,7 @@ const ResponsibleNavbar: React.FC = () => {
 						<Col><Button
 							shape={'circle'}
 							icon={<UserOutlined />}
-							onClick={() => navigate('profile')} />
+							onClick={() => navigate(PersonalCabinetRoutes.PROFILE)} />
 						</Col>
 					</Row>
 				</Col>

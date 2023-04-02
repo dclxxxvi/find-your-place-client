@@ -1,6 +1,6 @@
 import Main from './Main';
-import { Visitations, SuggestedPlaces, UserInformation } from './PersonalCabinet';
-import WorkspacesList from './WorkspacesList';
+import { VisitationHistory, SuggestedPlaces, UserData, Bonuses, Purchases } from './PersonalCabinet';
+import Workspaces from './Workspaces';
 import Workspace from './Workspace';
 import MapSearch from './MapSearch';
 import AddWorkspace from './AddWorkspace';
@@ -9,13 +9,15 @@ import ErrorPage from './ErrorPage';
 
 export {
 	Main,
-	Visitations,
+	VisitationHistory,
 	SuggestedPlaces,
-	UserInformation,
-	WorkspacesList,
+	UserData,
+	Workspaces,
 	Workspace,
 	MapSearch,
 	AddWorkspace,
 	NotFound,
 	ErrorPage,
+	Bonuses,
+	Purchases,
 };

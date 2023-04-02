@@ -4,14 +4,15 @@ import { GlobalSearchFilter, Navbar, PersonalCabinetLayout } from '../layouts';
 import {
 	AddWorkspace,
 	Workspace,
-	WorkspacesList,
+	Workspaces,
 	Main,
 	MapSearch,
 	NotFound,
 	SuggestedPlaces,
-	UserInformation,
-	Visitations,
+	UserData,
+	VisitationHistory, Bonuses, Purchases,
 } from '../pages';
+import { PersonalCabinetRoutes } from './routes';
 
 const AppRouter: React.FC = () => {
 	return (
@@ -21,15 +22,17 @@ const AppRouter: React.FC = () => {
 					<Route index element={<Main />}/>
 					<Route element={<GlobalSearchFilter />}>
 						<Route path={'workspaces'} >
-							<Route index element={<WorkspacesList />}/>
+							<Route index element={<Workspaces />}/>
 							<Route path={':id'} element={<Workspace />}/>
 							<Route path={'map'} element={<MapSearch />}/>
 							<Route path={'new'} element={<AddWorkspace />}/>
 						</Route>
-						<Route path={'profile'} element={<PersonalCabinetLayout />}>
-							<Route path={'info'} element={<UserInformation />}/>
-							<Route path={'suggested'} element={<SuggestedPlaces />}/>
-							<Route path={'visitations'} element={<Visitations />}/>
+						<Route path={PersonalCabinetRoutes.PROFILE} element={<PersonalCabinetLayout />}>
+							<Route path={PersonalCabinetRoutes.USER_DATA} element={<UserData />}/>
+							<Route path={PersonalCabinetRoutes.BONUSES} element={<Bonuses />}/>
+							<Route path={PersonalCabinetRoutes.PURCHASES} element={<Purchases />}/>
+							<Route path={PersonalCabinetRoutes.SUGGESTED_PLACES} element={<SuggestedPlaces />}/>
+							<Route path={PersonalCabinetRoutes.VISITATION_HISTORY} element={<VisitationHistory />}/>
 						</Route>
 					</Route>
 					<Route path={'*'} element={<NotFound />}/>

@@ -1,19 +1,18 @@
 import * as React from 'react';
 import { type PropsWithChildren, useMemo } from 'react';
-import { ConfigProvider, theme } from 'antd';
+import { ConfigProvider } from 'antd';
 import { useAppSelector } from '../redux';
+import { darkTheme, lightTheme } from './themes';
 
 const ThemeProvider: React.FC<PropsWithChildren> = ({ children }) => {
 	const isDarkMode = useAppSelector(state => state.themeReducer.isDarkTheme);
 
-	const { defaultAlgorithm, darkAlgorithm } = theme;
-
-	const algorithm = useMemo(() => {
-		return isDarkMode ? darkAlgorithm : defaultAlgorithm;
-	}, [isDarkMode, darkAlgorithm, defaultAlgorithm]);
+	const theme = useMemo(() => {
+		return isDarkMode ? darkTheme : lightTheme;
+	}, [isDarkMode]);
 
 	return (
-		<ConfigProvider theme={{ algorithm }}>
+		<ConfigProvider theme={theme}>
 			{children}
 		</ConfigProvider>
 	);

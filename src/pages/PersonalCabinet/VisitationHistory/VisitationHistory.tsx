@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const Visitations: React.FC = () => {
+const VisitationHistory: React.FC = () => {
 	return (
 		<div>
 			Посещения
@@ -8,4 +8,4 @@ const Visitations: React.FC = () => {
 	);
 };
 
-export default Visitations;
+export default VisitationHistory;

@@ -78,4 +78,4 @@ const ImageUploadField: React.FC<Props> = ({
 	);
 };
 
-export default React.memo(ImageUploadField);
+export default 	React.memo(ImageUploadField);

@@ -20,7 +20,7 @@ const Wrapper: React.FC<WrapperProps> = ({
 	...props
 }) => {
 	return (
-		<Row style={{ marginTop, marginBottom }}>
+		<Row style={{ marginTop, marginBottom }} wrap={false}>
 			<Col {...props}/>
 			<Col flex={'auto'}>{children}</Col>
 			<Col {...props}/>

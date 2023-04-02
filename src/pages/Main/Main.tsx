@@ -4,7 +4,7 @@ import PageWrapper from '../../components/Wrapper/PageWrapper';
 import Title from 'antd/es/typography/Title';
 import SearchFilter from '../../modules/SearchFilter';
 import { Button, Col, Row } from 'antd';
-import Image from './assets/top-view-person-writing-on-laptop-with-copy-space 2.png';
+import Image from './assets/top-view-person-writing-on-laptop-with-copy-space 1.png';
 import { useAppSelector } from '../../redux';
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
