@@ -10,4 +10,5 @@ export interface IWorkspace extends IBaseEntity {
 	rating: number;
 	feedback_count: number;
 	approved: boolean;
+	images: string[];
 }

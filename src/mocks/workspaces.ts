@@ -1,5 +1,6 @@
 import { type IWorkspace } from '../types';
 import { toInteger } from 'lodash';
+import wsImage from './img.png';
 
 export const workspaceMocks: IWorkspace[] = Array.from({ length: 10 }).map((_, index) => ({
 	id: String(index),
@@ -13,6 +14,7 @@ export const workspaceMocks: IWorkspace[] = Array.from({ length: 10 }).map((_, i
 	rating: Math.random() * 5,
 	feedback_count: toInteger(Math.random() * 1000),
 	approved: true,
+	images: [wsImage, wsImage, wsImage, wsImage, wsImage],
 	address: {
 		latitude: 56.836927 + Math.random() * 0.2 - 0.1,
 		longitude: 60.599308 + Math.random() * 0.2 - 0.1,

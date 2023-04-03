@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { Card, Col, Image, Row, Space } from 'antd';
+import { Card, Carousel, Col, Image, Row, Space } from 'antd';
 import { type IWorkspace } from '../../types';
 import Typography from 'antd/es/typography';
-import exampleImage from './img.png';
 import { AimOutlined, PhoneOutlined } from '@ant-design/icons';
 
 interface Props {
@@ -14,7 +13,11 @@ const PurchaseWorkspaceCard: React.FC<Props> = ({ workspace }) => {
 		<Card size={'small'}>
 			<Row gutter={24} align={'middle'}>
 				<Col span={6}>
-					<Image src={exampleImage} placeholder={'Картинка'} />
+					<Carousel dots arrows autoplay>
+						{workspace.images.map((image) => {
+							return <Image key={image} src={image} />;
+						})}
+					</Carousel>
 				</Col>
 				<Col span={18}>
 					<Row justify={'space-between'} align={'stretch'}>
