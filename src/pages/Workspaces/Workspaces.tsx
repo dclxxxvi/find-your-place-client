@@ -6,8 +6,13 @@ import { Card, Col, Row, Space } from 'antd';
 import Title from 'antd/es/typography/Title';
 import PageHeader from '../../components/PageHeader';
 import Typography from 'antd/es/typography';
+import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 
 const Workspaces: React.FC = () => {
+	const breakpoint = useBreakpoint(true);
+
+	const isMobile = !breakpoint.md;
+
 	return (
 		<Content>
 			<PageWrapper>
@@ -32,8 +37,8 @@ const Workspaces: React.FC = () => {
 				</Space>
 			</PageWrapper>
 			<PageWrapper marginTop={48}>
-				<Row gutter={24}>
-					<Col span={6}>
+				<Row gutter={[24, 24]}>
+					<Col span={isMobile ? 24 : 6}>
 						<Card>
 							<Row><Typography.Text>Параметры</Typography.Text></Row>
 							<Row><Typography.Text>Параметры</Typography.Text></Row>
@@ -48,7 +53,7 @@ const Workspaces: React.FC = () => {
 							<Row><Typography.Text>Параметры</Typography.Text></Row>
 						</Card>
 					</Col>
-					<Col span={18}>
+					<Col span={isMobile ? 24 : 18}>
 						<WorkspaceList />
 					</Col>
 				</Row>

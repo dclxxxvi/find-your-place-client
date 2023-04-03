@@ -5,7 +5,7 @@ import { EMAIL_FIELD, REQUIRED_FIELD } from './errorMessages';
 export interface IUserDataFormValues extends IUser {
 }
 
-export const userDataFormSchema = yup.object<IUserDataFormValues>({
+export const userDataSchema = yup.object<IUserDataFormValues>({
 	email: yup.string().email(EMAIL_FIELD).required(REQUIRED_FIELD),
 	name: yup.string().required(REQUIRED_FIELD),
 	surname: yup.string().required(REQUIRED_FIELD),

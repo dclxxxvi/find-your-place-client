@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { Menu, type MenuProps } from 'antd';
 import { useState } from 'react';
-import { menuItems } from './consts';
-import { useNavigate } from 'react-router-dom';
-import { PersonalCabinetRoutes } from '../../router/routes';
+import { getCurrentPagePath, menuItems } from './consts';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { type PersonalCabinetRoutes } from '../../router/routes';
 
 const PersonalCabinetMenu: React.FC = () => {
-	const [selected, setSelected] = useState<PersonalCabinetRoutes>(PersonalCabinetRoutes.USER_DATA);
+	const location = useLocation();
+	const [selected, setSelected] = useState<PersonalCabinetRoutes>(getCurrentPagePath(location));
 	const navigate = useNavigate();
 
 	const handleMenuItemClick: MenuProps['onClick'] = (e) => {

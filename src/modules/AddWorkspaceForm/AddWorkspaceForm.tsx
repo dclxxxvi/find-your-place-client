@@ -3,7 +3,7 @@ import { Button, notification, Space } from 'antd';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import TextField from '../../form/fields/TextField';
 import TextAreaField from '../../form/fields/TextAreaField';
-import { addWorkspaceFormSchema, type IAddWorkspaceFormValues } from '../../form/schemas/addWorkspaceFormSchema';
+import { addWorkspaceSchema, type IAddWorkspaceFormValues } from '../../form/schemas/addWorkspaceSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import AddressField from '../../form/fields/AddressField';
 import { useYMaps } from '@pbe/react-yandex-maps';
@@ -26,7 +26,7 @@ const AddWorkspaceForm: React.FC = () => {
 	const [addWorkspace] = useAddWorkspaceMutation();
 
 	const { handleSubmit, control, reset } = useForm<IAddWorkspaceFormValues>({
-		resolver: yupResolver(addWorkspaceFormSchema),
+		resolver: yupResolver(addWorkspaceSchema),
 	});
 
 	const onSubmit: SubmitHandler<IAddWorkspaceFormValues> = async(values) => {

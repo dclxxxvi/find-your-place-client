@@ -6,7 +6,7 @@ export interface IAddWorkspaceFormValues extends IWorkspace {
 	agree: boolean;
 }
 
-export const addWorkspaceFormSchema = yup.object<IAddWorkspaceFormValues>({
+export const addWorkspaceSchema = yup.object<IAddWorkspaceFormValues>({
 	address: yup.object({
 		value: yup.string()
 		// .required(REQUIRED_FIELD)

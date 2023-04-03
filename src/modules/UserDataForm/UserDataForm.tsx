@@ -3,11 +3,11 @@ import { type SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Col, notification, Row, Space } from 'antd';
 import TextField from '../../form/fields/TextField';
-import { type IUserDataFormValues, userDataFormSchema } from '../../form/schemas/userDataFormSchema';
+import { type IUserDataFormValues, userDataSchema } from '../../form/schemas/userDataSchema';
 
 const UserDataForm: React.FC = () => {
 	const { handleSubmit, control, reset } = useForm<IUserDataFormValues>({
-		resolver: yupResolver(userDataFormSchema),
+		resolver: yupResolver(userDataSchema),
 	});
 
 	const onSubmit: SubmitHandler<IUserDataFormValues> = async(values) => {

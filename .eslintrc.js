@@ -40,6 +40,8 @@ module.exports = {
 		'react-hooks/exhaustive-deps': 'warn',
 		'react/prop-types': 'off',
 		'eol-last': 'error',
+		'@typescript-eslint/strict-boolean-expressions': 'off',
+		'@typescript-eslint/prefer-nullish-coalescing': 'off',
 		'@typescript-eslint/member-delimiter-style': [
 			'warn',
 			{

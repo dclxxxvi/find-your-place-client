@@ -5,7 +5,7 @@ import VisitationList from '../../../modules/VisitationList';
 
 const VisitationHistory: React.FC = () => {
 	return (
-		<Space direction={'vertical'}>
+		<Space direction={'vertical'} size={36}>
 			<Title level={3} style={{ margin: 0 }}>Мои посещения</Title>
 			<VisitationList />
 		</Space>

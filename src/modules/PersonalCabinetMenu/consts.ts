@@ -1,5 +1,6 @@
 import { type ItemType } from 'antd/es/menu/hooks/useItems';
 import { PersonalCabinetRoutes } from '../../router/routes';
+import { type Location } from 'react-router-dom';
 
 export enum MenuLabels {
 	PERSONAL_CABINET = 'Личный кабинет',
@@ -39,3 +40,5 @@ export const menuItems: ItemType[] = [
 		],
 	},
 ];
+
+export const getCurrentPagePath = (location: Location) => location.pathname.split('/').pop() as PersonalCabinetRoutes;

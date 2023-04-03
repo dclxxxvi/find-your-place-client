@@ -3,22 +3,27 @@ import { Button, Card, Carousel, Col, Image, Rate, Row, Space } from 'antd';
 import { type IWorkspace } from '../../types';
 import Typography from 'antd/es/typography';
 import { AimOutlined } from '@ant-design/icons';
+import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 
 interface Props {
 	workspace: IWorkspace;
+	vertical?: boolean;
 }
 
-const WorkspaceCard: React.FC<Props> = ({ workspace }) => {
+const WorkspaceCard: React.FC<Props> = ({ workspace, vertical }) => {
+	const breakpoint = useBreakpoint(true);
+	const isVertical = vertical || !breakpoint.md;
+
 	return (
 		<Card size={'small'}>
-			<Row gutter={24} align={'stretch'}>
-				<Col span={10}>
+			<Row gutter={[24, 16]} align={'stretch'}>
+				<Col span={isVertical ? 24 : 10}>
 					<Carousel autoplay>
 						{workspace.images.map((image) =>
 							<Image key={ image } src={ image }/>)}
 					</Carousel>
 				</Col>
-				<Col span={14}>
+				<Col span={isVertical ? 24 : 14}>
 					<Space direction={'vertical'} size={'middle'}>
 						<Row align={'top'} justify={'space-between'}>
 							<Col>

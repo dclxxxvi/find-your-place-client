@@ -16,11 +16,11 @@ const WorkspaceDrawer: React.FC<Props> = ({ open, onClose, workspaceId }) => {
 		<Drawer
 			title={workspace?.title}
 			placement={'left'}
-			closable={false}
 			onClose={onClose}
 			open={open}
+			closable={false}
 		>
-			{ (workspace != null) && <WorkspaceCard workspace={ workspace }/> }
+			{ (workspace != null) && <WorkspaceCard workspace={ workspace } vertical /> }
 		</Drawer>
 	);
 };

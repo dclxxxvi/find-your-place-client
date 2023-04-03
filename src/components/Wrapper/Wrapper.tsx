@@ -22,7 +22,7 @@ const Wrapper: React.FC<WrapperProps> = ({
 	return (
 		<Row style={{ marginTop, marginBottom }} wrap={false}>
 			<Col {...props}/>
-			<Col flex={'auto'}>{children}</Col>
+			<Col flex={'auto'} style={{ marginLeft: 8, marginRight: 8 }}>{children}</Col>
 			<Col {...props}/>
 		</Row>
 	);
