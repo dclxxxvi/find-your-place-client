@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { PersonalCabinetRoutes } from '../../router/routes';
 import { PageWrapper } from '../../components';
 import Typography from 'antd/es/typography';
-import AuthorizationModal from '../Authorization/AuthorizationModal';
+import AuthorizationModal from '../AuthorizationModal/AuthorizationModal';
 import { useState } from 'react';
 
 const ResponsibleNavbar: React.FC = () => {

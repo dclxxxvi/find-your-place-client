@@ -9,7 +9,7 @@ import AddressField from '../../form/fields/AddressField';
 import { useYMaps } from '@pbe/react-yandex-maps';
 import { mapGeocodeToAddress } from './consts';
 import { valuesToFormData } from '../../form/helpers';
-import ImageUpload from '../../form/fields/ImageUploadField';
+import ImageUploadField from '../../form/fields/ImageUploadField';
 import { useAddWorkspaceMutation } from '../../redux';
 
 const AddWorkspaceForm: React.FC = () => {
@@ -57,7 +57,7 @@ const AddWorkspaceForm: React.FC = () => {
 				/>
 				<TextField name={'title'} control={control} label={'Название'}/>
 				<TextAreaField name={'description'} control={control} label={'Описание'}/>
-				<ImageUpload
+				<ImageUploadField
 					name={'images'}
 					control={control}
 					label={'Фотографии'}

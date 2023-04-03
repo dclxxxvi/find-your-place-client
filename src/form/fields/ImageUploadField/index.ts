@@ -1,3 +1,3 @@
-import ImageUpload from './ImageUploadField';
+import ImageUploadField from './ImageUploadField';
 
-export default ImageUpload;
+export default ImageUploadField;

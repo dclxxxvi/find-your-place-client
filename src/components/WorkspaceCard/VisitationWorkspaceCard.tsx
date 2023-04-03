@@ -1,14 +1,20 @@
 import * as React from 'react';
-import { Card, Col, Image, Row, Space } from 'antd';
+import { Card, Col, Image, Rate, Row, Space } from 'antd';
 import { type IWorkspace } from '../../types';
 import Typography from 'antd/es/typography';
 import { AimOutlined, PhoneOutlined } from '@ant-design/icons';
+import { useState } from 'react';
+import FeedbackModal from '../../modules/FeedbackModal';
 
 interface Props {
 	workspace: IWorkspace;
+	hideFeedback?: boolean;
 }
 
-const PurchaseWorkspaceCard: React.FC<Props> = ({ workspace }) => {
+const VisitationWorkspaceCard: React.FC<Props> = ({ workspace, hideFeedback }) => {
+	const [openFeedbackModal, setOpenFeedbackModal] = useState(false);
+	const handleOpenFeedbackModal = (open: boolean) => () => setOpenFeedbackModal(open);
+
 	return (
 		<Card size={'small'}>
 			<Row gutter={24} align={'middle'}>
@@ -24,7 +30,7 @@ const PurchaseWorkspaceCard: React.FC<Props> = ({ workspace }) => {
 										{workspace.title}
 									</Typography.Title>
 									<Typography.Text strong>
-										{ 'Тариф "Все включено"' }
+										{ 'Посещение 21 января 2022' }
 									</Typography.Text>
 								</Space>
 								<Col span={24}/>
@@ -44,26 +50,29 @@ const PurchaseWorkspaceCard: React.FC<Props> = ({ workspace }) => {
 								</Space>
 							</Row>
 						</Col>
-						<Col span={12}>
-							<Row justify={'end'} gutter={[0, 12]}>
-								<Typography.Title style={{ margin: 0 }} level={4}>
-									{'Показать QR-код'}
-								</Typography.Title>
-								<Col span={24}/>
-								<Typography.Text>
-									{'Срок действия с 01.01.2022 - 04.04.2023'}
-								</Typography.Text>
-								<Col span={24}/>
-								<Typography.Text strong>
-									{'Оставить отзыв'}
-								</Typography.Text>
+						{!(hideFeedback ?? false) && <Col span={ 12 }>
+							<Row justify={ 'end' }>
+								<Space direction={ 'vertical' } align={ 'end' }>
+									<Rate allowHalf defaultValue={ workspace.rating } disabled></Rate>
+									<Typography.Text type="secondary">
+										{ `${workspace.feedback_count as number} отзывов` }
+									</Typography.Text>
+									<Typography.Text
+										onClick={ handleOpenFeedbackModal(true) }
+										strong
+										style={ { cursor: 'pointer' } }
+									>
+										{ 'Оставить отзыв' }
+									</Typography.Text>
+								</Space>
 							</Row>
-						</Col>
+						</Col> }
 					</Row>
 				</Col>
 			</Row>
+			<FeedbackModal open={openFeedbackModal} handleClose={handleOpenFeedbackModal(false)} workspace={workspace}/>
 		</Card>
 	);
 };
 
-export default React.memo(PurchaseWorkspaceCard);
+export default React.memo(VisitationWorkspaceCard);
