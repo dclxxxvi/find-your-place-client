@@ -8,11 +8,9 @@ export interface IAddWorkspaceFormValues extends IWorkspace {
 
 export const addWorkspaceSchema = yup.object<IAddWorkspaceFormValues>({
 	address: yup.object({
-		value: yup.string()
-		// .required(REQUIRED_FIELD)
-		,
-	}),	// .required()
-
+		value: yup.string().required(REQUIRED_FIELD),
+	}).required(),
 	title: yup.string().required(REQUIRED_FIELD),
 	description: yup.string().required(REQUIRED_FIELD),
+	agree: yup.boolean().required(REQUIRED_FIELD).isTrue(REQUIRED_FIELD),
 }).required();

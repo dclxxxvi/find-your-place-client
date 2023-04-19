@@ -3,7 +3,7 @@ import { Button, Card, Carousel, Col, Image, Rate, Row, Space } from 'antd';
 import { type IWorkspace } from '../../types';
 import Typography from 'antd/es/typography';
 import { AimOutlined } from '@ant-design/icons';
-import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
+import { useWorkspaceCard } from './hooks/useWorkspaceCard';
 
 interface Props {
 	workspace: IWorkspace;
@@ -11,23 +11,26 @@ interface Props {
 }
 
 const WorkspaceCard: React.FC<Props> = ({ workspace, vertical }) => {
-	const breakpoint = useBreakpoint(true);
-	const isVertical = vertical || !breakpoint.md;
+	const { isVertical, navigateToWorkspacePage } = useWorkspaceCard(workspace.id, vertical);
 
 	return (
 		<Card size={'small'}>
 			<Row gutter={[24, 16]} align={'stretch'}>
 				<Col span={isVertical ? 24 : 10}>
 					<Carousel autoplay>
-						{workspace.images.map((image) =>
-							<Image key={ image } src={ image }/>)}
+						{workspace.images.map((image) => <Image key={ image } src={ image }/>)}
 					</Carousel>
 				</Col>
 				<Col span={isVertical ? 24 : 14}>
 					<Space direction={'vertical'} size={'middle'}>
 						<Row align={'top'} justify={'space-between'}>
 							<Col>
-								<Typography.Title style={{ margin: 0 }} level={4}>{workspace.title}</Typography.Title>
+								<Typography.Title
+									onClick={navigateToWorkspacePage}
+									style={{ margin: 0, cursor: 'pointer' }}
+									level={4}
+								>{workspace.title}
+								</Typography.Title>
 							</Col>
 							<Col>
 								<Row>
@@ -69,7 +72,7 @@ const WorkspaceCard: React.FC<Props> = ({ workspace, vertical }) => {
 						</Row>
 						<Row>
 							<Col flex={'auto'}>
-								<Button style={{ width: '100%' }} type={'primary'} >
+								<Button style={{ width: '100%' }} type={'primary'} onClick={navigateToWorkspacePage}>
 									300 руб/час или 5000 руб/месяц
 								</Button>
 							</Col>

@@ -1,5 +1,5 @@
 import { commonApi } from './common.api';
-import { ETagTypes, getFromFormData } from './consts';
+import { ETagTypes } from './consts';
 import { type IWorkspace, type IWorkspaceSearchParams } from '../../types';
 
 const workspaceApi = commonApi.injectEndpoints({
@@ -7,7 +7,7 @@ const workspaceApi = commonApi.injectEndpoints({
 	endpoints: builder => ({
 		getWorkspaces: builder.query<IWorkspace[], IWorkspaceSearchParams>({
 			query: (params) => ({
-				url: 'workspaces',
+				url: 'workspace',
 				method: 'GET',
 				params,
 			}),
@@ -18,34 +18,33 @@ const workspaceApi = commonApi.injectEndpoints({
 		}),
 		getWorkspaceById: builder.query<IWorkspace, Pick<IWorkspace, 'id'>>({
 			query: ({ id }) => ({
-				url: `workspaces/${id}`,
+				url: `workspace/${id}`,
 				method: 'GET',
 			}),
 			providesTags: (result, error, { id }) => [{ type: ETagTypes.WORKSPACES, id }],
 		}),
-		addWorkspace: builder.mutation<IWorkspace, FormData>({
+		addWorkspace: builder.mutation<IWorkspace, IWorkspace>({
 			query: body => ({
-				url: 'workspaces',
+				url: 'workspace',
 				method: 'POST',
 				body,
 			}),
 			invalidatesTags: [ETagTypes.WORKSPACES],
 		}),
-		editWorkspace: builder.mutation<IWorkspace, FormData>({
+		editWorkspace: builder.mutation<IWorkspace, IWorkspace>({
 			query: body => ({
-				url: `workspaces/${getFromFormData(body, 'id')}`,
-				method: 'PATCH',
+				url: `workspaces/${body.id}`,
+				method: 'PUT',
 				body,
 			}),
-			invalidatesTags: (result, error, arg) => [
-				{ type: ETagTypes.WORKSPACES, id: getFromFormData(arg, 'id') },
+			invalidatesTags: (result, error, { id }) => [
+				{ type: ETagTypes.WORKSPACES, id },
 			],
 		}),
-		deleteWorkspace: builder.mutation<IWorkspace, FormData>({
-			query: body => ({
-				url: `workspaces/${getFromFormData(body, 'id')}`,
+		deleteWorkspace: builder.mutation<IWorkspace, Pick<IWorkspace, 'id'>>({
+			query: ({ id }) => ({
+				url: `workspaces/${id}`,
 				method: 'DELETE',
-				body,
 			}),
 			invalidatesTags: [ETagTypes.WORKSPACES],
 		}),

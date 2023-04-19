@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, notification, Space } from 'antd';
+import { Button, Col, Divider, notification, Row, Space } from 'antd';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import TextField from '../../form/fields/TextField';
 import TextAreaField from '../../form/fields/TextAreaField';
@@ -8,9 +8,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import AddressField from '../../form/fields/AddressField';
 import { useYMaps } from '@pbe/react-yandex-maps';
 import { mapGeocodeToAddress } from './consts';
-import { valuesToFormData } from '../../form/helpers';
 import ImageUploadField from '../../form/fields/ImageUploadField';
 import { useAddWorkspaceMutation } from '../../redux';
+import CheckboxField from '../../form/fields/CheckboxField';
+import Typography from 'antd/es/typography';
+
+const DividerWithoutMargins = () => <Divider style={{ margin: 0 }}/>;
 
 const AddWorkspaceForm: React.FC = () => {
 	const ymaps = useYMaps(['geocode']);
@@ -31,9 +34,11 @@ const AddWorkspaceForm: React.FC = () => {
 
 	const onSubmit: SubmitHandler<IAddWorkspaceFormValues> = async(values) => {
 		const address = await transformAddressStringToAddress(values.address.value);
-		const formData = valuesToFormData({ ...values, address });
+		if (!address) {
+			return;
+		}
 
-		addWorkspace(formData).unwrap()
+		addWorkspace({ ...values, address }).unwrap()
 			.then(() => {
 				notification.success({
 					message: 'Коворкинг создан',
@@ -55,8 +60,11 @@ const AddWorkspaceForm: React.FC = () => {
 					label={'Адрес'}
 					style={{ width: '100%' }}
 				/>
+				<DividerWithoutMargins/>
 				<TextField name={'title'} control={control} label={'Название'}/>
+				<DividerWithoutMargins/>
 				<TextAreaField name={'description'} control={control} label={'Описание'}/>
+				<DividerWithoutMargins/>
 				<ImageUploadField
 					name={'images'}
 					control={control}
@@ -64,9 +72,25 @@ const AddWorkspaceForm: React.FC = () => {
 					listType={'picture-card'}
 					showGrid rotationSlider aspectSlider showReset
 				/>
-				<Button htmlType={'submit'}>
-					Отправить
-				</Button>
+				<DividerWithoutMargins/>
+
+				<DividerWithoutMargins/>
+				<Space direction={'vertical'}>
+					<Typography.Text>Согласие на обработку персональных данных</Typography.Text>
+					<CheckboxField name={'agree'} control={control} label={'Я согласен'}/>
+				</Space>
+				<Row justify={'end'} gutter={16}>
+					<Col>
+						<Button onClick={() => reset()}>
+							Отмена
+						</Button>
+					</Col>
+					<Col>
+						<Button type={'primary'} htmlType={'submit'}>
+							Добавить пространство
+						</Button>
+					</Col>
+				</Row>
 			</Space>
 		</form>
 	);

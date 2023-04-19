@@ -33,7 +33,7 @@ const FeedbackForm: React.FC<Props> = ({ handleClose }) => {
 	return (
 		<form onSubmit={ handleSubmit(onSubmit) }>
 			<Space direction={'vertical'} size={'large'} style={{ display: 'flex' }}>
-				<RateField name={'rating'} control={control} label={'Оцените от 1 до 5'} />
+				<RateField name={'rating'} control={control} label={'Оценка места'} />
 				<TextAreaField name={'comment'} control={control} label={'Ваш комментарий'}/>
 				<TextAreaField name={'advantages'} control={control} label={'Опишите достоинства'}/>
 				<TextAreaField name={'disadvantages'} control={control} label={'Опишите недостатки'}/>

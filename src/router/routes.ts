@@ -6,3 +6,8 @@ export enum PersonalCabinetRoutes {
 	VISITATION_HISTORY = 'visitation_history',
 	SUGGESTED_PLACES = 'suggested_places',
 }
+
+export enum AppRoutes {
+	WORKSPACES = 'workspaces',
+	WORKSPACES_NEW = 'workspaces/new',
+}
