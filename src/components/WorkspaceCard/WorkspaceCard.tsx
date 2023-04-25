@@ -33,12 +33,7 @@ const WorkspaceCard: React.FC<Props> = ({ workspace, vertical }) => {
 					</Carousel>
 				</Col>
 
-				<Col xxl={14} md={12} sm={24} span={isVertical ? 24 : 14} style={{
-					display: 'flex',
-					flexDirection: 'column',
-					justifyContent: 'space-between',
-					height: '100%',
-				}}>
+				<Col xxl={14} md={12} sm={24} span={isVertical ? 24 : 14} >
 					<Space direction={'vertical'} size={(isCardHovered || isMobile) ? 'small' : 'large'}>
 
 						<Row justify={'space-between'}>
