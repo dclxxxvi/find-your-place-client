@@ -4,11 +4,19 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Col, notification, Row, Space } from 'antd';
 import TextField from '../../form/fields/TextField';
 import { type IUserDataFormValues, userDataSchema } from '../../form/schemas/userDataSchema';
+import { useGetUserQuery } from '../../redux';
+import { useEffect } from 'react';
 
 const UserDataForm: React.FC = () => {
+	const { data, isLoading } = useGetUserQuery(null);
+
 	const { handleSubmit, control, reset } = useForm<IUserDataFormValues>({
 		resolver: yupResolver(userDataSchema),
 	});
+
+	useEffect(() => {
+		reset(data?.data);
+	}, [data?.data, reset]);
 
 	const onSubmit: SubmitHandler<IUserDataFormValues> = async(values) => {
 		new Promise((resolve) => resolve(values))
@@ -17,7 +25,6 @@ const UserDataForm: React.FC = () => {
 					message: 'Данные отредактированы',
 					description: 'Данные вашего профиля успешно отредактированы...',
 				});
-				reset();
 			}).catch(() => notification.error({
 				message: 'Произошла ошибка',
 				description: 'При редактировании профиля произошла ошибка...',
@@ -29,26 +36,26 @@ const UserDataForm: React.FC = () => {
 			<Space direction={'vertical'} size={36}>
 				<Row gutter={[24, 24]}>
 					<Col sm={24} md={12}>
-						<TextField name={'name'} control={control} label={'Имя'}/>
+						<TextField disabled={isLoading} name={'first_name'} control={control} label={'Имя'}/>
 					</Col>
 					<Col sm={24} md={12}>
-						<TextField name={'surname'} control={control} label={'Фамилия'}/>
+						<TextField disabled={isLoading} name={'last_name'} control={control} label={'Фамилия'}/>
 					</Col>
 					<Col sm={24} md={12}>
-						<TextField name={'email'} control={control} label={'Почта'}/>
+						<TextField disabled={isLoading} name={'username'} control={control} label={'Имя пользователя'}/>
 					</Col>
 					<Col sm={24} md={12}>
-						<TextField name={'phone'} control={control} label={'Телефон'}/>
+						<TextField disabled={isLoading} name={'phone'} control={control} label={'Телефон'}/>
 					</Col>
 				</Row>
 				<Row gutter={[24, 24]}>
 					<Col>
-						<Button onClick={() => reset()}>
+						<Button loading={isLoading} onClick={() => reset()}>
 							Отменить
 						</Button>
 					</Col>
 					<Col>
-						<Button type={'primary'} htmlType={'submit'}>
+						<Button loading={isLoading} type={'primary'} htmlType={'submit'}>
 							Отправить
 						</Button>
 					</Col>

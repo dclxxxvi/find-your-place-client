@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { type PropsWithChildren, useMemo } from 'react';
 import { ConfigProvider } from 'antd';
-import { useAppSelector } from '../redux';
+import { useAppSelector } from '../../redux';
 import { darkTheme, lightTheme } from './themes';
 
 const ThemeProvider: React.FC<PropsWithChildren> = ({ children }) => {

@@ -14,12 +14,17 @@ export const workspaceMocks: IWorkspace[] = Array.from({ length: 10 }).map((_, i
 	rating: Math.random() * 5,
 	feedback_count: toInteger(Math.random() * 1000),
 	approved: true,
-	images: [wsImage, wsImage, wsImage, wsImage, wsImage],
-	address: {
-		latitude: 56.836927 + Math.random() * 0.2 - 0.1,
-		longitude: 60.599308 + Math.random() * 0.2 - 0.1,
-		value: `ул. Пушкина ${toInteger(Math.random() * 98)}, д. Колотушкина ${toInteger(Math.random() * 112)}`,
-	},
+	images: Array.from({ length: 5 }).map((__, imageindex) => ({
+		id: String(imageindex),
+		workspace_id: String(imageindex),
+		media_id: String(imageindex),
+		link: wsImage,
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	})),
+	latitude: 56.836927 + Math.random() * 0.2 - 0.1,
+	longitude: 60.599308 + Math.random() * 0.2 - 0.1,
+	location_value: `ул. Пушкина ${toInteger(Math.random() * 98)}, д. Колотушкина ${toInteger(Math.random() * 112)}`,
 	createdAt: new Date(),
 	updatedAt: new Date(),
 }));

@@ -1,6 +1,8 @@
 export enum ETagTypes {
 	WORKSPACES = 'Workspaces',
+	USER_WORKSPACES = 'UserWorkspaces',
 	TARIFFS = 'Tariffs',
+	USER = 'User',
 }
 
 export const tagTypes = [ETagTypes.WORKSPACES, ETagTypes.TARIFFS];

@@ -33,7 +33,7 @@ const WorkspaceMapSearch: React.FC = () => {
 					{workspaceMocks.map(ws => {
 						return <Placemark
 							key={ws.id}
-							geometry={[ws.address.latitude, ws.address.longitude]}
+							geometry={[ws.latitude, ws.longitude]}
 							onClick={() => openWorkspaceInfo(ws.id)}
 						/>;
 					})}

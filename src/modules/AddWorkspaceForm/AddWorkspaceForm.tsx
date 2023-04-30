@@ -26,19 +26,21 @@ const AddWorkspaceForm: React.FC = () => {
 			}));
 	};
 
-	const [addWorkspace] = useAddWorkspaceMutation();
+	const [addWorkspace, { isLoading }] = useAddWorkspaceMutation();
 
 	const { handleSubmit, control, reset } = useForm<IAddWorkspaceFormValues>({
 		resolver: yupResolver(addWorkspaceSchema),
 	});
 
 	const onSubmit: SubmitHandler<IAddWorkspaceFormValues> = async(values) => {
-		const address = await transformAddressStringToAddress(values.address.value);
+		const address = await transformAddressStringToAddress(values.location_value);
 		if (!address) {
 			return;
 		}
 
-		addWorkspace({ ...values, address }).unwrap()
+		// eslint-disable-next-line @typescript-eslint/naming-convention
+
+		addWorkspace({ ...values, ...address }).unwrap()
 			.then(() => {
 				notification.success({
 					message: 'Коворкинг создан',
@@ -55,7 +57,7 @@ const AddWorkspaceForm: React.FC = () => {
 		<form onSubmit={ handleSubmit(onSubmit) }>
 			<Space direction={'vertical'} size={'middle'} style={{ display: 'flex' }}>
 				<AddressField
-					name={'address.value'}
+					name={'location_value'}
 					control={control}
 					label={'Адрес'}
 					style={{ width: '100%' }}
@@ -66,14 +68,15 @@ const AddWorkspaceForm: React.FC = () => {
 				<TextAreaField name={'description'} control={control} label={'Описание'}/>
 				<DividerWithoutMargins/>
 				<ImageUploadField
-					name={'images'}
+					name={'images_doesnt_work_yet'}
+					uploadName={'image_file'}
+					action={`${process.env.REACT_APP_API_URL || ''}workspace/upload_image`}
 					control={control}
 					label={'Фотографии'}
 					listType={'picture-card'}
 					showGrid rotationSlider aspectSlider showReset
 				/>
 				<DividerWithoutMargins/>
-
 				<DividerWithoutMargins/>
 				<Space direction={'vertical'}>
 					<Typography.Text>Согласие на обработку персональных данных</Typography.Text>
@@ -86,7 +89,7 @@ const AddWorkspaceForm: React.FC = () => {
 						</Button>
 					</Col>
 					<Col>
-						<Button type={'primary'} htmlType={'submit'}>
+						<Button loading={isLoading} type={'primary'} htmlType={'submit'}>
 							Добавить пространство
 						</Button>
 					</Col>

@@ -18,7 +18,7 @@ const WorkspaceCard: React.FC<Props> = ({ workspace, vertical }) => {
 			<Row gutter={[24, 16]} align={'stretch'}>
 				<Col span={isVertical ? 24 : 10}>
 					<Carousel autoplay>
-						{workspace.images.map((image) => <Image key={ image } src={ image }/>)}
+						{workspace.images.map((image) => <Image key={ image.id } src={ image.link }/>)}
 					</Carousel>
 				</Col>
 				<Col span={isVertical ? 24 : 14}>
@@ -53,7 +53,7 @@ const WorkspaceCard: React.FC<Props> = ({ workspace, vertical }) => {
 								<Space>
 									<AimOutlined />
 									<Typography.Text>
-										{workspace.address.value}
+										{workspace.location_value}
 									</Typography.Text>
 								</Space>
 							</Col>

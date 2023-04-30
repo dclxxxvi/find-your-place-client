@@ -1,5 +1,5 @@
 export interface IAddress {
-	value: string;
+	location_value: string;
 	longitude: number;
 	latitude: number;
 }

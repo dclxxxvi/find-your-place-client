@@ -5,7 +5,7 @@ import { store } from './redux';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorPage } from './pages';
 import { Layout } from 'antd';
-import ThemeProvider from './theme';
+import ThemeProvider from './providers/theme';
 import { YMaps } from '@pbe/react-yandex-maps';
 
 const App: React.FC = () => {
