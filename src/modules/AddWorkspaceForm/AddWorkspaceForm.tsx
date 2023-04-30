@@ -38,8 +38,6 @@ const AddWorkspaceForm: React.FC = () => {
 			return;
 		}
 
-		// eslint-disable-next-line @typescript-eslint/naming-convention
-
 		addWorkspace({ ...values, ...address }).unwrap()
 			.then(() => {
 				notification.success({
@@ -68,7 +66,7 @@ const AddWorkspaceForm: React.FC = () => {
 				<TextAreaField name={'description'} control={control} label={'Описание'}/>
 				<DividerWithoutMargins/>
 				<ImageUploadField
-					name={'images_doesnt_work_yet'}
+					name={'images'}
 					uploadName={'image_file'}
 					action={`${process.env.REACT_APP_API_URL || ''}workspace/upload_image`}
 					control={control}

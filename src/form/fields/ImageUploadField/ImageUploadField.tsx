@@ -29,17 +29,6 @@ interface Props extends Omit<ImageUploadProps, ExcludedUploadProps>, Omit<ImgCro
 	label?: ReactNode;
 }
 
-const mapImageMediaToUploadFile = (file: IImageMedia): ImageUploadFile => {
-	return {
-		uid: file.id,
-		url: file.link,
-		thumbUrl: file.link,
-		name: file.id,
-		fileName: file.id,
-		status: 'done',
-	};
-};
-
 const ImageUploadField: React.FC<Props> = ({
 	name,
 	uploadName,
@@ -50,6 +39,7 @@ const ImageUploadField: React.FC<Props> = ({
 }) => {
 	const [previewOpen, setPreviewOpen] = useState(false);
 	const [preview, setPreview] = useState<ImageUploadFile | undefined>(undefined);
+	const [fileList, setFileList] = useState<ImageUploadFile[]>([]);
 
 	const handleClosePreview = useCallback(() => setPreviewOpen(false), []);
 
@@ -64,8 +54,9 @@ const ImageUploadField: React.FC<Props> = ({
 	const handleChange = (inputOnChange: (value: IImageMedia[]) => void) => (values: ImageUploadChangeParam) => {
 		const fileListToChange = values.fileList
 			.filter(file => file.response)
-			.map(file => file.response?.data.data) as IImageMedia[];
+			.map(file => file.response?.data.media) as IImageMedia[];
 		inputOnChange(fileListToChange);
+		setFileList(values.fileList);
 		if (values.file.status === 'error') {
 			notification.error({
 				message: 'Произошла ошибка',
@@ -85,12 +76,12 @@ const ImageUploadField: React.FC<Props> = ({
 						<Upload
 							name={uploadName}
 							headers={{ authorization: localStorage?.getItem('access-token') || '' }}
-							fileList={field.value?.map(mapImageMediaToUploadFile)}
+							fileList={fileList}
 							onPreview={handlePreview}
 							onChange={handleChange(field.onChange)}
 							{...rest}
 						>
-							{(field.value === undefined || field.value.length < maxCount) && renderUploadButton}
+							{fileList.length < maxCount && renderUploadButton}
 						</Upload>
 					</ImgCrop>
 					<ErrorMessage fieldState={fieldState} />
