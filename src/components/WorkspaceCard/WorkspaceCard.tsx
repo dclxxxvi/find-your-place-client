@@ -20,8 +20,18 @@ const WorkspaceCard: React.FC<Props> = ({ workspace, vertical }) => {
 	const { isVertical, navigateToWorkspacePage } = useWorkspaceCard(workspace.id, vertical);
 
 	return (
-		<Card size={'small'} style={{ cursor: 'pointer' }} onMouseEnter={() => setIsCardHovered(true)}
-			onMouseLeave={() => setIsCardHovered(false)}
+		<Card size={'small'} style={
+			isCardHovered
+				? {
+					cursor: 'pointer',
+					scale: '1s',
+					transform: 'scale(1.05)',
+					boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+				}
+				: {
+					cursor: 'pointer',
+				}
+		} onMouseEnter={() => setIsCardHovered(true)} onMouseLeave={() => setIsCardHovered(false)}
 		>
 			<Row gutter={[24, 16]} align={'middle'} justify={'center'} >
 
