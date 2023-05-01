@@ -6,39 +6,29 @@ import TextAreaField from '../../form/fields/TextAreaField';
 import { addWorkspaceSchema, type IAddWorkspaceFormValues } from '../../form/schemas/addWorkspaceSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import AddressField from '../../form/fields/AddressField';
-import { useYMaps } from '@pbe/react-yandex-maps';
-import { mapGeocodeToAddress } from './consts';
 import ImageUploadField from '../../form/fields/ImageUploadField';
 import { useAddWorkspaceMutation } from '../../redux';
 import CheckboxField from '../../form/fields/CheckboxField';
 import Typography from 'antd/es/typography';
+import { useAddress } from './hooks/useAddress';
 
 const DividerWithoutMargins = () => <Divider style={{ margin: 0 }}/>;
 
 const AddWorkspaceForm: React.FC = () => {
-	const ymaps = useYMaps(['geocode']);
-	const transformAddressStringToAddress = async(addressString: string) => {
-		return await ymaps?.geocode(addressString, { results: 1 })
-			.then(data => mapGeocodeToAddress(data, addressString))
-			.catch(() => notification.error({
-				message: 'Произошла ошибка',
-				description: 'При преобразовании адреса произошла ошибка...',
-			}));
-	};
-
-	const [addWorkspace] = useAddWorkspaceMutation();
+	const getAddressByString = useAddress();
+	const [addWorkspace, { isLoading }] = useAddWorkspaceMutation();
 
 	const { handleSubmit, control, reset } = useForm<IAddWorkspaceFormValues>({
 		resolver: yupResolver(addWorkspaceSchema),
 	});
 
 	const onSubmit: SubmitHandler<IAddWorkspaceFormValues> = async(values) => {
-		const address = await transformAddressStringToAddress(values.address.value);
+		const address = await getAddressByString(values.location_value);
 		if (!address) {
 			return;
 		}
 
-		addWorkspace({ ...values, address }).unwrap()
+		addWorkspace({ ...values, ...address }).unwrap()
 			.then(() => {
 				notification.success({
 					message: 'Коворкинг создан',
@@ -55,7 +45,7 @@ const AddWorkspaceForm: React.FC = () => {
 		<form onSubmit={ handleSubmit(onSubmit) }>
 			<Space direction={'vertical'} size={'middle'} style={{ display: 'flex' }}>
 				<AddressField
-					name={'address.value'}
+					name={'location_value'}
 					control={control}
 					label={'Адрес'}
 					style={{ width: '100%' }}
@@ -67,13 +57,14 @@ const AddWorkspaceForm: React.FC = () => {
 				<DividerWithoutMargins/>
 				<ImageUploadField
 					name={'images'}
+					uploadName={'image_file'}
+					action={`${process.env.REACT_APP_API_URL || ''}workspace/upload_image`}
 					control={control}
 					label={'Фотографии'}
 					listType={'picture-card'}
 					showGrid rotationSlider aspectSlider showReset
 				/>
 				<DividerWithoutMargins/>
-
 				<DividerWithoutMargins/>
 				<Space direction={'vertical'}>
 					<Typography.Text>Согласие на обработку персональных данных</Typography.Text>
@@ -86,7 +77,7 @@ const AddWorkspaceForm: React.FC = () => {
 						</Button>
 					</Col>
 					<Col>
-						<Button type={'primary'} htmlType={'submit'}>
+						<Button loading={isLoading} type={'primary'} htmlType={'submit'}>
 							Добавить пространство
 						</Button>
 					</Col>

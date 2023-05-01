@@ -38,6 +38,7 @@ const FeedbackForm: React.FC<Props> = ({ handleClose }) => {
 				<TextAreaField name={'advantages'} control={control} label={'Опишите достоинства'}/>
 				<TextAreaField name={'disadvantages'} control={control} label={'Опишите недостатки'}/>
 				<ImageUploadField
+					uploadName={'image_file'}
 					name={'images'}
 					control={control}
 					label={'Фотографии'}

@@ -37,6 +37,7 @@ const WorkspaceCard: React.FC<Props> = ({ workspace, vertical }) => {
 
 				<Col xxl={isVertical ? 14 : 10} md={12} sm={24} span={isVertical ? 24 : 10}>
 					<Carousel autoplay>
+						{workspace.images.map((image) => <Image key={ image.id } src={ image.link }/>)}
 						{workspace.images.map((image) =>
 							<Image key={image} src={image} width={'100%'} height={'100%'}/>,
 						)}
@@ -104,7 +105,7 @@ const WorkspaceCard: React.FC<Props> = ({ workspace, vertical }) => {
 								<Space>
 									<AimOutlined/>
 									<Typography.Text>
-										{workspace.address.value}
+										{workspace.location_value}
 									</Typography.Text>
 								</Space>
 							</Col>

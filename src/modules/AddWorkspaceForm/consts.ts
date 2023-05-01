@@ -6,7 +6,7 @@ export const mapGeocodeToAddress = (geocodeResult: ymaps.IGeocodeResult, address
 	const coordinates = geometry?.getCoordinates();
 
 	return {
-		value: addressString,
+		location_value: addressString,
 		latitude: coordinates[0],
 		longitude: coordinates[1],
 	};

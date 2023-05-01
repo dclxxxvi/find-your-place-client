@@ -11,7 +11,7 @@ interface Props {
 }
 
 const LoginForm: React.FC<Props> = ({ handleClose }) => {
-	const [login] = useLoginMutation();
+	const [login, { isLoading }] = useLoginMutation();
 
 	const { handleSubmit, control, reset } = useForm<ILoginFormValues>({
 		resolver: yupResolver(loginSchema),
@@ -36,7 +36,12 @@ const LoginForm: React.FC<Props> = ({ handleClose }) => {
 			<Space direction={'vertical'} size={'middle'} style={{ display: 'flex' }}>
 				<TextField name={'username'} control={control} label={'Имя пользователя'}/>
 				<TextField name={'password'} control={control} label={'Пароль'} type={'password'}/>
-				<Button htmlType={'submit'} type={'primary'} style={{ width: '100%', marginTop: 24 }}>
+				<Button
+					loading={isLoading}
+					htmlType={'submit'}
+					type={'primary'}
+					style={{ width: '100%', marginTop: 24 }}
+				>
 					Войти
 				</Button>
 			</Space>

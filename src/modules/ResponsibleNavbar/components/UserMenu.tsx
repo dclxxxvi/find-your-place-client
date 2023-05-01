@@ -1,54 +1,45 @@
 import * as React from 'react';
+import { Button } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+import { PersonalCabinetRoutes } from '../../../router/routes';
+import AuthorizationModal from '../../AuthorizationModal/AuthorizationModal';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useGetUserQuery } from '../../../redux';
 
 const UserMenu: React.FC = () => {
-	// const navigate = useNavigate();
-	// const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-	//
-	// const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>): void => {
-	// 	setAnchorElUser(event.currentTarget);
-	// };
-	//
-	// const handleCloseUserMenu = (): void => {
-	// 	setAnchorElUser(null);
-	// };
-	//
-	// const handleNavigateTo = (to: string) => () => {
-	// 	handleCloseUserMenu();
-	// 	navigate(to);
-	// };
+	const { isLoading, data, isFetching } = useGetUserQuery(null);
+	const navigate = useNavigate();
+	const [authorizationModalOpen, setAuthorizationModalOpen] = useState(false);
+	const handleAuthorizationModalOpen = (open: boolean) => () => setAuthorizationModalOpen(open);
+
+	if (data) {
+		return <Button
+			shape={'circle'}
+			icon={<UserOutlined />}
+			onClick={() => navigate(`${PersonalCabinetRoutes.PROFILE}/${PersonalCabinetRoutes.USER_DATA}`)}
+		/>;
+	}
+
+	if (isLoading || isFetching) {
+		return <Button
+			loading
+			shape={'circle'}
+			icon={<UserOutlined />}
+		/>;
+	}
 
 	return (
-		<></>
-		// <Box sx={{ flexGrow: 0 }}>
-		// 	<Tooltip title="Open settings">
-		// 		<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-		// 			<Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-		// 		</IconButton>
-		// 	</Tooltip>
-		// 	<Menu
-		// 		sx={{ mt: '45px' }}
-		// 		id="menu-appbar"
-		// 		anchorEl={anchorElUser}
-		// 		anchorOrigin={{
-		// 			vertical: 'top',
-		// 			horizontal: 'right',
-		// 		}}
-		// 		keepMounted
-		// 		transformOrigin={{
-		// 			vertical: 'top',
-		// 			horizontal: 'right',
-		// 		}}
-		// 		open={Boolean(anchorElUser)}
-		// 		onClose={handleCloseUserMenu}
-		// 	>
-		// 		{PROFILE_LINKS.map(({ label, to }) => (
-		// 			<MenuItem key={to} onClick={handleNavigateTo(to)}>
-		// 				<Typography textAlign="center">{label}</Typography>
-		// 			</MenuItem>
-		// 		))}
-		// 	</Menu>
-		// </Box>
+		<>
+			<Button onClick={handleAuthorizationModalOpen(true)}>
+			Авторизация
+			</Button>
+			<AuthorizationModal
+				open={authorizationModalOpen}
+				handleClose={handleAuthorizationModalOpen(false)}
+			/>
+		</>
 	);
 };
 
-export default React.memo(UserMenu);
+export default UserMenu;

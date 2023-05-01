@@ -7,12 +7,12 @@ import { useState } from 'react';
 import { workspaceMocks } from '../../mocks/workspaces';
 
 const dictMocks: IBaseType[] = [
-	{ id: '1', code: 'ExampleCode1', name: 'Первый пример' },
-	{ id: '2', code: 'ExampleCode2', name: 'Второй пример' },
-	{ id: '3', code: 'ExampleCode3', name: 'Третий пример' },
-	{ id: '4', code: 'ExampleCode4', name: 'Четвертый пример' },
-	{ id: '5', code: 'ExampleCode5', name: 'Пятый пример' },
-	{ id: '6', code: 'ExampleCode6', name: 'Шестой пример' },
+	{ id: '1', code_name: 'ExampleCode1', name: 'Первый пример' },
+	{ id: '2', code_name: 'ExampleCode2', name: 'Второй пример' },
+	{ id: '3', code_name: 'ExampleCode3', name: 'Третий пример' },
+	{ id: '4', code_name: 'ExampleCode4', name: 'Четвертый пример' },
+	{ id: '5', code_name: 'ExampleCode5', name: 'Пятый пример' },
+	{ id: '6', code_name: 'ExampleCode6', name: 'Шестой пример' },
 ] as IBaseType[];
 
 const PurchaseList: React.FC = () => {
