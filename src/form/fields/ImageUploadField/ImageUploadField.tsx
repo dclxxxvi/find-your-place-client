@@ -1,49 +1,68 @@
 import * as React from 'react';
+import { type ReactNode, useCallback, useState } from 'react';
 import FieldWrapper from '../../components/FieldWrapper';
 import Label from '../../components/Label';
-import { Modal, Upload, type UploadFile, type UploadProps } from 'antd';
+import { Modal, notification, Upload, type UploadFile, type UploadProps } from 'antd';
 import ErrorMessage from '../../components/ErrorMessage';
 import { Controller, type ControllerProps } from 'react-hook-form';
-import { type ReactNode, useCallback, useState } from 'react';
 import { type UploadChangeParam } from 'antd/es/upload';
-import { getBase64, getPreviewImage, preventDefaultRequest, renderUploadButton } from './consts';
+import { getBase64, getPreviewImage, renderUploadButton } from './consts';
 import ImgCrop, { type ImgCropProps } from 'antd-img-crop';
+import { type IResponse } from '../../../types';
+import { type IImageMedia } from '../../../types/IImageMedia';
+import { type AxiosResponse } from 'axios';
 
-type ExcludedUploadProps = keyof ControllerProps | 'children' |
-'defaultFileList' | 'fileList' | 'customRequest' | 'action' | 'onPreview';
+// TODO: нужен рефакторинг компонента
 
-interface Props extends Omit<UploadProps, ExcludedUploadProps>, Omit<ImgCropProps, 'children'> {
+type ImageMediaResponse = IResponse<IImageMedia>;
+type ImageUploadFile = UploadFile<AxiosResponse<ImageMediaResponse>>;
+type ImageUploadChangeParam = UploadChangeParam<ImageUploadFile>;
+type ImageUploadProps = UploadProps<ImageMediaResponse>;
+
+type ExcludedUploadProps =
+	keyof ControllerProps | 'children' | 'defaultFileList' | 'fileList' | 'customRequest' | 'onPreview';
+
+interface Props extends Omit<ImageUploadProps, ExcludedUploadProps>, Omit<ImgCropProps, 'children'> {
 	name: string;
+	uploadName: string;
 	control: any; // TODO: поправить
 	label?: ReactNode;
-	maxFiles?: number;
 }
 
 const ImageUploadField: React.FC<Props> = ({
 	name,
+	uploadName,
 	label,
 	control,
-	maxFiles = 10,
+	maxCount = 10,
 	...rest
 }) => {
 	const [previewOpen, setPreviewOpen] = useState(false);
-	const [preview, setPreview] = useState<UploadFile | undefined>(undefined);
-	const [fileList, setFileList] = useState<UploadFile[]>([]);
+	const [preview, setPreview] = useState<ImageUploadFile | undefined>(undefined);
+	const [fileList, setFileList] = useState<ImageUploadFile[]>([]);
 
 	const handleClosePreview = useCallback(() => setPreviewOpen(false), []);
 
-	const handlePreview = useCallback(async(file: UploadFile) => {
+	const handlePreview = useCallback(async(file: ImageUploadFile) => {
 		if (file.url == null && file.preview == null && file.originFileObj != null) {
 			file.preview = await getBase64(file.originFileObj);
 		}
-
 		setPreview(file);
 		setPreviewOpen(true);
 	}, []);
 
-	const handleChange = (inputOnChange: (value: UploadFile[]) => void) => (values: UploadChangeParam) => {
-		inputOnChange(values.fileList);
+	const handleChange = (inputOnChange: (value: IImageMedia[]) => void) => (values: ImageUploadChangeParam) => {
+		const fileListToChange = values.fileList
+			.filter(file => file.response)
+			.map(file => file.response?.data.media) as IImageMedia[];
+		inputOnChange(fileListToChange);
 		setFileList(values.fileList);
+		if (values.file.status === 'error') {
+			notification.error({
+				message: 'Произошла ошибка',
+				description: 'Произошла ошибка при загрузке файла...',
+			});
+		}
 	};
 
 	return (
@@ -55,13 +74,14 @@ const ImageUploadField: React.FC<Props> = ({
 					<Label label={label} />
 					<ImgCrop {...rest}>
 						<Upload
-							fileList={field.value}
+							name={uploadName}
+							headers={{ authorization: localStorage?.getItem('access-token') || '' }}
+							fileList={fileList}
 							onPreview={handlePreview}
 							onChange={handleChange(field.onChange)}
-							customRequest={preventDefaultRequest}
 							{...rest}
 						>
-							{fileList.length < maxFiles && renderUploadButton}
+							{fileList.length < maxCount && renderUploadButton}
 						</Upload>
 					</ImgCrop>
 					<ErrorMessage fieldState={fieldState} />

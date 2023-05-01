@@ -11,8 +11,7 @@ import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 const Workspaces: React.FC = () => {
 	const breakpoint = useBreakpoint(true);
 
-	const isMobile = !breakpoint.md;
-
+	const isLarge = !breakpoint.lg;
 	return (
 		<Content>
 			<PageWrapper>
@@ -38,7 +37,7 @@ const Workspaces: React.FC = () => {
 			</PageWrapper>
 			<PageWrapper marginTop={48}>
 				<Row gutter={[24, 24]}>
-					<Col span={isMobile ? 24 : 6}>
+					<Col span={isLarge ? 24 : 6}>
 						<Card>
 							<Row><Typography.Text>Параметры</Typography.Text></Row>
 							<Row><Typography.Text>Параметры</Typography.Text></Row>
@@ -53,7 +52,7 @@ const Workspaces: React.FC = () => {
 							<Row><Typography.Text>Параметры</Typography.Text></Row>
 						</Card>
 					</Col>
-					<Col span={isMobile ? 24 : 18}>
+					<Col span={isLarge ? 24 : 18}>
 						<WorkspaceList />
 					</Col>
 				</Row>

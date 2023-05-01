@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Modal, Space } from 'antd';
-import { VisitationWorkspaceCard } from '../../components';
 import { type IWorkspace } from '../../types';
 import FeedbackForm from './components/FeedbackForm';
+import VisitationWorkspaceCard from '../WorkspaceCard/VisitationWorkspaceCard/VisitationWorkspaceCard';
 
 interface Props {
 	open: boolean;

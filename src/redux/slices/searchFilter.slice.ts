@@ -1,7 +1,7 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { type IBaseType } from '../../types';
 
-interface SearchFilterState {
+export interface SearchFilterState {
 	search?: string;
 	format?: IBaseType;
 	cost?: IBaseType;

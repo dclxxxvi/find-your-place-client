@@ -1,23 +1,14 @@
 import * as React from 'react';
-import { Button, Col, Row, Space, Switch } from 'antd';
-import { toggleTheme as toggleThemeAction, useAppDispatch, useAppSelector } from '../../redux';
+import { Button, Col, Row, Space } from 'antd';
 import { Content } from 'antd/es/layout/layout';
-import { UserOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
-import { PersonalCabinetRoutes } from '../../router/routes';
 import { PageWrapper } from '../../components';
 import Typography from 'antd/es/typography';
-import AuthorizationModal from '../AuthorizationModal/AuthorizationModal';
-import { useState } from 'react';
+import ThemeSwitcher from './components/ThemeSwitcher';
+import UserMenu from './components/UserMenu';
 
 const ResponsibleNavbar: React.FC = () => {
 	const navigate = useNavigate();
-	const isDarkMode = useAppSelector(state => state.themeReducer.isDarkTheme);
-	const [authorizationModalOpen, setAuthorizationModalOpen] = useState(false);
-	const handleAuthorizationModalOpen = (open: boolean) => () => setAuthorizationModalOpen(open);
-
-	const dispatch = useAppDispatch();
-	const toggleTheme = () => dispatch(toggleThemeAction());
 
 	return (
 		<Content>
@@ -43,44 +34,13 @@ const ResponsibleNavbar: React.FC = () => {
 							>
 								Добавить пространство
 							</Button>
-							<Switch
-								checked={isDarkMode}
-								onChange={toggleTheme}
-								checkedChildren="Dark"
-								unCheckedChildren="Light"
-							/>
-							<Button
-								shape={'circle'}
-								icon={<UserOutlined />}
-								onClick={() => navigate(
-									`${PersonalCabinetRoutes.PROFILE}/${PersonalCabinetRoutes.USER_DATA}`,
-								)} />
-							<Button onClick={handleAuthorizationModalOpen(true)}>
-								Авторизация
-							</Button>
+							<ThemeSwitcher />
+							<UserMenu />
 						</Space>
 					</Col>
 				</Row>
 			</PageWrapper>
-			<AuthorizationModal open={authorizationModalOpen} handleClose={handleAuthorizationModalOpen(false)}/>
 		</Content>
-		// <Menu mode={'horizontal'} items={[
-		// 	{
-		// 		key: 'workspaces/add',
-		// 		label: <Button>Добавить пространство</Button>,
-		// 	},
-		// 	{
-		// 		key: 'theme/toggle',
-		// 		title: `Переключиться на ${isDarkMode ? 'светлую' : 'темную'} тему`,
-		// 		label: <Switch
-		// 			checked={isDarkMode}
-		// 			onChange={toggleTheme}
-		// 			checkedChildren="Dark"
-		// 			unCheckedChildren="Light"
-		// 		/>,
-		// 		style: { marginLeft: 'auto' },
-		// 	},
-		// ]} />
 	);
 };
 

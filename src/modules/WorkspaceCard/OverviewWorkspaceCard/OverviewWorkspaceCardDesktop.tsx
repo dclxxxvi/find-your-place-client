@@ -1,26 +1,25 @@
 import * as React from 'react';
 import { Button, Carousel, Col, Image, Rate, Row, Space } from 'antd';
-import { type IWorkspace } from '../../types';
 import Typography from 'antd/es/typography';
 import { AimOutlined } from '@ant-design/icons';
-import { useWorkspaceCard } from './hooks/useWorkspaceCard';
+import useWorkspaceCard from '../hooks';
+import { type IWorkspace } from '../../../types';
 
 interface Props {
 	workspace: IWorkspace;
-	vertical?: boolean;
 }
 
-const OverviewWorkspaceCard: React.FC<Props> = ({ workspace, vertical }) => {
-	const { isVertical, navigateToWorkspacePage } = useWorkspaceCard(workspace.id, vertical);
+const OverviewWorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
+	const { navigateToWorkspacePage } = useWorkspaceCard(workspace.id);
 
 	return (
 		<Row gutter={[24, 16]} align={'stretch'}>
-			<Col span={isVertical ? 24 : 12}>
+			<Col span={12}>
 				<Carousel autoplay>
-					{workspace.images.map((image) => <Image key={ image } src={ image }/>)}
+					{workspace.images.map((image) => <Image key={ image.id } src={ image.link }/>)}
 				</Carousel>
 			</Col>
-			<Col span={isVertical ? 24 : 12}>
+			<Col span={12}>
 				<Space direction={'vertical'} size={'middle'}>
 					<Row align={'top'} justify={'space-between'}>
 						<Col>
@@ -51,7 +50,7 @@ const OverviewWorkspaceCard: React.FC<Props> = ({ workspace, vertical }) => {
 							<Space>
 								<AimOutlined />
 								<Typography.Text>
-									{workspace.address.value}
+									{workspace.location_value}
 								</Typography.Text>
 							</Space>
 						</Col>
@@ -71,7 +70,7 @@ const OverviewWorkspaceCard: React.FC<Props> = ({ workspace, vertical }) => {
 					<Row>
 						<Col flex={'auto'}>
 							<Button style={{ width: '100%' }} type={'primary'} onClick={navigateToWorkspacePage}>
-									Забронировать
+								Забронировать
 							</Button>
 						</Col>
 					</Row>
@@ -81,4 +80,4 @@ const OverviewWorkspaceCard: React.FC<Props> = ({ workspace, vertical }) => {
 	);
 };
 
-export default React.memo(OverviewWorkspaceCard);
+export default OverviewWorkspaceCardDesktop;

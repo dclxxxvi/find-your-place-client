@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Drawer } from 'antd';
 import { workspaceMocks } from '../../../mocks/workspaces';
-import { WorkspaceCard } from '../../../components';
+import { WorkspaceCardMobile } from '../../WorkspaceCard/WorkspaceCard';
 
 interface Props {
 	open: boolean;
@@ -20,7 +20,7 @@ const WorkspaceDrawer: React.FC<Props> = ({ open, onClose, workspaceId }) => {
 			open={open}
 			closable={false}
 		>
-			{ (workspace != null) && <WorkspaceCard workspace={ workspace } vertical /> }
+			{ (workspace != null) && <WorkspaceCardMobile workspace={ workspace } /> }
 		</Drawer>
 	);
 };
