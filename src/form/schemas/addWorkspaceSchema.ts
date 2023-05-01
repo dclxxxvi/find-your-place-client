@@ -4,7 +4,6 @@ import { REQUIRED_FIELD } from './errorMessages';
 
 export interface IAddWorkspaceFormValues extends IWorkspace {
 	agree: boolean;
-	images_id: string[];
 }
 
 export const addWorkspaceSchema = yup.object<IAddWorkspaceFormValues>({

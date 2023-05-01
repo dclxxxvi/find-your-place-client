@@ -6,26 +6,16 @@ import TextAreaField from '../../form/fields/TextAreaField';
 import { addWorkspaceSchema, type IAddWorkspaceFormValues } from '../../form/schemas/addWorkspaceSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import AddressField from '../../form/fields/AddressField';
-import { useYMaps } from '@pbe/react-yandex-maps';
-import { mapGeocodeToAddress } from './consts';
 import ImageUploadField from '../../form/fields/ImageUploadField';
 import { useAddWorkspaceMutation } from '../../redux';
 import CheckboxField from '../../form/fields/CheckboxField';
 import Typography from 'antd/es/typography';
+import { useAddress } from './hooks/useAddress';
 
 const DividerWithoutMargins = () => <Divider style={{ margin: 0 }}/>;
 
 const AddWorkspaceForm: React.FC = () => {
-	const ymaps = useYMaps(['geocode']);
-	const transformAddressStringToAddress = async(addressString: string) => {
-		return await ymaps?.geocode(addressString, { results: 1 })
-			.then(data => mapGeocodeToAddress(data, addressString))
-			.catch(() => notification.error({
-				message: 'Произошла ошибка',
-				description: 'При преобразовании адреса произошла ошибка...',
-			}));
-	};
-
+	const getAddressByString = useAddress();
 	const [addWorkspace, { isLoading }] = useAddWorkspaceMutation();
 
 	const { handleSubmit, control, reset } = useForm<IAddWorkspaceFormValues>({
@@ -33,7 +23,7 @@ const AddWorkspaceForm: React.FC = () => {
 	});
 
 	const onSubmit: SubmitHandler<IAddWorkspaceFormValues> = async(values) => {
-		const address = await transformAddressStringToAddress(values.location_value);
+		const address = await getAddressByString(values.location_value);
 		if (!address) {
 			return;
 		}
