@@ -9,7 +9,7 @@ const GlobalSearchFilter: React.FC = () => {
 		<>
 			<Divider style={{ margin: 0 }}/>
 			<PageWrapper marginBottom={16} marginTop={16}>
-				<SearchFilter isGlobalSearchFilter={true} />
+				<SearchFilter isGlobal={true} />
 			</PageWrapper>
 			<Divider style={{ margin: 0 }}/>
 			<Outlet />
