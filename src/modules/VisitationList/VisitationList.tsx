@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Col, Row, Space } from 'antd';
 import { workspaceMocks } from '../../mocks/workspaces';
-import { VisitationWorkspaceCard } from '../../components/WorkspaceCard';
+import VisitationWorkspaceCard from '../WorkspaceCard/VisitationWorkspaceCard/VisitationWorkspaceCard';
 
 const VisitationList: React.FC = () => {
 	return (
