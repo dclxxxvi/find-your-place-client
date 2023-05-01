@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Col, Input, Row } from 'antd';
+import { Button, Col, Input, Row } from 'antd';
 import { type IBaseType } from '../../types';
 import BaseTypeMultiSelect from '../../shared/BaseTypeMultiSelect';
 import BaseTypeSelect from '../../shared/BaseTypeSelect';
@@ -14,47 +14,63 @@ const dictMocks: IBaseType[] = [
 	{ id: '6', code_name: 'ExampleCode6', name: 'Шестой пример' },
 ] as IBaseType[];
 
-const SearchFilterMobile: React.FC = () => {
+interface Props {
+	isGlobal?: boolean;
+}
+
+const SearchFilterMobile: React.FC<Props> = ({ isGlobal }) => {
 	const {
 		filterValues: { params, search, format, cost },
 		handleSelectChange,
 		handleSearchInputChange,
 	} = useSearchFilter();
 
-	return (
-		<Row gutter={[8, 8]}>
-			<Col span={24}>
+	return <Row gutter={[10, 10]} style={{ marginTop: '10px' }}>
+		{ isGlobal
+			? <Col md={9} sm={18} xs={17}>
 				<Input
 					value={search}
 					onChange={handleSearchInputChange}
 					placeholder={'Введите параметры поиска...'}/>
 			</Col>
-			<Col span={12}>
-				<BaseTypeMultiSelect
-					handleChange={handleSelectChange('params')}
-					dictionary={dictMocks}
-					initialValue={params}
-					placeholder={'Параметры'}
-					style={{ width: '100%' }} />
+			: <Col md={13} sm={24} xs={24}>
+				<Input
+					value={search}
+					onChange={handleSearchInputChange}
+					placeholder={'Введите параметры поиска...'}/>
 			</Col>
-			<Col span={6}>
-				<BaseTypeSelect
-					handleChange={handleSelectChange('format')}
-					dictionary={dictMocks}
-					initialValue={format}
-					placeholder={'Формат'}
-					style={{ width: '100%' }}/>
+		}
+		{ isGlobal &&
+			<Col md={4} sm={6} xs={7}>
+				<Button type={'primary'} shape={'default'} block={true}>
+					Найти место
+				</Button>
 			</Col>
-			<Col span={6}>
-				<BaseTypeSelect
-					handleChange={handleSelectChange('cost')}
-					dictionary={dictMocks}
-					initialValue={cost}
-					placeholder={'Стоимость'}
-					style={{ width: '100%' }}/>
-			</Col>
-		</Row>
-	);
+		}
+		<Col span={10}>
+			<BaseTypeMultiSelect
+				handleChange={handleSelectChange('params')}
+				dictionary={dictMocks}
+				initialValue={params}
+				style={{ width: '100%' }}/>
+		</Col>
+		<Col span={7}>
+			<BaseTypeSelect
+				handleChange={handleSelectChange('format')}
+				dictionary={dictMocks}
+				initialValue={format}
+				placeholder={'Формат'}
+				style={{ width: '100%' }}/>
+		</Col>
+		<Col span={7}>
+			<BaseTypeSelect
+				handleChange={handleSelectChange('cost')}
+				dictionary={dictMocks}
+				initialValue={cost}
+				placeholder={'Стоимость'}
+				style={{ width: '100%' }}/>
+		</Col>
+	</Row>;
 };
 
 export default SearchFilterMobile;

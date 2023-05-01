@@ -31,7 +31,7 @@ const Main: React.FC = () => {
 				<Title level={4}>Найдите место для комфортной работы или учебы</Title>
 			</PageWrapper>
 			<PageWrapper marginTop={30}>
-				<SearchFilter />
+				<SearchFilter isGlobalSearchFilter={false}/>
 			</PageWrapper>
 			<PageWrapper marginTop={30} marginBottom={100}>
 				<Row justify={'space-between'}>
