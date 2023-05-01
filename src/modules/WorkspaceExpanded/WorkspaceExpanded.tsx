@@ -2,12 +2,12 @@ import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import { workspaceMocks } from '../../mocks/workspaces';
 import { Col, Row } from 'antd';
-import { OverviewWorkspaceCard } from '../../components';
 import WorkspaceAnchor from './components/WorkspaceAnchor';
 import WorkspaceDescription from './components/WorkspaceDescription';
 import WorkspaceServices from './components/WorkspaceServices';
 import WorkspaceTariffs from './components/WorkspaceTariffs';
 import WorkspaceFeedback from './components/WorkspaceFeedback';
+import OverviewWorkspaceCard from '../WorkspaceCard/OverviewWorkspaceCard';
 
 const WorkspaceExpanded: React.FC = () => {
 	const { id } = useParams();

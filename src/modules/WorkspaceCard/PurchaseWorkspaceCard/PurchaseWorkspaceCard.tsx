@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Card, Col, Image, Row, Space } from 'antd';
-import { type IWorkspace } from '../../types';
 import Typography from 'antd/es/typography';
 import { AimOutlined, PhoneOutlined } from '@ant-design/icons';
+import { type IWorkspace } from '../../../types';
 
 interface Props {
 	workspace: IWorkspace;

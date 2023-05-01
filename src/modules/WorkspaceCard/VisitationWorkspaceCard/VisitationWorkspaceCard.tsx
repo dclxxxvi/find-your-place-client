@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Card, Col, Image, Rate, Row, Space } from 'antd';
-import { type IWorkspace } from '../../types';
 import Typography from 'antd/es/typography';
 import { AimOutlined, PhoneOutlined } from '@ant-design/icons';
 import { useState } from 'react';
-import FeedbackModal from '../../modules/FeedbackModal';
+import { type IWorkspace } from '../../../types';
+import FeedbackModal from '../../FeedbackModal';
 
 interface Props {
 	workspace: IWorkspace;

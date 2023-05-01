@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { type IBaseType } from '../../types';
 import { Col, Row, Space } from 'antd';
-import { PurchaseWorkspaceCard } from '../../components/WorkspaceCard';
 import BaseTypeSelect from '../../shared/BaseTypeSelect';
 import { useState } from 'react';
 import { workspaceMocks } from '../../mocks/workspaces';
+import PurchaseWorkspaceCard from '../WorkspaceCard/PurchaseWorkspaceCard/PurchaseWorkspaceCard';
 
 const dictMocks: IBaseType[] = [
 	{ id: '1', code_name: 'ExampleCode1', name: 'Первый пример' },
