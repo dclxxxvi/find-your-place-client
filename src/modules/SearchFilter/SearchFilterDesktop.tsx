@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Col, Input, Row } from 'antd';
+import { Button, Col, Input, Row } from 'antd';
 import { type IBaseType } from '../../types';
 import BaseTypeMultiSelect from '../../shared/BaseTypeMultiSelect';
 import BaseTypeSelect from '../../shared/BaseTypeSelect';
@@ -14,7 +14,11 @@ const dictMocks: IBaseType[] = [
 	{ id: '6', code_name: 'ExampleCode6', name: 'Шестой пример' },
 ] as IBaseType[];
 
-const SearchFilterDesktop: React.FC = () => {
+interface Props {
+	isGlobal?: boolean;
+}
+
+const SearchFilterDesktop: React.FC<Props> = ({ isGlobal }) => {
 	const {
 		filterValues: { params, search, format, cost },
 		handleSelectChange,
@@ -22,8 +26,8 @@ const SearchFilterDesktop: React.FC = () => {
 	} = useSearchFilter();
 
 	return (
-		<Row gutter={16}>
-			<Col span={6}>
+		<Row gutter={[10, 20]}>
+			<Col xxl={5} lg={4} md={5}>
 				<BaseTypeMultiSelect
 					handleChange={handleSelectChange('params')}
 					dictionary={dictMocks}
@@ -31,7 +35,7 @@ const SearchFilterDesktop: React.FC = () => {
 					placeholder={'Параметры'}
 					style={{ width: '100%' }} />
 			</Col>
-			<Col span={3}>
+			<Col xxl={3} lg={3} md={3}>
 				<BaseTypeSelect
 					handleChange={handleSelectChange('format')}
 					dictionary={dictMocks}
@@ -39,7 +43,7 @@ const SearchFilterDesktop: React.FC = () => {
 					placeholder={'Формат'}
 					style={{ width: '100%' }}/>
 			</Col>
-			<Col span={3}>
+			<Col xxl={3} lg={3} md={3}>
 				<BaseTypeSelect
 					handleChange={handleSelectChange('cost')}
 					dictionary={dictMocks}
@@ -47,12 +51,27 @@ const SearchFilterDesktop: React.FC = () => {
 					placeholder={'Стоимость'}
 					style={{ width: '100%' }}/>
 			</Col>
-			<Col span={12}>
-				<Input
-					value={search}
-					onChange={handleSearchInputChange}
-					placeholder={'Введите параметры поиска...'}/>
-			</Col>
+			{ isGlobal
+				? <Col xxl={10} lg={10} md={10}>
+					<Input
+						value={search}
+						onChange={handleSearchInputChange}
+						placeholder={'Введите параметры поиска...'}/>
+				</Col>
+				: <Col xxl={13} lg={14} md={13}>
+					<Input
+						value={search}
+						onChange={handleSearchInputChange}
+						placeholder={'Введите параметры поиска...'}/>
+				</Col>
+			}
+			{ isGlobal &&
+				<Col xxl={3} lg={4}>
+					<Button type={'primary'} shape={'default'} block={true}>
+						Найти место
+					</Button>
+				</Col>
+			}
 		</Row>
 	);
 };
