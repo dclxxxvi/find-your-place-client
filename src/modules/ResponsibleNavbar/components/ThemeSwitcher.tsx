@@ -1,8 +1,12 @@
 import * as React from 'react';
-import { Switch } from 'antd';
+import { Switch, type SwitchProps } from 'antd';
 import { toggleTheme as toggleThemeAction, useAppDispatch, useAppSelector } from '../../../redux';
 
-const ThemeSwitcher: React.FC = () => {
+interface Props extends Omit<SwitchProps, 'checked' | 'onChange'> {}
+
+const ThemeSwitcher: React.FC<Props> = (
+	{ checkedChildren = 'Dark', unCheckedChildren = 'Light', ...rest },
+) => {
 	const dispatch = useAppDispatch();
 	const toggleTheme = () => dispatch(toggleThemeAction());
 
@@ -12,8 +16,9 @@ const ThemeSwitcher: React.FC = () => {
 		<Switch
 			checked={isDarkMode}
 			onChange={toggleTheme}
-			checkedChildren="Dark"
-			unCheckedChildren="Light"
+			checkedChildren={checkedChildren}
+			unCheckedChildren={unCheckedChildren}
+			{...rest}
 		/>
 	);
 };

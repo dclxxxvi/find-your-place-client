@@ -2,7 +2,7 @@ import * as React from 'react';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import { Suspense } from 'react';
 import { type IWorkspace } from '../../../types';
-import { Spin } from 'antd';
+import { Card, Skeleton } from 'antd';
 
 const Desktop = React.lazy(async() => await import('./WorkspaceCardDesktop'));
 const Mobile = React.lazy(async() => await import('./WorkspaceCardMobile'));
@@ -14,7 +14,7 @@ interface Props {
 const WorkspaceCard: React.FC<Props> = (props) => {
 	const { md } = useBreakpoint(true);
 	return (
-		<Suspense fallback={<Spin />}> {/* TODO: в fallback правильнее передавать skeleton */}
+		<Suspense fallback={<Card><Skeleton active /></Card>}>
 			{md ? <Desktop {...props} /> : <Mobile {...props}/> }
 		</Suspense>
 	);
