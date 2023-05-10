@@ -1,5 +1,5 @@
 import { commonApi } from './common.api';
-import { type IUser, type IResponse, type IAuthResponse } from '../../types';
+import { type IUser, type IAuthResponse, type IResponse } from '../../types';
 import { ETagTypes } from './consts';
 
 const userApi = commonApi.injectEndpoints({

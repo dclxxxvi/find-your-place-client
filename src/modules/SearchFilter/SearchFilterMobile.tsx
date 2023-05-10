@@ -22,6 +22,7 @@ const SearchFilterMobile: React.FC<Props> = ({ isGlobal }) => {
 	const {
 		filterValues: { params, search, format, cost },
 		handleSelectChange,
+		handleMultipleSelectChange,
 		handleSearchInputChange,
 	} = useSearchFilter();
 
@@ -49,7 +50,7 @@ const SearchFilterMobile: React.FC<Props> = ({ isGlobal }) => {
 		}
 		<Col span={10}>
 			<BaseTypeMultiSelect
-				handleChange={handleSelectChange('params')}
+				handleChange={handleMultipleSelectChange('params')}
 				dictionary={dictMocks}
 				initialValue={params}
 				style={{ width: '100%' }}/>

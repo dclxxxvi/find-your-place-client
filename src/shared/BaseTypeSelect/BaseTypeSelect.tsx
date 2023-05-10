@@ -9,19 +9,19 @@ interface OptionType {
 }
 
 interface Props extends Omit<SelectProps<string, OptionType>, 'options' | 'onChange' | 'value'> {
-	dictionary: IBaseType[];
+	dictionary?: IBaseType[];
 	handleChange: (value: IBaseType) => void;
 	initialValue?: IBaseType;
 }
 
 const BaseTypeSelect: React.FC<Props> = ({ dictionary, handleChange, initialValue, ...rest }) => {
-	const selectOptions: OptionType[] = useMemo(() => dictionary.map((option) => ({
+	const selectOptions: OptionType[] | undefined = useMemo(() => dictionary?.map((option) => ({
 		value: option.id,
 		label: option.name,
 	})), [dictionary]);
 
 	const onChange = useCallback((value: string) => {
-		const valueToBaseType = dictionary.find(baseType => baseType.id === value);
+		const valueToBaseType = dictionary?.find(baseType => baseType.id === value);
 		if (valueToBaseType != null) {
 			handleChange(valueToBaseType);
 		}

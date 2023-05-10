@@ -18,7 +18,8 @@ const WorkspaceDrawer: React.FC<Props> = ({ open, onClose, workspaceId }) => {
 			placement={'left'}
 			onClose={onClose}
 			open={open}
-			closable={false}
+			width={'100%'}
+			contentWrapperStyle={{ maxWidth: '378px' }}
 		>
 			{ (workspace != null) && <WorkspaceCardMobile workspace={ workspace } /> }
 		</Drawer>

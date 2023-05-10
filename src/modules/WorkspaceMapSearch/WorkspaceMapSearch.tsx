@@ -9,7 +9,7 @@ const center = [56.836927, 60.599308]; // TODO: центр Еката, надо 
 const WorkspaceMapSearch: React.FC = () => {
 	const [open, setOpen] = useState(false);
 	const showDrawer = useCallback(() => setOpen(true), []);
-	const onClose = useCallback(() => setOpen(false), []);
+	const closeDrawer = useCallback(() => setOpen(false), []);
 
 	const [currentWorkspaceId, setCurrentWorkspaceId] = useState<string | undefined>(undefined);
 
@@ -26,7 +26,7 @@ const WorkspaceMapSearch: React.FC = () => {
 					zoom: 9,
 					controls: [],
 				}}
-				height="500px" // TODO: придумать как задать чтобы занимала оставшуюся область
+				height="80vh"
 				width={'100%'}
 			>
 				<Clusterer>
@@ -40,7 +40,7 @@ const WorkspaceMapSearch: React.FC = () => {
 				</Clusterer>
 				<ZoomControl/>
 			</Map>
-			<WorkspaceDrawer workspaceId={currentWorkspaceId} open={open} onClose={onClose} />
+			<WorkspaceDrawer workspaceId={currentWorkspaceId} open={open} onClose={closeDrawer} />
 		</>
 	);
 };

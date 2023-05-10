@@ -22,6 +22,7 @@ const SearchFilterDesktop: React.FC<Props> = ({ isGlobal }) => {
 	const {
 		filterValues: { params, search, format, cost },
 		handleSelectChange,
+		handleMultipleSelectChange,
 		handleSearchInputChange,
 	} = useSearchFilter();
 
@@ -29,7 +30,7 @@ const SearchFilterDesktop: React.FC<Props> = ({ isGlobal }) => {
 		<Row gutter={[10, 20]}>
 			<Col xxl={5} lg={4} md={5}>
 				<BaseTypeMultiSelect
-					handleChange={handleSelectChange('params')}
+					handleChange={handleMultipleSelectChange('params')}
 					dictionary={dictMocks}
 					initialValue={params}
 					placeholder={'Параметры'}

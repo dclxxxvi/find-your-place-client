@@ -9,20 +9,20 @@ interface OptionType {
 }
 
 interface Props extends Omit<SelectProps<string[], OptionType>, 'children' | 'options' | 'filterOption' | 'value'> {
-	dictionary: IBaseType[];
+	dictionary?: IBaseType[];
 	handleChange: (values: IBaseType[]) => void;
 	initialValue?: IBaseType[];
 }
 
 const BaseTypeMultiSelect: React.FC<Props> = ({ dictionary, handleChange, initialValue, ...rest }) => {
-	const options = useMemo(() => dictionary.map((option) => ({
+	const options: OptionType[] | undefined = useMemo(() => dictionary?.map((option) => ({
 		value: option.id,
 		label: option.name,
 	})), [dictionary]);
 
 	const onChange = useCallback((values: string[]) => {
 		const valuesToBaseTypes = values
-			.map(value => dictionary.find(baseType => baseType.id === value)) as IBaseType[];
+			.map(value => dictionary?.find(baseType => baseType.id === value)) as IBaseType[];
 		handleChange(valuesToBaseTypes);
 	}, [handleChange, dictionary]);
 
