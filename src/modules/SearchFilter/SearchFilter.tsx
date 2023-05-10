@@ -1,10 +1,6 @@
 import * as React from 'react';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
-import { Suspense } from 'react';
-import { Spin } from 'antd';
-
-const Desktop = React.lazy(async() => await import('./SearchFilterDesktop'));
-const Mobile = React.lazy(async() => await import('./SearchFilterMobile'));
+import { SearchFilterDesktop, SearchFilterMobile } from './index';
 
 interface Props {
 	isGlobal?: boolean;
@@ -12,11 +8,10 @@ interface Props {
 
 const SearchFilter: React.FC<Props> = (props) => {
 	const { md } = useBreakpoint(true);
-	return (
-		<Suspense fallback={<Spin />}> {/* TODO: в fallback правильнее передавать skeleton */}
-			{md ? <Desktop {...props} /> : <Mobile {...props}/> }
-		</Suspense>
-	);
+	if (md) {
+		return <SearchFilterDesktop {...props} />;
+	}
+	return <SearchFilterMobile {...props}/>;
 };
 
 export default SearchFilter;
