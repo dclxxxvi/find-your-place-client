@@ -38,9 +38,7 @@ const WorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 							<Col>
 								<Typography.Title
 									onClick={navigateToWorkspacePage}
-									style={{
-										margin: 0,
-									}}
+									style={{ margin: 0 }}
 									level={4}
 								>{workspace.title}
 								</Typography.Title>

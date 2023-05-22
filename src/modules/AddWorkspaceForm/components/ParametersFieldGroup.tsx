@@ -2,27 +2,14 @@ import * as React from 'react';
 import Typography from 'antd/es/typography';
 import { Col, Row } from 'antd';
 import BaseTypeMultiSelectField from '../../../form/fields/BaseTypeMultiSelectField';
-import { useGetCategoriesQuery, useGetParametersQuery } from '../../../redux/api/service.api';
-import { useMemo } from 'react';
+import { useDictionaries } from '../../../hooks';
 
 interface Props {
 	control: any;
 }
 
 const ParametersFieldGroup: React.FC<Props> = ({ control }) => {
-	const { data: categories, isLoading: isCategoriesLoading } = useGetCategoriesQuery(null);
-	const { data: dictionary, isLoading: isDictionaryLoading } = useGetParametersQuery(null);
-
-	const parametersDictionary = useMemo(() => {
-		if (!categories || !dictionary) {
-			return [];
-		}
-
-		return categories.map((category) => ({
-			category,
-			dictionary: dictionary.filter(dict => dict.category_id === category.id),
-		}));
-	}, [categories, dictionary]);
+	const { parametersDictionary, isLoading } = useDictionaries();
 
 	return (
 		<Row gutter={[16, 16]}>
@@ -40,7 +27,7 @@ const ParametersFieldGroup: React.FC<Props> = ({ control }) => {
 									control={control}
 									dictionary={parameters.dictionary}
 									label={parameters.category.name}
-									loading={isCategoriesLoading || isDictionaryLoading}
+									loading={isLoading}
 								/>
 							</Col>
 						);

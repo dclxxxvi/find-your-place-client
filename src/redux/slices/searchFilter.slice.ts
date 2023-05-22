@@ -6,6 +6,9 @@ export interface SearchFilterState {
 	format?: IBaseType;
 	cost?: IBaseType;
 	params?: IBaseType[];
+	rooms?: string[];
+	additional?: string[];
+	features?: string[];
 }
 
 const initialState: SearchFilterState = {
@@ -13,6 +16,9 @@ const initialState: SearchFilterState = {
 	format: undefined,
 	cost: undefined,
 	params: [],
+	rooms: [],
+	additional: [],
+	features: [],
 };
 
 type TFilterValueType = SearchFilterState[keyof SearchFilterState];
