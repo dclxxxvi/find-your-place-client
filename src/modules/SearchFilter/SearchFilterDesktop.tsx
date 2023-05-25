@@ -52,7 +52,7 @@ const SearchFilterDesktop: React.FC<Props> = ({ isGlobal }) => {
 					style={{ width: '100%' }}/>
 			</Col>
 			{ isGlobal
-				? <Col xxl={10} lg={10} md={10}>
+				? <Col xxl={10} lg={10} md={9}>
 					<Input
 						value={search}
 						onChange={handleSearchInputChange}
@@ -66,7 +66,7 @@ const SearchFilterDesktop: React.FC<Props> = ({ isGlobal }) => {
 				</Col>
 			}
 			{ isGlobal &&
-				<Col xxl={3} lg={4}>
+				<Col xxl={3} lg={4} md={4}>
 					<Button type={'primary'} shape={'default'} block={true}>
 						Найти место
 					</Button>
