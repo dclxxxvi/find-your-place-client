@@ -22,7 +22,7 @@ const SearchFilterMobile: React.FC<Props> = ({ isGlobal }) => {
 	return (
 		<Row gutter={[10, 10]} style={{ marginTop: '10px' }}>
 			{ isGlobal
-				? <Col md={9} sm={18} xs={17}>
+				? <Col md={9} sm={18} xs={15}>
 					<Input
 						value={search}
 						onChange={handleSearchInputChange}
@@ -36,7 +36,7 @@ const SearchFilterMobile: React.FC<Props> = ({ isGlobal }) => {
 				</Col>
 			}
 			{ isGlobal &&
-			<Col md={4} sm={6} xs={7}>
+			<Col md={4} sm={6} xs={9}>
 				<Button type={'primary'} shape={'default'} block={true}>
 					Найти место
 				</Button>
