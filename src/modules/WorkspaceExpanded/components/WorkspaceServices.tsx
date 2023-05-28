@@ -16,7 +16,6 @@ const WorkspaceServices: React.FC<Props> = ({ services }) => {
 			<Title style={{ margin: 0 }} level={3}>Услуги</Title>
 			<Typography.Text>
 				<SuperAdvantage advantage={'24mp'}/>
-				<SuperAdvantage advantage={'face_retouching_off'}/>
 			</Typography.Text>
 		</Space>
 	);
