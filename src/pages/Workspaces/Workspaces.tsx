@@ -5,8 +5,8 @@ import WorkspaceList from '../../modules/WorkspaceList';
 import { Card, Col, Row, Space } from 'antd';
 import Title from 'antd/es/typography/Title';
 import PageHeader from '../../components/PageHeader';
-import Typography from 'antd/es/typography';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
+import PropertiesOfAdvantagesList from '../../components/SuperAdvantages/PropertiesOfAdvantagesList';
 
 const Workspaces: React.FC = () => {
 	const breakpoint = useBreakpoint(true);
@@ -38,18 +38,10 @@ const Workspaces: React.FC = () => {
 			<PageWrapper marginTop={48}>
 				<Row gutter={[24, 24]}>
 					<Col span={isLarge ? 24 : 6}>
-						<Card>
-							<Row><Typography.Text>Параметры</Typography.Text></Row>
-							<Row><Typography.Text>Параметры</Typography.Text></Row>
-							<Row><Typography.Text>Параметры</Typography.Text></Row>
-							<Row><Typography.Text>Параметры</Typography.Text></Row>
-							<Row><Typography.Text>Параметры</Typography.Text></Row>
-							<Row><Typography.Text>Параметры</Typography.Text></Row>
-							<Row><Typography.Text>Параметры</Typography.Text></Row>
-							<Row><Typography.Text>Параметры</Typography.Text></Row>
-							<Row><Typography.Text>Параметры</Typography.Text></Row>
-							<Row><Typography.Text>Параметры</Typography.Text></Row>
-							<Row><Typography.Text>Параметры</Typography.Text></Row>
+						<Card style={{
+							boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+						}}>
+							<PropertiesOfAdvantagesList />
 						</Card>
 					</Col>
 					<Col span={isLarge ? 24 : 18}>
