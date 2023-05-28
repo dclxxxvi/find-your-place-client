@@ -14,6 +14,7 @@ interface Props {
 const OverviewWorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 	const { navigateToWorkspacePage } = useWorkspaceCard(workspace.id);
 	const { lg } = useBreakpoint(true);
+
 	return (
 		<Row gutter={[24, 16]} align={'stretch'}>
 			{
@@ -86,16 +87,16 @@ const OverviewWorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 				<Row>
 					<Divider style={{ margin: '5px 0 ' }}/>
 					<Col span={12}><Space><AimOutlined/><Typography.Text>
-						Супер Плюсы
+							Супер Плюсы
 					</Typography.Text></Space></Col>
 					<Col span={12}><Space><AimOutlined/><Typography.Text>
-						Супер Плюсы
+							Супер Плюсы
 					</Typography.Text></Space></Col>
 					<Col span={12}><Space><AimOutlined/><Typography.Text>
-						Супер Плюсы
+							Супер Плюсы
 					</Typography.Text></Space></Col>
 					<Col span={12}><Space><AimOutlined/><Typography.Text>
-						Супер Плюсы
+							Супер Плюсы
 					</Typography.Text></Space></Col>
 					<Divider style={{ margin: '5px 0 ' }}/>
 				</Row>
@@ -112,7 +113,7 @@ const OverviewWorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 				<Row>
 					<Col flex={'auto'}>
 						<Button style={{ width: '100%' }} type={'primary'} onClick={navigateToWorkspacePage}>
-							Забронировать
+								Забронировать
 						</Button>
 					</Col>
 				</Row>
