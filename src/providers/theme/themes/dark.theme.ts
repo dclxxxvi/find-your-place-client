@@ -6,6 +6,7 @@ export const darkTheme: ThemeConfig = {
 	algorithm: theme.darkAlgorithm,
 	token: {
 		...commonTheme.token,
+		colorBgLayout: '#000000',
 	},
 	components: {
 		...commonTheme.components,

@@ -5,6 +5,7 @@ export const lightTheme: ThemeConfig = {
 	...commonTheme,
 	token: {
 		...commonTheme.token,
+		colorBgLayout: '#FFFFFF',
 	},
 	components: {
 		...commonTheme.components,
