@@ -18,7 +18,13 @@ const ImageCarousel: React.FC<Props> = ({ images }) => {
 	return (
 		<Carousel autoplay>
 			{ images.map((image) =>
-				<Image key={ image.id } src={ image.media.link } width={ '100%' } height={ '100%' }/>,
+				<Image
+					key={ image.id }
+					src={ image.media.link }
+					width={ '100%' }
+					height={ '100%' }
+					style={{ objectFit: 'cover' }}
+				/>,
 			) }
 		</Carousel>
 	);

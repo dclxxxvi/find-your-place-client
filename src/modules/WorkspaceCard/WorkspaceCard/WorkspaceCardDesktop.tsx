@@ -1,10 +1,13 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { Button, Carousel, Col, Image, Rate, Row, Space, Divider, Card } from 'antd';
+import { Button, Col, Row, Space, Divider, Card } from 'antd';
 import Typography from 'antd/es/typography';
 import { AimOutlined } from '@ant-design/icons';
 import { type IWorkspace } from '../../../types';
 import useWorkspaceCard from '../hooks';
+import RatingField from '../components/RatingField';
+import Parameters from './components/Parameters';
+import ImageCarousel from '../components/ImageCarousel';
 
 interface Props {
 	workspace: IWorkspace;
@@ -28,16 +31,7 @@ const WorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 		>
 			<Row gutter={[24, 16]} justify={'center'}>
 				<Col span={12} lg={isCardHovered ? 13 : 12} xl={isCardHovered ? 11 : 10} >
-					<Carousel>
-						{workspace.images.map((image) =>
-							<Image
-								key={ image.id }
-								src={ image.link }
-								height='100%'
-								width='100%'
-								style={{ objectFit: 'cover' }}
-							/>)}
-					</Carousel>
+					<ImageCarousel images={workspace.images} />
 				</Col>
 				<Col span={12} lg={isCardHovered ? 11 : 12} xl={isCardHovered ? 13 : 14} style={{
 					display: 'flex',
@@ -54,14 +48,7 @@ const WorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 							</Typography.Title>
 						</Col>
 						<Col>
-							<Row>
-								<Rate allowHalf defaultValue={workspace.rating} disabled></Rate>
-							</Row>
-							<Row justify={'end'}>
-								<Typography.Text type="secondary">
-									{`${workspace.feedback_count as number} отзывов`}
-								</Typography.Text>
-							</Row>
+							<RatingField rating={workspace.rating} commentsCount={workspace.comments.length}/>
 						</Col>
 					</Row>
 					{
@@ -87,33 +74,15 @@ const WorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 							{workspace.description}
 						</Typography.Paragraph>
 					</Row>
-					{ isCardHovered &&
-						<Row>
-							<Divider style={{ margin: '5px 0 ' }}/>
-							<Col span={12}><Space><AimOutlined/><Typography.Text>
-								Супер Плюсы
-							</Typography.Text></Space></Col>
-							<Col span={12}><Space><AimOutlined/><Typography.Text>
-								Супер Плюсы
-							</Typography.Text></Space></Col>
-							<Col span={12}><Space><AimOutlined/><Typography.Text>
-								Супер Плюсы
-							</Typography.Text></Space></Col>
-							<Col span={12}><Space><AimOutlined/><Typography.Text>
-								Супер Плюсы
-							</Typography.Text></Space></Col>
-							<Divider style={{ margin: '5px 0 ' }}/>
-						</Row>
-					}
-
+					<Row>
+						{ isCardHovered && <Parameters parameters={workspace.parameters} /> }
+					</Row>
 					<Row align={'top'} justify={'space-between'}>
-
 						<Typography.Title
 							style={{ margin: 0 }}
 							level={4}
 						>10000 Рублей
 						</Typography.Title>
-
 					</Row>
 					<Row>
 						<Col flex={'auto'}>
