@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { Button, Carousel, Col, Divider, Image, Rate, Row, Space } from 'antd';
+import { Button, Carousel, Col, Divider, Image, Row, Space } from 'antd';
 import Typography from 'antd/es/typography';
 import { AimOutlined } from '@ant-design/icons';
 import useWorkspaceCard from '../hooks';
 import { type IWorkspace } from '../../../types';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
+import RatingField from '../components/RatingField';
 
 interface Props {
 	workspace: IWorkspace;
@@ -13,6 +14,7 @@ interface Props {
 const OverviewWorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 	const { navigateToWorkspacePage } = useWorkspaceCard(workspace.id);
 	const { lg } = useBreakpoint(true);
+
 	return (
 		<Row gutter={[24, 16]} align={'stretch'}>
 			{
@@ -27,7 +29,7 @@ const OverviewWorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 						<div key={ image.id }>
 							<Image
 								key={ image.id }
-								src={ image.link }
+								src={ image.media.link }
 								width={'100%'}
 							/>
 						</div>
@@ -41,7 +43,7 @@ const OverviewWorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 					{workspace.images.map((image) =>
 						<Image
 							key={ image.id }
-							src={ image.link }
+							src={ image.media.link }
 							height='100%'
 							width='100%'
 							style={{ objectFit: 'cover' }}
@@ -64,14 +66,7 @@ const OverviewWorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 						</Typography.Title>
 					</Col>
 					<Col>
-						<Row>
-							<Rate allowHalf defaultValue={workspace.rating} disabled></Rate>
-						</Row>
-						<Row justify={'end'}>
-							<Typography.Text type="secondary">
-								{`${workspace.feedback_count as number} отзывов`}
-							</Typography.Text>
-						</Row>
+						<RatingField rating={workspace.rating} commentsCount={workspace.comments.length}/>
 					</Col>
 				</Row>
 				<Row>
