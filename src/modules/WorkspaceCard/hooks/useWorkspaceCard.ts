@@ -6,7 +6,7 @@ export const useWorkspaceCard = (workspaceId: string) => {
 	const navigate = useNavigate();
 
 	const navigateToWorkspacePage = useCallback(
-		() => navigate(`/${AppRoutes.WORKSPACES}/${workspaceId}`),
+		() => navigate(`${AppRoutes.WORKSPACES}/${workspaceId}`),
 		[workspaceId, navigate]);
 
 	return {

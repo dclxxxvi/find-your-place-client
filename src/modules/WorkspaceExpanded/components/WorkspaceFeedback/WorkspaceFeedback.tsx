@@ -9,13 +9,13 @@ interface Props {
 	feedback?: any;
 }
 
-const WorkspaceFeedback: React.FC<Props> = ({ feedback }) => {
+const WorkspaceFeedback: React.FC<Props> = () => {
 	const comment = {
 		rating: 4.7,
 		comment: 'Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий',
 		advantages: 'Плюсы Плюсы Плюсы Плюсы Плюсы Плюсы Плюсы Плюсы Плюсы',
 		disadvantages: 'Минусы Минусы Минусы Минусы Минусы Минусы Минусы',
-		user: 'Абоба',
+		user: 'Пользователь',
 	};
 	return (
 		<Space id={AnchorTabs.FEEDBACK} direction={'vertical'} size={'large'} style={{ width: '100%' }}>

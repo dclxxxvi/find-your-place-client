@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Card, Col, Row, Space } from 'antd';
+import { Button, Card, Col, Divider, Row, Space } from 'antd';
 import Typography from 'antd/es/typography';
 import { AimOutlined } from '@ant-design/icons';
 import useWorkspaceCard from '../hooks';
@@ -48,7 +48,9 @@ const WorkspaceCardMobile: React.FC<Props> = ({ workspace }) => {
 							</Typography.Paragraph>
 						</Row>
 						<Row>
-							<Parameters parameters={workspace.parameters}/>
+							<Divider style={{ margin: '5px 0 ' }}/>
+							<Parameters parameters={workspace.parameters} />
+							<Divider style={{ margin: '5px 0 ' }}/>
 						</Row>
 						<Row gutter={8}>
 							<Col span={24}>

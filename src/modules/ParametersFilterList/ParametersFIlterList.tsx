@@ -12,7 +12,7 @@ const ParametersFilterList: React.FC = () => {
 			<Row>
 				{parametersDictionary.map((parameter) => {
 					return (
-						<Col>
+						<Col key={parameter.category.id}>
 							<Space>
 								<Title level={3}>{parameter.category.name}</Title>
 								<BaseTypeMultiSelect

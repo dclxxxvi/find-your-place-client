@@ -1,49 +1,31 @@
 import * as React from 'react';
-import { type IBaseEntity } from '../../../types';
+import { type IBaseType } from '../../../types';
 import { AnchorTabs } from '../consts';
 import Title from 'antd/es/typography/Title';
-import { Row, Space, Col } from 'antd';
-import SuperAdvantage from '../../../components/SuperAdvantages/SuperAdvantage';
+import { Row, Space } from 'antd';
+import Parameters from '../../WorkspaceCard/WorkspaceCard/components/Parameters';
+import { useCallback } from 'react';
 
 interface Props {
-	services?: IBaseEntity[];
+	services?: IBaseType[];
 }
 
 const WorkspaceServices: React.FC<Props> = ({ services }) => {
+	const renderNoService = useCallback(() => {
+		if (!services || services?.length === 0) {
+			return <Title style={{ margin: 0 }} level={5}>
+				Дополнительные услуги не указаны
+			</Title>;
+		}
+	}, [services]);
+
 	return (
 		<Space id={AnchorTabs.SERVICES} direction={'vertical'} size={'large'} style={{ width: '100%' }}>
 			<Title style={{ margin: 0 }} level={3}>Услуги</Title>
-			<Row gutter={[12, 12]}>
-				<Col span={6} lg={6} sm={12} xs={12}>
-					<SuperAdvantage advantage='meeting_room' />
-				</Col>
-				<Col span={6} lg={6} sm={12} xs={12}>
-					<SuperAdvantage advantage='podium'/>
-				</Col>
-				<Col span={6} lg={6} sm={12} xs={12}>
-					<SuperAdvantage advantage='shower'/>
-				</Col>
-				<Col span={6} lg={6} sm={12} xs={12}>
-					<SuperAdvantage advantage='smoking_rooms' />
-				</Col>
-				<Col span={6} lg={6} sm={12} xs={12}>
-					<SuperAdvantage advantage='local_cafe' />
-				</Col>
-				<Col span={6} lg={6} sm={12} xs={12}>
-					<SuperAdvantage advantage='keyboard' />
-				</Col>
-				<Col span={6} lg={6} sm={12} xs={12}>
-					<SuperAdvantage advantage='24mp'/>
-				</Col>
-				<Col span={6} lg={6} sm={12} xs={12}>
-					<SuperAdvantage advantage='wifi' />
-				</Col>
-				<Col span={6} lg={6} sm={12} xs={12}>
-					<SuperAdvantage advantage='print' />
-				</Col>
-
-			</Row>
-
+			{renderNoService()}
+			{ services && <Row gutter={ [12, 12] }>
+				<Parameters parameters={ services }/>
+			</Row> }
 		</Space>
 	);
 };

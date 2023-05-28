@@ -35,7 +35,7 @@ const WorkspaceExpanded: React.FC = () => {
 				<WorkspaceDescription description={workspace.description}/>
 			</Col>
 			<Col span={24}>
-				<WorkspaceServices/>
+				<WorkspaceServices services={workspace.parameters}/>
 			</Col>
 			<Col span={24}>
 				<WorkspaceTariffs/>

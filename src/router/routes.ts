@@ -8,6 +8,7 @@ export enum PersonalCabinetRoutes {
 }
 
 export enum AppRoutes {
-	WORKSPACES = 'workspaces',
-	WORKSPACES_NEW = 'workspaces/new',
+	WORKSPACES = '/workspaces',
+	WORKSPACES_NEW = '/workspaces/new',
+	WORKSPACES_CARD = '/workspaces/map',
 }

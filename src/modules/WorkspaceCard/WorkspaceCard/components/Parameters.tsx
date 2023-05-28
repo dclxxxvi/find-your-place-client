@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { type IBaseType } from '../../../../types';
-import { Col, Divider, Space } from 'antd';
-import { AimOutlined } from '@ant-design/icons';
+import { Col } from 'antd';
 import Typography from 'antd/es/typography';
 
 interface Props {
@@ -15,20 +14,15 @@ const Parameters: React.FC<Props> = ({ parameters }) => {
 
 	return (
 		<>
-			<Divider style={{ margin: '5px 0 ' }}/>
 			{parameters.map((parameter) => {
 				return (
 					<Col key={parameter.id} span={12}>
-						<Space>
-							<AimOutlined/>
-							<Typography.Text>
-								{parameter.name}
-							</Typography.Text>
-						</Space>
+						<Typography.Text>
+							{parameter.name}
+						</Typography.Text>
 					</Col>
 				);
 			})}
-			<Divider style={{ margin: '5px 0 ' }}/>
 		</>
 	);
 };

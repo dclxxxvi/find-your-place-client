@@ -6,6 +6,7 @@ import useWorkspaceCard from '../hooks';
 import { type IWorkspace } from '../../../types';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import RatingField from '../components/RatingField';
+import Parameters from '../WorkspaceCard/components/Parameters';
 
 interface Props {
 	workspace: IWorkspace;
@@ -86,18 +87,7 @@ const OverviewWorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 				</Row>
 				<Row>
 					<Divider style={{ margin: '5px 0 ' }}/>
-					<Col span={12}><Space><AimOutlined/><Typography.Text>
-							Супер Плюсы
-					</Typography.Text></Space></Col>
-					<Col span={12}><Space><AimOutlined/><Typography.Text>
-							Супер Плюсы
-					</Typography.Text></Space></Col>
-					<Col span={12}><Space><AimOutlined/><Typography.Text>
-							Супер Плюсы
-					</Typography.Text></Space></Col>
-					<Col span={12}><Space><AimOutlined/><Typography.Text>
-							Супер Плюсы
-					</Typography.Text></Space></Col>
+					<Parameters parameters={workspace.parameters}/>
 					<Divider style={{ margin: '5px 0 ' }}/>
 				</Row>
 

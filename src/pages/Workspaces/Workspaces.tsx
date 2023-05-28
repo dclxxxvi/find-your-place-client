@@ -2,11 +2,11 @@ import * as React from 'react';
 import { Content } from 'antd/es/layout/layout';
 import { BreadcrumbItem, Breadcrumbs, PageWrapper } from '../../components';
 import WorkspaceList from '../../modules/WorkspaceList';
-import { Card, Col, Row, Space } from 'antd';
-import Title from 'antd/es/typography/Title';
+import { Card, Col, Row } from 'antd';
 import PageHeader from '../../components/PageHeader';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import PropertiesOfAdvantagesList from '../../components/SuperAdvantages/PropertiesOfAdvantagesList';
+import WorkspaceListHeader from '../../modules/WorkspaceList/components/WorkspaceListHeader';
 
 const Workspaces: React.FC = () => {
 	const breakpoint = useBreakpoint(true);
@@ -23,17 +23,7 @@ const Workspaces: React.FC = () => {
 				}/>
 			</PageWrapper>
 			<PageWrapper>
-				<Space size={'large'}>
-					<Title style={{ margin: 0 }} level={5}>
-							Найдено 73 места
-					</Title>
-					<Title style={{ margin: 0 }} level={5}>
-							По популярности
-					</Title>
-					<Title style={{ margin: 0 }} level={5}>
-							Показать на карте
-					</Title>
-				</Space>
+				<WorkspaceListHeader />
 			</PageWrapper>
 			<PageWrapper marginTop={48}>
 				<Row gutter={[24, 24]}>
