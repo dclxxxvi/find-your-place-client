@@ -18,7 +18,7 @@ const WorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 		<Card
 			style={{
 				cursor: 'pointer',
-				boxShadow: isCardHovered ? '0px 4px 4px rgba(0, 0, 0, 0.25)' : undefined,
+				boxShadow: isCardHovered ? '0px 4px 4px #8C8C8C' : '0px 4px 4px rgba(0, 0, 0, 0.25)',
 				transform: isCardHovered ? 'scale(1.025)' : 'unset',
 			}}
 			size={'small'}
