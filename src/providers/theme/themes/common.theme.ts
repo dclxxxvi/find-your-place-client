@@ -10,9 +10,5 @@ export const commonTheme: ThemeConfig = {
 		Card: {
 
 		},
-		Rate: {
-			colorBgBase: 'red',
-			colorBgContainer: 'red',
-		},
 	},
 };
