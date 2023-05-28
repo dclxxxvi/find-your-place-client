@@ -44,7 +44,7 @@ const SearchFilterMobile: React.FC<Props> = ({ isGlobal }) => {
 			}
 			<Col span={10}>
 				<BaseTypeMultiSelect
-					handleChange={handleMultipleSelectChange('params')}
+					handleChange={handleMultipleSelectChange('additional')}
 					dictionary={parametersDictionary[0]?.dictionary}
 					initialValue={params}
 					placeholder={parametersDictionary[0]?.category.name}
@@ -54,7 +54,7 @@ const SearchFilterMobile: React.FC<Props> = ({ isGlobal }) => {
 			</Col>
 			<Col span={7}>
 				<BaseTypeSelect
-					handleChange={handleSelectChange('format')}
+					handleChange={handleSelectChange('features')}
 					dictionary={parametersDictionary[1]?.dictionary}
 					initialValue={format}
 					placeholder={parametersDictionary[1]?.category.name}
@@ -64,7 +64,7 @@ const SearchFilterMobile: React.FC<Props> = ({ isGlobal }) => {
 			</Col>
 			<Col span={7}>
 				<BaseTypeSelect
-					handleChange={handleSelectChange('cost')}
+					handleChange={handleSelectChange('rooms')}
 					dictionary={parametersDictionary[2]?.dictionary}
 					initialValue={cost}
 					placeholder={parametersDictionary[2]?.category.name}

@@ -1,6 +1,7 @@
 import { type IWorkspace } from '../types';
 import { toInteger } from 'lodash';
 import wsImage from './img.png';
+import { type IMedia } from '../types/IMedia';
 
 export const workspaceMocks: IWorkspace[] = Array.from({ length: 10 }).map((_, index) => ({
 	id: String(index),
@@ -16,15 +17,20 @@ export const workspaceMocks: IWorkspace[] = Array.from({ length: 10 }).map((_, i
 	approved: true,
 	images: Array.from({ length: 5 }).map((__, imageindex) => ({
 		id: String(imageindex),
-		workspace_id: String(imageindex),
-		media_id: String(imageindex),
-		link: wsImage,
-		createdAt: new Date(),
-		updatedAt: new Date(),
+		// eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+		media: {
+			workspace_id: String(imageindex),
+			media_id: String(imageindex),
+			link: wsImage,
+			createdAt: new Date(),
+			updatedAt: new Date(),
+		} as IMedia,
 	})),
 	latitude: 56.836927 + Math.random() * 0.2 - 0.1,
 	longitude: 60.599308 + Math.random() * 0.2 - 0.1,
 	location_value: `ул. Пушкина ${toInteger(Math.random() * 98)}, д. Колотушкина ${toInteger(Math.random() * 112)}`,
 	createdAt: new Date(),
 	updatedAt: new Date(),
+	comments: [],
+	parameters: [],
 }));

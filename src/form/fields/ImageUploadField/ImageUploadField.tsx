@@ -9,13 +9,12 @@ import { type UploadChangeParam } from 'antd/es/upload';
 import { getBase64, getPreviewImage, renderUploadButton } from './consts';
 import ImgCrop, { type ImgCropProps } from 'antd-img-crop';
 import { type IResponse } from '../../../types';
-import { type IImageMedia } from '../../../types/IImageMedia';
-import { type AxiosResponse } from 'axios';
+import { type IImageMedia } from '../../../types/IMedia';
 
 // TODO: нужен рефакторинг компонента
 
 type ImageMediaResponse = IResponse<IImageMedia>;
-type ImageUploadFile = UploadFile<AxiosResponse<ImageMediaResponse>>;
+type ImageUploadFile = UploadFile<ImageMediaResponse>;
 type ImageUploadChangeParam = UploadChangeParam<ImageUploadFile>;
 type ImageUploadProps = UploadProps<ImageMediaResponse>;
 
@@ -54,7 +53,7 @@ const ImageUploadField: React.FC<Props> = ({
 	const handleChange = (inputOnChange: (value: IImageMedia[]) => void) => (values: ImageUploadChangeParam) => {
 		const fileListToChange = values.fileList
 			.filter(file => file.response)
-			.map(file => file.response?.data.media) as IImageMedia[];
+			.map(file => file.response?.data) as IImageMedia[];
 		inputOnChange(fileListToChange);
 		setFileList(values.fileList);
 		if (values.file.status === 'error') {

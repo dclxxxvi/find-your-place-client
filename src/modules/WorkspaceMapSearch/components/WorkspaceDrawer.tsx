@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Drawer } from 'antd';
-import { workspaceMocks } from '../../../mocks/workspaces';
+import { Drawer, Skeleton } from 'antd';
 import { WorkspaceCardMobile } from '../../WorkspaceCard/WorkspaceCard';
+import { useGetWorkspaceByIdQuery } from '../../../redux';
 
 interface Props {
 	open: boolean;
@@ -10,18 +10,31 @@ interface Props {
 }
 
 const WorkspaceDrawer: React.FC<Props> = ({ open, onClose, workspaceId }) => {
-	const workspace = workspaceMocks.find(ws => ws.id === workspaceId);
+	const { data, isLoading } = useGetWorkspaceByIdQuery(
+		{ id: workspaceId as string },
+		{ skip: !workspaceId },
+	);
+
+	if (isLoading) {
+		return <Skeleton/>;
+	}
+
+	const workspace = data?.data;
+
+	if (!workspace) {
+		return null;
+	}
 
 	return (
 		<Drawer
-			title={workspace?.title}
+			title={workspace.title}
 			placement={'left'}
 			onClose={onClose}
 			open={open}
 			width={'100%'}
 			contentWrapperStyle={{ maxWidth: 378 }}
 		>
-			{ (workspace != null) && <WorkspaceCardMobile workspace={ workspace } /> }
+			<WorkspaceCardMobile workspace={ workspace }/>
 		</Drawer>
 	);
 };

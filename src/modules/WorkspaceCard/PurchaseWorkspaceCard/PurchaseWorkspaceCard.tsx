@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { Card, Col, Image, Row, Space } from 'antd';
+import { Card, Col, Row, Space } from 'antd';
 import Typography from 'antd/es/typography';
 import { AimOutlined, PhoneOutlined } from '@ant-design/icons';
 import { type IWorkspace } from '../../../types';
+import ImageCarousel from '../components/ImageCarousel';
 
 interface Props {
 	workspace: IWorkspace;
@@ -13,7 +14,7 @@ const PurchaseWorkspaceCard: React.FC<Props> = ({ workspace }) => {
 		<Card size={'small'}>
 			<Row gutter={24} align={'middle'}>
 				<Col span={6}>
-					<Image src={workspace.images[0].link} />
+					<ImageCarousel images={workspace.images} />
 				</Col>
 				<Col span={18}>
 					<Row justify={'space-between'} align={'stretch'}>

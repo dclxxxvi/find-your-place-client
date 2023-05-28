@@ -11,7 +11,6 @@ import { useAddWorkspaceMutation } from '../../redux';
 import CheckboxField from '../../form/fields/CheckboxField';
 import Typography from 'antd/es/typography';
 import { useAddress } from './hooks/useAddress';
-import MaskedInputField from '../../form/fields/MaskedInputField/MaskedInputField';
 import ParametersFieldGroup from './components/ParametersFieldGroup';
 
 const DividerWithoutMargins = () => <Divider style={{ margin: 0 }}/>;
@@ -70,13 +69,14 @@ const AddWorkspaceForm: React.FC = () => {
 				<ParametersFieldGroup control={control} />
 				<DividerWithoutMargins/>
 				<Typography.Text>Контакты места</Typography.Text>
-				<MaskedInputField
-					name={'phone_number'}
-					label={'Номер телефона'}
-					control={control}
-					inputMode={'tel'}
-					mask={'+70000000000'}
-				/>
+				{/* <MaskedInputField */}
+				{/*	name={'phone_number'} */}
+				{/*	label={'Номер телефона'} */}
+				{/*	control={control} */}
+				{/*	inputMode={'tel'} */}
+				{/*	mask={'+70000000000'} */}
+				{/* /> */}
+				<TextField name={'phone_number'} label={'Номер телефона'} control={control} inputMode={'tel'} />
 				<TextField name={'site_url'} label={'Сайт'} control={control} />
 				<DividerWithoutMargins/>
 				<Space direction={'vertical'}>
