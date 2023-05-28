@@ -5,8 +5,8 @@ import WorkspaceAnchor from './components/WorkspaceAnchor';
 import WorkspaceDescription from './components/WorkspaceDescription';
 import WorkspaceServices from './components/WorkspaceServices';
 import WorkspaceTariffs from './components/WorkspaceTariffs';
-import WorkspaceFeedback from './components/WorkspaceFeedback';
 import OverviewWorkspaceCard from '../WorkspaceCard/OverviewWorkspaceCard';
+import WorkspaceFeedback from './components/WorkspaceFeedback/WorkspaceFeedback';
 import { useGetWorkspaceByIdQuery } from '../../redux';
 
 const WorkspaceExpanded: React.FC = () => {
