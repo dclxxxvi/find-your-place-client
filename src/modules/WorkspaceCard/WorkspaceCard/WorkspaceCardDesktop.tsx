@@ -1,13 +1,10 @@
 import * as React from 'react';
-import { Button, Card, Col, Row, Space } from 'antd';
+import { useState } from 'react';
+import { Button, Carousel, Col, Image, Rate, Row, Space, Divider, Card } from 'antd';
 import Typography from 'antd/es/typography';
 import { AimOutlined } from '@ant-design/icons';
-import { useState } from 'react';
 import { type IWorkspace } from '../../../types';
 import useWorkspaceCard from '../hooks';
-import Parameters from './components/Parameters';
-import RatingField from '../components/RatingField';
-import ImageCarousel from '../components/ImageCarousel';
 
 interface Props {
 	workspace: IWorkspace;
@@ -21,83 +18,114 @@ const WorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 		<Card
 			style={{
 				cursor: 'pointer',
-				boxShadow: isCardHovered ? '0px 4px 4px rgba(0, 0, 0, 0.25)' : undefined,
+				boxShadow: isCardHovered ? '0px 4px 4px #8C8C8C' : '0px 4px 4px rgba(0, 0, 0, 0.25)',
+				transform: isCardHovered ? 'scale(1.025)' : 'unset',
 			}}
 			size={'small'}
 			onMouseEnter={() => setIsCardHovered(true)}
 			onMouseLeave={() => setIsCardHovered(false)}
+			onClick={navigateToWorkspacePage}
 		>
-			<Row gutter={[24, 16]} align={'middle'} justify={'center'} >
-				<Col span={10}>
-					<ImageCarousel images={workspace.images} />
+			<Row gutter={[24, 16]} justify={'center'}>
+				<Col span={12} lg={isCardHovered ? 13 : 12} xl={isCardHovered ? 11 : 10} >
+					<Carousel>
+						{workspace.images.map((image) =>
+							<Image
+								key={ image.id }
+								src={ image.link }
+								height='100%'
+								width='100%'
+								style={{ objectFit: 'cover' }}
+							/>)}
+					</Carousel>
 				</Col>
-				<Col span={14}>
-					<Space direction={'vertical'} size={isCardHovered ? 'small' : 'large'} style={{ width: '100%' }}>
-						<Row justify={'space-between'}>
-							<Col>
-								<Typography.Title
-									onClick={navigateToWorkspacePage}
-									style={{ margin: 0 }}
-									level={4}
-								>{workspace.title}
-								</Typography.Title>
-							</Col>
-							<Col>
-								<RatingField rating={workspace.rating} commentsCount={workspace.comments.length}/>
-							</Col>
-						</Row>
-						<Row>
-							<Typography.Paragraph
-								ellipsis={{ rows: 2 }}
-								style={{ width: '100%', marginBottom: '0' }}
-							>
-								{workspace.description}
-							</Typography.Paragraph>
-						</Row>
-						<Row>
-							{ isCardHovered && <Parameters parameters={workspace.parameters} /> }
-						</Row>
-						<Row gutter={8}>
-							<Col span={24}>
-								<Space>
-									<AimOutlined/>
-									<Typography.Text>
-										{workspace.location_value}
-									</Typography.Text>
-								</Space>
-							</Col>
-							{/* {/!* <Col span={24}> *!/}
-							{/!*	<Row gutter={12}> *!/}
-							{/!*		<Col> *!/}
-							{/!*			<AimOutlined /> *!/}
-							{/!*		</Col> *!/}
-							{/!*		<Col> *!/}
-							{/!*			<Typography.Text> *!/}
-							{/!*				Чкаловская *!/}
-							{/!*			</Typography.Text> *!/}
-							{/!*		</Col> *!/}
-							{/!*	</Row> *!/}
-							{/!* </Col> *!/} */}
-						</Row>
-						<Row>
-							<Typography.Title level={5} style={{ width: '100%', margin: '5px 0' }}>
-								300 руб/час или 5000 руб/месяц
+				<Col span={12} lg={isCardHovered ? 11 : 12} xl={isCardHovered ? 13 : 14} style={{
+					display: 'flex',
+					flexDirection: 'column',
+					justifyContent: 'space-between',
+				}}
+				>
+					<Row align={'top'} justify={'space-between'}>
+						<Col>
+							<Typography.Title
+								style={{ margin: 0 }}
+								level={3}
+							>{workspace.title}
 							</Typography.Title>
-						</Row>
-						{ isCardHovered &&
+						</Col>
+						<Col>
 							<Row>
-								<Col flex={'auto'}>
-									<Button
-										style={{ width: '100%', marginTop: '10px' }}
-										type={'primary'}
-										size={'large'}
-										onClick={navigateToWorkspacePage}>
-										Перейти к оформлению
-									</Button>
-								</Col>
+								<Rate allowHalf defaultValue={workspace.rating} disabled></Rate>
 							</Row>
-						}
-					</Space>
+							<Row justify={'end'}>
+								<Typography.Text type="secondary">
+									{`${workspace.feedback_count as number} отзывов`}
+								</Typography.Text>
+							</Row>
+						</Col>
+					</Row>
+					{
+						isCardHovered &&
+						<Divider style={{ margin: '5px 0 ' }}/>
+					}
+					<Row>
+						<Col span={24}>
+							<Space>
+								<AimOutlined />
+								<Typography.Text>
+									{workspace.location_value}
+								</Typography.Text>
+							</Space>
+						</Col>
+					</Row>
+					{
+						isCardHovered &&
+						<Divider style={{ margin: '5px 0 ' }}/>
+					}
+					<Row>
+						<Typography.Paragraph ellipsis={{ rows: 2 }} style={{ marginBottom: '0' }}>
+							{workspace.description}
+						</Typography.Paragraph>
+					</Row>
+					{ isCardHovered &&
+						<Row>
+							<Divider style={{ margin: '5px 0 ' }}/>
+							<Col span={12}><Space><AimOutlined/><Typography.Text>
+								Супер Плюсы
+							</Typography.Text></Space></Col>
+							<Col span={12}><Space><AimOutlined/><Typography.Text>
+								Супер Плюсы
+							</Typography.Text></Space></Col>
+							<Col span={12}><Space><AimOutlined/><Typography.Text>
+								Супер Плюсы
+							</Typography.Text></Space></Col>
+							<Col span={12}><Space><AimOutlined/><Typography.Text>
+								Супер Плюсы
+							</Typography.Text></Space></Col>
+							<Divider style={{ margin: '5px 0 ' }}/>
+						</Row>
+					}
+
+					<Row align={'top'} justify={'space-between'}>
+
+						<Typography.Title
+							style={{ margin: 0 }}
+							level={4}
+						>10000 Рублей
+						</Typography.Title>
+
+					</Row>
+					<Row>
+						<Col flex={'auto'}>
+							<Button
+								style={{ width: '100%', marginTop: '10px' }}
+								type={isCardHovered ? 'primary' : 'default'}
+								size={'large'}
+								onClick={navigateToWorkspacePage}>
+								Перейти к оформлению
+							</Button>
+						</Col>
+					</Row>
 				</Col>
 			</Row>
 		</Card>
