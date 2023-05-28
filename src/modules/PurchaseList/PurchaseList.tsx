@@ -17,8 +17,8 @@ const dictMocks: IBaseType[] = [
 
 const PurchaseList: React.FC = () => {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const [status, setStatus] = useState<IBaseType | undefined>();
-	const handleStatusChange = (value?: IBaseType) => setStatus(value);
+	const [status, setStatus] = useState<string | undefined>();
+	const handleStatusChange = (value?: string) => setStatus(value);
 
 	return (
 		<Space direction={'vertical'} size={'large'}>

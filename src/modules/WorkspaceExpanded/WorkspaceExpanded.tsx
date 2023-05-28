@@ -1,17 +1,23 @@
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
-import { workspaceMocks } from '../../mocks/workspaces';
-import { Col, Row } from 'antd';
+import { Col, Row, Skeleton } from 'antd';
 import WorkspaceAnchor from './components/WorkspaceAnchor';
 import WorkspaceDescription from './components/WorkspaceDescription';
 import WorkspaceServices from './components/WorkspaceServices';
 import WorkspaceTariffs from './components/WorkspaceTariffs';
 import WorkspaceFeedback from './components/WorkspaceFeedback';
 import OverviewWorkspaceCard from '../WorkspaceCard/OverviewWorkspaceCard';
+import { useGetWorkspaceByIdQuery } from '../../redux';
 
 const WorkspaceExpanded: React.FC = () => {
 	const { id } = useParams();
-	const workspace = workspaceMocks.find(ws => ws.id === id);
+	const { data, isLoading } = useGetWorkspaceByIdQuery({ id: id as string }, { skip: !id });
+
+	const workspace = data?.data;
+
+	if (isLoading) {
+		return <Skeleton/>;
+	}
 
 	if (!workspace) {
 		return null;

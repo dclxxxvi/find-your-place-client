@@ -1,3 +1,5 @@
+import { type IAddWorkspaceFormValues } from '../../form/schemas/addWorkspaceSchema';
+
 export enum ETagTypes {
 	WORKSPACES = 'Workspaces',
 	USER_WORKSPACES = 'UserWorkspaces',
@@ -21,3 +23,20 @@ export function getFromFormData(formData: FormData, key: string): string {
 	}
 	return '';
 }
+
+export const prepareAddWorkspaceBody = (body: IAddWorkspaceFormValues): any => {
+	const imagesId = body.images?.map((image) => image.id) || [];
+
+	const parameters: any[] = [];
+	body?.parametersToAdd.forEach((parameter) => {
+		if (parameter) {
+			parameters.push(...parameter);
+		}
+	});
+
+	return {
+		...body,
+		images_id: imagesId,
+		parameters,
+	};
+};

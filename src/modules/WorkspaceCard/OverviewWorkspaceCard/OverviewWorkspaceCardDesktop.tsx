@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { Button, Carousel, Col, Image, Rate, Row, Space } from 'antd';
+import { Button, Col, Row, Space } from 'antd';
 import Typography from 'antd/es/typography';
 import { AimOutlined } from '@ant-design/icons';
 import useWorkspaceCard from '../hooks';
 import { type IWorkspace } from '../../../types';
+import ImageCarousel from '../components/ImageCarousel';
+import RatingField from '../components/RatingField';
 
 interface Props {
 	workspace: IWorkspace;
@@ -15,12 +17,10 @@ const OverviewWorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 	return (
 		<Row gutter={[24, 16]} align={'stretch'}>
 			<Col span={12}>
-				<Carousel autoplay>
-					{workspace.images.map((image) => <Image key={ image.id } src={ image.link }/>)}
-				</Carousel>
+				<ImageCarousel images={workspace.images}/>
 			</Col>
 			<Col span={12}>
-				<Space direction={'vertical'} size={'middle'}>
+				<Space direction={'vertical'} size={'middle'} style={{ width: '100%' }}>
 					<Row align={'top'} justify={'space-between'}>
 						<Col>
 							<Typography.Title
@@ -30,14 +30,7 @@ const OverviewWorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 							</Typography.Title>
 						</Col>
 						<Col>
-							<Row>
-								<Rate allowHalf defaultValue={workspace.rating} disabled></Rate>
-							</Row>
-							<Row justify={'end'}>
-								<Typography.Text type="secondary">
-									{`${workspace.feedback_count as number} отзывов`}
-								</Typography.Text>
-							</Row>
+							<RatingField rating={workspace.rating} commentsCount={workspace.comments?.length} />
 						</Col>
 					</Row>
 					<Row>
@@ -54,18 +47,6 @@ const OverviewWorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 								</Typography.Text>
 							</Space>
 						</Col>
-						{/* <Col span={24}> */}
-						{/*	<Row gutter={12}> */}
-						{/*		<Col> */}
-						{/*			<AimOutlined /> */}
-						{/*		</Col> */}
-						{/*		<Col> */}
-						{/*			<Typography.Text> */}
-						{/*				Чкаловская */}
-						{/*			</Typography.Text> */}
-						{/*		</Col> */}
-						{/*	</Row> */}
-						{/* </Col> */}
 					</Row>
 					<Row>
 						<Col flex={'auto'}>

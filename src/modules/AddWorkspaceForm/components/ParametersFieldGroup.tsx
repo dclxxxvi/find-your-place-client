@@ -23,7 +23,7 @@ const ParametersFieldGroup: React.FC<Props> = ({ control }) => {
 							<Col key={parameters.category.id} span={24} xl={8}>
 								<BaseTypeMultiSelectField
 									style={{ width: '100%' }}
-									name={`parameters[${index}]`}
+									name={`parametersToAdd[${index}]`}
 									control={control}
 									dictionary={parameters.dictionary}
 									label={parameters.category.name}

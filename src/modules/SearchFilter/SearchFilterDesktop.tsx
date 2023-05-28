@@ -23,7 +23,7 @@ const SearchFilterDesktop: React.FC<Props> = ({ isGlobal }) => {
 		<Row gutter={[10, 20]}>
 			<Col xxl={5} lg={4} md={5}>
 				<BaseTypeMultiSelect
-					handleChange={handleMultipleSelectChange('params')}
+					handleChange={handleMultipleSelectChange('additional')}
 					dictionary={parametersDictionary[0]?.dictionary}
 					initialValue={params}
 					placeholder={parametersDictionary[0]?.category.name}
@@ -33,7 +33,7 @@ const SearchFilterDesktop: React.FC<Props> = ({ isGlobal }) => {
 			</Col>
 			<Col xxl={3} lg={3} md={3}>
 				<BaseTypeSelect
-					handleChange={handleSelectChange('format')}
+					handleChange={handleSelectChange('features')}
 					dictionary={parametersDictionary[1]?.dictionary}
 					initialValue={format}
 					placeholder={parametersDictionary[1]?.category.name}
@@ -43,7 +43,7 @@ const SearchFilterDesktop: React.FC<Props> = ({ isGlobal }) => {
 			</Col>
 			<Col xxl={3} lg={3} md={3}>
 				<BaseTypeSelect
-					handleChange={handleSelectChange('cost')}
+					handleChange={handleSelectChange('rooms')}
 					dictionary={parametersDictionary[2]?.dictionary}
 					initialValue={cost}
 					placeholder={parametersDictionary[2]?.category.name}

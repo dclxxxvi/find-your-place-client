@@ -1,23 +1,30 @@
 import { commonApi } from './common.api';
-import { ETagTypes } from './consts';
-import { type IWorkspace, type IWorkspaceSearchParams } from '../../types';
+import { ETagTypes, prepareAddWorkspaceBody } from './consts';
+import { type IResponse, type IWorkspace, type IWorkspaceFetchResult, type IWorkspaceParams } from '../../types';
 import { type IAddWorkspaceFormValues } from '../../form/schemas/addWorkspaceSchema';
 
 const workspaceApi = commonApi.injectEndpoints({
 	overrideExisting: false,
 	endpoints: builder => ({
-		getWorkspaces: builder.query<IWorkspace[], IWorkspaceSearchParams>({
+		getWorkspaces: builder.query<IResponse<IWorkspaceFetchResult>, IWorkspaceParams>({
 			query: (params) => ({
-				url: 'workspace',
+				url: 'service/workspaces',
 				method: 'GET',
 				params,
 			}),
-			providesTags: (result = []) => [
+			providesTags: (result) => [
 				ETagTypes.WORKSPACES,
-				...result.map(({ id }) => ({ type: ETagTypes.WORKSPACES, id })),
+				...result?.data.items.map(({ id }) => ({ type: ETagTypes.WORKSPACES, id })) || [],
 			],
+			// serializeQueryArgs: ({ endpointName }) => endpointName,
+			// merge: (currentCache, newItems) => {
+			// 	currentCache.data.items.push(...newItems.data.items);
+			// },
+			// forceRefetch({ currentArg, previousArg }) {
+			// 	return currentArg !== previousArg;
+			// },
 		}),
-		getUserWorkspaces: builder.query<IWorkspace[], IWorkspaceSearchParams>({
+		getUserWorkspaces: builder.query<IWorkspace[], IWorkspaceParams>({
 			query: (params) => ({
 				url: 'user/workspaces',
 				method: 'GET',
@@ -28,7 +35,7 @@ const workspaceApi = commonApi.injectEndpoints({
 				...result.map(({ id }) => ({ type: ETagTypes.USER_WORKSPACES, id })),
 			],
 		}),
-		getWorkspaceById: builder.query<IWorkspace, Pick<IWorkspace, 'id'>>({
+		getWorkspaceById: builder.query<IResponse<IWorkspace>, Pick<IWorkspace, 'id'>>({
 			query: ({ id }) => ({
 				url: `workspace/${id}`,
 				method: 'GET',
@@ -39,7 +46,7 @@ const workspaceApi = commonApi.injectEndpoints({
 			query: body => ({
 				url: 'workspace',
 				method: 'POST',
-				body,
+				body: prepareAddWorkspaceBody(body),
 			}),
 			invalidatesTags: [ETagTypes.WORKSPACES, ETagTypes.USER_WORKSPACES],
 		}),
