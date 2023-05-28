@@ -1,46 +1,57 @@
 import * as React from 'react';
-import { Col, Row, Space } from 'antd';
+import { Typography, Row } from 'antd';
+import { icons } from './consts';
 
 interface Props {
 	advantage: string;
+	rowReverse?: boolean;
 }
 
-const SuperAdvantage: React.FC<Props> = ({ advantage }) => {
-	enum icons {
-		'24mp' = 'Круглосуточно',
-		keyboard = 'Аренда гаджетов',
-		subway = 'Метро',
-		podium = 'Конференц зал',
-		smoking_rooms = 'Комнаты для курения',
-		shower = 'Душевые комнаты',
-		print = 'Печать материалов',
-		wifi = 'Wi-Fi',
-		meeting_room = 'Переговорные комнаты',
-		local_cafe = 'Чай, кофе',
-	}
-	const iconWithProperty = (iconName: string) => {
+const SuperAdvantage: React.FC<Props> = ({ advantage, rowReverse }) => {
+	const findIconWithProperty = () => {
+		return Object.entries(icons).find(([icon]) => icon === advantage);
+	};
+	const iconWithProperty = () => {
+		const icon = findIconWithProperty();
 		return (
-			<Space>
-				<span className="material-symbols-outlined">
-					{iconName}
-				</span>{icons.print}
-			</Space>);
+			<Row>
+				{
+					icon &&
+						<div style={{
+							display: 'flex',
+							flexDirection: rowReverse ? 'row-reverse' : 'row',
+							alignItems: 'center',
+						}}>
+							{
+								icon[0] &&
+							<Row align='middle' style={{
+								marginLeft: rowReverse ? 10 : 0,
+								marginRight: rowReverse ? 0 : 10,
+							}}>
+								<span className="material-symbols-outlined" >
+									{icon[0]}
+								</span>
+							</Row>
+
+							}
+							{
+								icon[1] &&
+							<Typography.Paragraph style={{ margin: 0 }}>
+								{icon[1]}
+							</Typography.Paragraph>
+							}
+						</div>
+				}
+			</Row>
+		);
 	};
 
 	return (
 		<>
-			<Row align={'middle'} justify={'space-between'}>
-
-				{
-					Object.entries(icons).map(([key, value]) => (
-						<Col span={4} key={key}>
-							{iconWithProperty(key)}
-						</Col>
-					))
-				}
-			</Row>
+			{
+				iconWithProperty()
+			}
 		</>
-
 	);
 };
 
