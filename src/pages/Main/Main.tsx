@@ -8,6 +8,7 @@ import Image from './assets/top-view-person-writing-on-laptop-with-copy-space 1.
 import { useAppSelector } from '../../redux';
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import LandingForMain from '../../modules/LandingForMain';
 
 const getMainBackgroundStyle = (isDarkTheme: boolean) => {
 	const backgroundShading = isDarkTheme
@@ -25,36 +26,40 @@ const Main: React.FC = () => {
 	const backgroundStyle = useMemo(() => getMainBackgroundStyle(isDarkTheme), [isDarkTheme]);
 
 	return (
-		<Content style={backgroundStyle}>
-			<PageWrapper marginTop={70}>
-				<Title level={2}>Коворкинги для всех</Title>
-				<Title level={4}>Найдите место для комфортной работы или учебы</Title>
-			</PageWrapper>
-			<PageWrapper marginTop={30}>
-				<SearchFilter />
-			</PageWrapper>
-			<PageWrapper marginTop={30} marginBottom={100}>
-				<Row justify={'space-between'}>
-					<Col>
-						<Button>Екатеринбург</Button>
-					</Col>
-					<Col>
-						<Row gutter={{ xs: 8, md: 16 }}>
-							<Col>
-								<Button type={'default'} onClick={() => navigate('/workspaces/map')}>
-									Показать на карте
-								</Button>
-							</Col>
-							<Col>
-								<Button type={'primary'} onClick={() => navigate('/workspaces')}>
-									Найти место
-								</Button>
-							</Col>
-						</Row>
-					</Col>
-				</Row>
-			</PageWrapper>
-		</Content>
+		<>
+			<Content style={backgroundStyle}>
+				<PageWrapper marginTop={70}>
+					<Title level={2}>Коворкинги для всех</Title>
+					<Title level={4}>Найдите место для комфортной работы или учебы</Title>
+				</PageWrapper>
+				<PageWrapper marginTop={30}>
+					<SearchFilter />
+				</PageWrapper>
+				<PageWrapper marginTop={30} marginBottom={100}>
+					<Row justify={'space-between'}>
+						<Col>
+							<Button>Екатеринбург</Button>
+						</Col>
+						<Col>
+							<Row gutter={{ xs: 8, md: 16 }}>
+								<Col>
+									<Button type={'default'} onClick={() => navigate('/workspaces/map')}>
+										Показать на карте
+									</Button>
+								</Col>
+								<Col>
+									<Button type={'primary'} onClick={() => navigate('/workspaces')}>
+										Найти место
+									</Button>
+								</Col>
+							</Row>
+						</Col>
+					</Row>
+				</PageWrapper>
+			</Content>
+			<LandingForMain />
+		</>
+
 	);
 };
 
