@@ -14,21 +14,23 @@ const NavbarDesktop: React.FC = () => {
 		<Content>
 			<PageWrapper marginTop={16} marginBottom={16}>
 				<Row justify={'space-between'} align={'middle'}>
-					<Col>
+					<Col span={10}>
 						<AppTitle />
 					</Col>
-					<Col>
-						<Space size={'large'}>
-							<Button
-								onClick={() => navigate('workspaces/new')}
-								shape={'default'}
-								type={'primary'}
-							>
-								Добавить пространство
-							</Button>
-							<ThemeSwitcher />
-							<UserMenu />
-						</Space>
+					<Col span={14}>
+						<Row justify='end'>
+							<Space size={'large'}>
+								<Button
+									onClick={() => navigate('workspaces/new')}
+									shape={'default'}
+									type={'primary'}
+								>
+									Добавить пространство
+								</Button>
+								<ThemeSwitcher />
+								<UserMenu />
+							</Space>
+						</Row>
 					</Col>
 				</Row>
 			</PageWrapper>

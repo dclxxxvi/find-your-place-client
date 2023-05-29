@@ -11,10 +11,10 @@ const MainFooter: React.FC = () => {
 		<Content>
 			<PageWrapper marginTop={16} marginBottom={16}>
 				<Row justify={'space-between'} align={'top'} gutter={16}>
-					<Col sm={8} md={6} xs={12}>
+					<Col sm={8} md={6} xs={24}>
 						<Row justify={'start'} >
 							<Space direction={'vertical'}>
-								<Title level={5} style={{ marginTop: '0.5em' }}>Пространства</Title>
+								<Title level={5} style={{ marginTop: 20 }}>Пространства</Title>
 								<Paragraph strong={true} style={{ marginBottom: '0' }}>Найти место</Paragraph>
 								<Paragraph strong={true} style={{ marginBottom: '0' }}>
 									Топ места в Екатеринбурге
@@ -23,10 +23,10 @@ const MainFooter: React.FC = () => {
 							</Space>
 						</Row>
 					</Col>
-					<Col sm={7} md={6} xs={12}>
+					<Col sm={7} md={6} xs={24}>
 						<Row justify={xs ? 'start' : 'center'} >
 							<Space direction={'vertical'}>
-								<Title level={5} style={{ marginTop: '0.5em' }}>Личный кабинет</Title>
+								<Title level={5} style={{ marginTop: 20 }}>Личный кабинет</Title>
 								<Paragraph strong={true} style={{ marginBottom: '0' }}>Мои данные</Paragraph>
 								<Paragraph strong={true} style={{ marginBottom: '0' }}>Мои бонусы</Paragraph>
 								<Paragraph strong={true} style={{ marginBottom: '0' }}>Мои покупки</Paragraph>
@@ -35,18 +35,18 @@ const MainFooter: React.FC = () => {
 							</Space>
 						</Row>
 					</Col>
-					<Col sm={5} md={6} xs={12}>
+					<Col sm={5} md={6} xs={24}>
 						<Row justify={xs ? 'start' : 'center'} >
 							<Space direction={'vertical'}>
-								<Title level={5} style={{ marginTop: '0.5em' }}>Бонусная программа</Title>
+								<Title level={5} style={{ marginTop: 20 }}>Бонусная программа</Title>
 								<Paragraph strong={true} style={{ marginBottom: '0' }}>Условия программы</Paragraph>
 							</Space>
 						</Row>
 					</Col>
-					<Col sm={4} md={6} xs={12} >
+					<Col sm={4} md={6} xs={24} >
 						<Row justify={xs ? 'start' : 'center'} >
 							<Space direction={'vertical'} align={'start'}>
-								<Title level={5} style={{ marginTop: '0.5em' }}>Контакты</Title>
+								<Title level={5} style={{ marginTop: 20 }}>Контакты</Title>
 								<Paragraph strong={true} style={{ marginBottom: '0' }}>+7 800 555 35 35</Paragraph>
 								<Paragraph strong={true} style={{ marginBottom: '0' }}>mail@mail.com</Paragraph>
 								<Paragraph strong={true} style={{ marginBottom: '0' }}>Телеграмм</Paragraph>
