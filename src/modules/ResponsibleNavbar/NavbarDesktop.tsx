@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { PageWrapper } from '../../components';
 import ThemeSwitcher from './components/ThemeSwitcher';
 import UserMenu from './components/UserMenu';
-import AppTitle from './components/AppTitle';
+import AppTitle from './components/AppTitleLogo';
 import { useGetUserQuery } from '../../redux';
 
 const NavbarDesktop: React.FC = () => {
@@ -16,21 +16,23 @@ const NavbarDesktop: React.FC = () => {
 		<Content>
 			<PageWrapper marginTop={16} marginBottom={16}>
 				<Row justify={'space-between'} align={'middle'}>
-					<Col>
+					<Col span={10}>
 						<AppTitle />
 					</Col>
-					<Col>
-						<Space size={'large'}>
-							{ userData && <Button
-								onClick={ () => navigate('workspaces/new') }
-								shape={ 'default' }
-								type={ 'primary' }
-							>
-								Добавить пространство
-							</Button> }
-							<ThemeSwitcher />
-							<UserMenu />
-						</Space>
+					<Col span={14}>
+						<Row justify='end'>
+							<Space size={'large'}>
+								{ userData && <Button
+									onClick={ () => navigate('workspaces/new') }
+									shape={ 'default' }
+									type={ 'primary' }
+								>
+									Добавить пространство
+								</Button> }
+								<ThemeSwitcher />
+								<UserMenu />
+							</Space>
+						</Row>
 					</Col>
 				</Row>
 			</PageWrapper>
