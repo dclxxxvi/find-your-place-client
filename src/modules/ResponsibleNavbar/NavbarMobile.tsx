@@ -9,10 +9,12 @@ import AppTitle from './components/AppTitle';
 import { MenuFoldOutlined, MenuUnfoldOutlined, PlusOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import Typography from 'antd/es/typography';
+import { useGetUserQuery } from '../../redux';
 
 const NavbarMobile: React.FC = () => {
 	const navigate = useNavigate();
 	const [drawerOpened, setDrawerOpened] = useState(false);
+	const { data: userData } = useGetUserQuery(null);
 	const showDrawer = () => setDrawerOpened(true);
 	const closeDrawer = () => setDrawerOpened(false);
 
@@ -37,14 +39,14 @@ const NavbarMobile: React.FC = () => {
 					<ThemeSwitcher/>
 				</Row>
 				<Space size={'large'} direction={'vertical'}>
-					<Space>
+					{userData && <Space>
 						<Button
-							onClick={() => navigate('workspaces/new')}
-							shape={'circle'}
-							icon={<PlusOutlined />}
+							onClick={ () => navigate('workspaces/new') }
+							shape={ 'circle' }
+							icon={ <PlusOutlined/> }
 						/>
 						<Typography.Text>Добавить пространство</Typography.Text>
-					</Space>
+					</Space> }
 					<Space>
 						<UserMenu/>
 						<Typography.Text>Личный кабинет</Typography.Text>

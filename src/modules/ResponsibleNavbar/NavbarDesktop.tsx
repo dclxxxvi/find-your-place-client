@@ -6,9 +6,11 @@ import { PageWrapper } from '../../components';
 import ThemeSwitcher from './components/ThemeSwitcher';
 import UserMenu from './components/UserMenu';
 import AppTitle from './components/AppTitle';
+import { useGetUserQuery } from '../../redux';
 
 const NavbarDesktop: React.FC = () => {
 	const navigate = useNavigate();
+	const { data: userData } = useGetUserQuery(null);
 
 	return (
 		<Content>
@@ -19,13 +21,13 @@ const NavbarDesktop: React.FC = () => {
 					</Col>
 					<Col>
 						<Space size={'large'}>
-							<Button
-								onClick={() => navigate('workspaces/new')}
-								shape={'default'}
-								type={'primary'}
+							{ userData && <Button
+								onClick={ () => navigate('workspaces/new') }
+								shape={ 'default' }
+								type={ 'primary' }
 							>
 								Добавить пространство
-							</Button>
+							</Button> }
 							<ThemeSwitcher />
 							<UserMenu />
 						</Space>
