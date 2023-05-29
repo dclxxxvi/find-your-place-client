@@ -8,7 +8,7 @@ export const commonApi = createApi({
 		prepareHeaders: headers => {
 			headers.set('Content-Type', 'application/json;charset=UTF-8');
 			headers.set('Authorization', localStorage.getItem('access-token') ?? '');
-
+			headers.set('Access-Control-Allow-Credentials', 'true');
 			return headers;
 		},
 	}),
