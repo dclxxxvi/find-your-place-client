@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  frontend:
+    build: .
+    image: frontend:31
+    ports:
+      - "3006:3006"
+    expose:
+      - 3006
