@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Button, Card, Col, Divider, Row, Space } from 'antd';
 import Typography from 'antd/es/typography';
-import { AimOutlined } from '@ant-design/icons';
 import useWorkspaceCard from '../hooks';
 import { type IWorkspace } from '../../../types';
 import Parameters from './components/Parameters';
@@ -54,8 +53,14 @@ const WorkspaceCardMobile: React.FC<Props> = ({ workspace }) => {
 						</Row>
 						<Row gutter={8}>
 							<Col span={24}>
-								<Space>
-									<AimOutlined/>
+								<Space align='center'>
+									<span className="material-symbols-outlined" style={{
+										display: 'flex',
+										alignItems: 'center',
+										justifyContent: 'center',
+									}}>
+									location_on
+									</span>
 									<Typography.Text>
 										{workspace.location_value}
 									</Typography.Text>
