@@ -18,7 +18,7 @@ const NavbarMobile: React.FC = () => {
 
 	return (
 		<Content>
-			<PageWrapper marginTop={16} marginBottom={16}>
+			<PageWrapper>
 				<Space size={'large'}>
 					<Button icon={<MenuUnfoldOutlined />} onClick={showDrawer}/>
 					<AppTitle />

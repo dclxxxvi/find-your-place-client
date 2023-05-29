@@ -12,7 +12,7 @@ const NavbarDesktop: React.FC = () => {
 
 	return (
 		<Content>
-			<PageWrapper marginTop={16} marginBottom={16}>
+			<PageWrapper>
 				<Row justify={'space-between'} align={'middle'}>
 					<Col span={10}>
 						<AppTitle />

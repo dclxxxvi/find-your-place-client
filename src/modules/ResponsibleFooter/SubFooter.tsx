@@ -11,7 +11,7 @@ const SubFooter: React.FC = () => {
 	const isSmall = breakpoint.xs || breakpoint.sm;
 	return (
 		<Content>
-			<PageWrapper marginTop={16} marginBottom={16}>
+			<PageWrapper>
 				<Row justify={'space-between'} align='middle'>
 					<Col xs={24} sm={24} md={9} lg={10} xl={9}>
 						<Row>
