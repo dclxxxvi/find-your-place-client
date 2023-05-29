@@ -5,9 +5,9 @@ interface IWorkspaceSearchParams {
 	format?: IBaseType;
 	cost?: IBaseType;
 	params?: IBaseType[];
-	rooms?: string[];
-	additional?: string[];
-	features?: string[];
+	rooms?: string;
+	additional?: string;
+	features?: string;
 }
 
 interface IWorkspacePaginationParams {

@@ -30,16 +30,15 @@ const BaseTypeMultiSelect: React.FC<Props> = ({ dictionary, handleChange, initia
 		return Boolean(option?.label.toLowerCase().includes(inputValue.toLowerCase()));
 	}, []);
 
-	const mapInitialValues = useMemo(() => {
-		return initialValue?.map(value => value.code_name);
-	}, [initialValue]);
+	// const mapInitialValues = useMemo(() => {
+	// 	return initialValue?.map(value => value.code_name);
+	// }, [initialValue]);
 
 	return (
 		<Select
 			mode={'multiple'}
 			onChange={onChange}
 			options={options}
-			value={mapInitialValues}
 			filterOption={filterOption}
 			{...rest}
 		/>

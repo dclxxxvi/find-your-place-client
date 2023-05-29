@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Button, Col, Input, Row } from 'antd';
-import BaseTypeMultiSelect from '../../shared/BaseTypeMultiSelect';
 import BaseTypeSelect from '../../shared/BaseTypeSelect';
 import { useSearchFilter } from './hooks/useSearchFilter';
 import { useDictionaries } from '../../hooks';
@@ -11,10 +10,10 @@ interface Props {
 
 const SearchFilterDesktop: React.FC<Props> = ({ isGlobal }) => {
 	const {
-		filterValues: { params, search, format, cost },
+		filterValues: { search, additional, features, rooms },
 		handleSelectChange,
-		handleMultipleSelectChange,
 		handleSearchInputChange,
+		navigateToWorkspacesPage,
 	} = useSearchFilter();
 
 	const { isLoading, parametersDictionary } = useDictionaries();
@@ -22,10 +21,10 @@ const SearchFilterDesktop: React.FC<Props> = ({ isGlobal }) => {
 	return (
 		<Row gutter={[10, 20]}>
 			<Col xxl={5} lg={4} md={5}>
-				<BaseTypeMultiSelect
-					handleChange={handleMultipleSelectChange('additional')}
+				<BaseTypeSelect
+					handleChange={handleSelectChange('additional')}
+					initialValue={additional}
 					dictionary={parametersDictionary[0]?.dictionary}
-					initialValue={params}
 					placeholder={parametersDictionary[0]?.category.name}
 					loading={isLoading}
 					allowClear
@@ -34,8 +33,8 @@ const SearchFilterDesktop: React.FC<Props> = ({ isGlobal }) => {
 			<Col xxl={3} lg={3} md={3}>
 				<BaseTypeSelect
 					handleChange={handleSelectChange('features')}
+					initialValue={features}
 					dictionary={parametersDictionary[1]?.dictionary}
-					initialValue={format}
 					placeholder={parametersDictionary[1]?.category.name}
 					loading={isLoading}
 					allowClear
@@ -44,8 +43,8 @@ const SearchFilterDesktop: React.FC<Props> = ({ isGlobal }) => {
 			<Col xxl={3} lg={3} md={3}>
 				<BaseTypeSelect
 					handleChange={handleSelectChange('rooms')}
+					initialValue={rooms}
 					dictionary={parametersDictionary[2]?.dictionary}
-					initialValue={cost}
 					placeholder={parametersDictionary[2]?.category.name}
 					loading={isLoading}
 					allowClear
@@ -67,7 +66,7 @@ const SearchFilterDesktop: React.FC<Props> = ({ isGlobal }) => {
 			}
 			{ isGlobal &&
 				<Col xxl={3} lg={4} md={4}>
-					<Button type={'primary'} shape={'default'} block={true}>
+					<Button type={'primary'} shape={'default'} block={true} onClick={navigateToWorkspacesPage}>
 						Найти место
 					</Button>
 				</Col>

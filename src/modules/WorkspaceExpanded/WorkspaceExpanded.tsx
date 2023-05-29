@@ -41,7 +41,7 @@ const WorkspaceExpanded: React.FC = () => {
 				<WorkspaceTariffs/>
 			</Col>
 			<Col span={24}>
-				<WorkspaceFeedback/>
+				<WorkspaceFeedback workspace={workspace}/>
 			</Col>
 		</Row>
 	);

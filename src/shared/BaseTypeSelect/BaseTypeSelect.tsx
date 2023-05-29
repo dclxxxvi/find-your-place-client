@@ -11,7 +11,7 @@ interface OptionType {
 interface Props extends Omit<SelectProps<string, OptionType>, 'options' | 'onChange' | 'value'> {
 	dictionary?: IBaseType[];
 	handleChange: (value?: string) => void;
-	initialValue?: IBaseType;
+	initialValue?: string;
 }
 
 const BaseTypeSelect: React.FC<Props> = ({ dictionary, handleChange, initialValue, ...rest }) => {
@@ -33,7 +33,7 @@ const BaseTypeSelect: React.FC<Props> = ({ dictionary, handleChange, initialValu
 		<Select
 			onChange={onChange}
 			options={selectOptions}
-			value={initialValue?.code_name}
+			value={initialValue}
 			onClear={onClear}
 			{...rest}
 		/>

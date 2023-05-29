@@ -81,7 +81,11 @@ const AddWorkspaceForm: React.FC = () => {
 				<DividerWithoutMargins/>
 				<Space direction={'vertical'}>
 					<Typography.Text>Согласие на обработку персональных данных</Typography.Text>
-					<CheckboxField name={'agree'} control={control} label={'Я согласен'}/>
+					<CheckboxField
+						name={'agree'}
+						control={control}
+						label={'Я согласен на обработку персональных данных'}
+					/>
 				</Space>
 				<Row justify={'end'} gutter={16}>
 					<Col>

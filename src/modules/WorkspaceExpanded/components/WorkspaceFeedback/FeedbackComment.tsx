@@ -1,14 +1,9 @@
 import * as React from 'react';
 import { Card, Col, Rate, Row, Space, Typography } from 'antd';
+import { type IComment } from '../../../../types/IComment';
 
 interface Props {
-	comment: {
-		rating: number;
-		comment: string;
-		advantages: string;
-		disadvantages: string;
-		user: string;
-	};
+	comment: IComment;
 }
 
 const FeedbackComment: React.FC<Props> = ({ comment }) => {
@@ -17,9 +12,11 @@ const FeedbackComment: React.FC<Props> = ({ comment }) => {
 			<Row>
 				<Col span={18}>
 					<Space direction='vertical'>
-						<Typography.Title level={5} style={{ marginTop: '0' }}>
-							{comment.user}
-						</Typography.Title>
+						{ comment?.user?.username &&
+							<Typography.Title level={ 5 } style={ { marginTop: '0' } }>
+								{ comment.user.username }
+							</Typography.Title>
+						}
 						<Rate allowHalf defaultValue={comment.rating} disabled></Rate>
 						<Typography.Title level={5}>
 							Достоинства
@@ -37,19 +34,16 @@ const FeedbackComment: React.FC<Props> = ({ comment }) => {
 							Комментарий
 						</Typography.Title>
 						<Typography.Paragraph style={{ marginBottom: '0' }}>
-							{comment.comment}
+							{comment.text}
 						</Typography.Paragraph>
 					</Space>
 				</Col>
-
 				<Col span={6} style={{ display: 'flex', justifyContent: 'end' }}>
 					<Typography.Paragraph>
-		02.20.2021
+						{comment.createdAt?.toLocaleDateString()}
 					</Typography.Paragraph>
 				</Col>
-
 			</Row>
-
 		</Card>
 	);
 };

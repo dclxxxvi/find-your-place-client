@@ -1,5 +1,5 @@
 import { commonApi } from './common.api';
-import { ETagTypes, prepareAddWorkspaceBody } from './consts';
+import { ETagTypes, prepareAddWorkspaceBody, prepareParams } from './consts';
 import { type IResponse, type IWorkspace, type IWorkspaceFetchResult, type IWorkspaceParams } from '../../types';
 import { type IAddWorkspaceFormValues } from '../../form/schemas/addWorkspaceSchema';
 
@@ -8,9 +8,9 @@ const workspaceApi = commonApi.injectEndpoints({
 	endpoints: builder => ({
 		getWorkspaces: builder.query<IResponse<IWorkspaceFetchResult>, IWorkspaceParams>({
 			query: (params) => ({
-				url: 'service/workspaces',
+				url: 'workspace',
 				method: 'GET',
-				params,
+				params: prepareParams(params),
 			}),
 			providesTags: (result) => [
 				ETagTypes.WORKSPACES,

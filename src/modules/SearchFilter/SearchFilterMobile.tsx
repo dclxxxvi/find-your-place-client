@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Button, Col, Input, Row } from 'antd';
-import BaseTypeMultiSelect from '../../shared/BaseTypeMultiSelect';
 import BaseTypeSelect from '../../shared/BaseTypeSelect';
 import { useSearchFilter } from './hooks/useSearchFilter';
 import { useDictionaries } from '../../hooks';
@@ -11,10 +10,10 @@ interface Props {
 
 const SearchFilterMobile: React.FC<Props> = ({ isGlobal }) => {
 	const {
-		filterValues: { params, search, format, cost },
+		filterValues: { features, search, rooms, additional },
 		handleSelectChange,
-		handleMultipleSelectChange,
 		handleSearchInputChange,
+		navigateToWorkspacesPage,
 	} = useSearchFilter();
 
 	const { isLoading, parametersDictionary } = useDictionaries();
@@ -37,16 +36,16 @@ const SearchFilterMobile: React.FC<Props> = ({ isGlobal }) => {
 			}
 			{ isGlobal &&
 			<Col md={4} sm={6} xs={9}>
-				<Button type={'primary'} shape={'default'} block={true}>
+				<Button type={'primary'} shape={'default'} block={true} onClick={navigateToWorkspacesPage}>
 					Найти место
 				</Button>
 			</Col>
 			}
 			<Col span={10}>
-				<BaseTypeMultiSelect
-					handleChange={handleMultipleSelectChange('additional')}
+				<BaseTypeSelect
+					handleChange={handleSelectChange('additional')}
 					dictionary={parametersDictionary[0]?.dictionary}
-					initialValue={params}
+					initialValue={additional}
 					placeholder={parametersDictionary[0]?.category.name}
 					loading={isLoading}
 					allowClear
@@ -56,7 +55,7 @@ const SearchFilterMobile: React.FC<Props> = ({ isGlobal }) => {
 				<BaseTypeSelect
 					handleChange={handleSelectChange('features')}
 					dictionary={parametersDictionary[1]?.dictionary}
-					initialValue={format}
+					initialValue={features}
 					placeholder={parametersDictionary[1]?.category.name}
 					loading={isLoading}
 					allowClear
@@ -66,7 +65,7 @@ const SearchFilterMobile: React.FC<Props> = ({ isGlobal }) => {
 				<BaseTypeSelect
 					handleChange={handleSelectChange('rooms')}
 					dictionary={parametersDictionary[2]?.dictionary}
-					initialValue={cost}
+					initialValue={rooms}
 					placeholder={parametersDictionary[2]?.category.name}
 					loading={isLoading}
 					allowClear

@@ -4,7 +4,7 @@ import { type IWorkspace } from './IWorkspace';
 
 export interface IComment extends IBaseEntity {
 	rating: number;
-	comment: string;
+	text: string;
 	advantages: string;
 	disadvantages: string;
 	user: IUser;
