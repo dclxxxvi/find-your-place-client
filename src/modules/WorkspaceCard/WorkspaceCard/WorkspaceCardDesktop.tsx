@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useState } from 'react';
 import { Button, Col, Row, Space, Divider, Card } from 'antd';
 import Typography from 'antd/es/typography';
-import { AimOutlined } from '@ant-design/icons';
 import { type IWorkspace } from '../../../types';
 import useWorkspaceCard from '../hooks';
 import RatingField from '../components/RatingField';
@@ -54,8 +53,14 @@ const WorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 					{ isCardHovered && <Divider style={{ margin: '5px 0 ' }}/> }
 					<Row>
 						<Col span={24}>
-							<Space>
-								<AimOutlined />
+							<Space align='center'>
+								<span className="material-symbols-outlined" style={{
+									display: 'flex',
+									alignItems: 'center',
+									justifyContent: 'center',
+								}}>
+									location_on
+								</span>
 								<Typography.Text>
 									{workspace.location_value}
 								</Typography.Text>
