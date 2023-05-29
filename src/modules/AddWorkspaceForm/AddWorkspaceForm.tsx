@@ -54,7 +54,7 @@ const AddWorkspaceForm: React.FC = () => {
 				<DividerWithoutMargins/>
 				<TextField name={'title'} control={control} label={'Название'}/>
 				<DividerWithoutMargins/>
-				<TextAreaField name={'description'} control={control} label={'Описание'}/>
+				<TextAreaField rows={4} name={'description'} control={control} label={'Описание'}/>
 				<DividerWithoutMargins/>
 				<ImageUploadField
 					name={'images'}
