@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { PageWrapper } from '../../components';
 import { Col, Row, Typography } from 'antd';
-import AppTitle from '../../modules/ResponsibleNavbar/components/AppTitle';
+import AppTitle from '../ResponsibleNavbar/components/AppTitleLogo';
 import { Content } from 'antd/es/layout/layout';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 

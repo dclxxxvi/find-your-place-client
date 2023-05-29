@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { PageWrapper } from '../../components';
 import ThemeSwitcher from './components/ThemeSwitcher';
 import UserMenu from './components/UserMenu';
-import AppTitle from './components/AppTitle';
+import AppTitle from './components/AppTitleLogo';
 import { MenuFoldOutlined, MenuUnfoldOutlined, PlusOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import Typography from 'antd/es/typography';
