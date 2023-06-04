@@ -19,7 +19,12 @@ const ImportanceBlock: React.FC <ImportanceBlockProps> = ({ image, title, rowRev
 				</Typography.Paragraph>
 			</Col>
 			<Col sm={24} md={10}>
-				<Image src={image} alt={image} width={'100%'} style={{ boxShadow: '4px 4px 4px #BFBFBF', borderRadius: '5px' }}/>
+				<Image
+					src={image}
+					alt={image}
+					width={'100%'}
+					style={{ boxShadow: '4px 4px 4px #BFBFBF', borderRadius: '5px' }}
+				/>
 			</Col>
 		</Row>
 	);
