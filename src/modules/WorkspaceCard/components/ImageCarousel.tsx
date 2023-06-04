@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Carousel, Image } from 'antd';
 import { type IImageMedia } from '../../../types/IMedia';
+import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 
 interface Props {
 	images: IImageMedia[];
@@ -8,6 +9,7 @@ interface Props {
 }
 
 const ImageCarousel: React.FC<Props> = ({ images, showOne }) => {
+	const { xl } = useBreakpoint(true);
 	if (!images || images?.length === 0) {
 		return <Image
 			width={ '100%' }
@@ -25,9 +27,8 @@ const ImageCarousel: React.FC<Props> = ({ images, showOne }) => {
 			style={{ objectFit: 'cover' }}
 		/>;
 	}
-
-	return (
-		<Carousel>
+	if (!xl) {
+		return <Carousel>
 			{ images.map((image) =>
 				<Image
 					key={ image.id }
@@ -36,6 +37,31 @@ const ImageCarousel: React.FC<Props> = ({ images, showOne }) => {
 					height={ '100%' }
 					style={{ objectFit: 'cover' }}
 				/>,
+			) }
+		</Carousel>;
+	}
+
+	return (
+		<Carousel>
+			{ images.map((image) =>
+				<div style={{
+					display: 'flex',
+					justifyContent: 'center',
+					alignItems: 'center',
+					overflow: 'hidden',
+					maxHeight: '350px',
+				}} key={ image.id }>
+					<Image
+						src={ image.media.link }
+						style={{
+							all: 'unset',
+							flexShrink: '0',
+							minHeight: '100%',
+							minWidth: '100%',
+							maxHeight: '350px',
+						}}
+					/>
+				</div>,
 			) }
 		</Carousel>
 	);

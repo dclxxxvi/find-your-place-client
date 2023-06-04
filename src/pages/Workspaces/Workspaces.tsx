@@ -11,7 +11,7 @@ import WorkspaceListHeader from '../../modules/WorkspaceList/components/Workspac
 const Workspaces: React.FC = () => {
 	const breakpoint = useBreakpoint(true);
 
-	const isLarge = !breakpoint.lg;
+	const isLarge = !breakpoint.xxl;
 	return (
 		<Content>
 			<PageWrapper>
@@ -28,9 +28,7 @@ const Workspaces: React.FC = () => {
 			<PageWrapper marginTop={48}>
 				<Row gutter={[24, 24]}>
 					<Col span={isLarge ? 24 : 6}>
-						<Card style={{
-							boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-						}}>
+						<Card >
 							<PropertiesOfAdvantagesList />
 						</Card>
 					</Col>
