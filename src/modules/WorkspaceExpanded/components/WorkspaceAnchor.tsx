@@ -21,6 +21,11 @@ const WorkspaceAnchor: React.FC = () => {
 				title: EAnchorTabsLabels.MAP,
 			},
 			{
+				key: EAnchorTabs.CONTACTS,
+				href: `#${EAnchorTabs.CONTACTS}`,
+				title: EAnchorTabsLabels.CONTACTS,
+			},
+			{
 				key: EAnchorTabs.TARIFFS,
 				href: `#${EAnchorTabs.TARIFFS}`,
 				title: EAnchorTabsLabels.TARIFFS,

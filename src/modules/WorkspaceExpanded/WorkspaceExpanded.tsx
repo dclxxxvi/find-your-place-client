@@ -9,6 +9,7 @@ import OverviewWorkspaceCard from '../WorkspaceCard/OverviewWorkspaceCard';
 import WorkspaceFeedback from './components/WorkspaceFeedback/WorkspaceFeedback';
 import { useGetWorkspaceByIdQuery } from '../../redux';
 import WorkspaceMap from './components/WorkspaceMap';
+import WorkspaceContacts from './components/WorkspaceContacts';
 
 const WorkspaceExpanded: React.FC = () => {
 	const { id } = useParams();
@@ -40,6 +41,9 @@ const WorkspaceExpanded: React.FC = () => {
 			</Col>
 			<Col span={24}>
 				<WorkspaceMap latitude={workspace.latitude} longitude={workspace.longitude}/>
+			</Col>
+			<Col span={24}>
+				<WorkspaceContacts siteUrl={workspace.site_url} phoneNumber={workspace.phone_number} />
 			</Col>
 			<Col span={24}>
 				<WorkspaceTariffs/>
