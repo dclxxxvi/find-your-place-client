@@ -1,4 +1,4 @@
-import { type IWorkspace } from '../types';
+import { type IBaseType, type IWorkspace } from '../types';
 import { toInteger } from 'lodash';
 import wsImage from './img.png';
 import { type IMedia } from '../types/IMedia';
@@ -33,4 +33,11 @@ export const workspaceMocks: IWorkspace[] = Array.from({ length: 10 }).map((_, i
 	updatedAt: new Date(),
 	comments: [],
 	parameters: [],
+	// eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+	status: {
+		name: 'Подтверждено',
+		code_name: 'approved',
+		tag: 'workspace_status',
+		id: '9af4bc80-57ad-4188-b0fa-58683dcf3070',
+	} as unknown as IBaseType,
 }));

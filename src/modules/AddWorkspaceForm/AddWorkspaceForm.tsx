@@ -63,7 +63,7 @@ const AddWorkspaceForm: React.FC = () => {
 					control={control}
 					label={'Фотографии'}
 					listType={'picture-card'}
-					showGrid rotationSlider aspectSlider showReset
+					showGrid rotationSlider aspect={16 / 9} showReset
 				/>
 				<DividerWithoutMargins/>
 				<ParametersFieldGroup control={control} />
