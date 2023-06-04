@@ -21,23 +21,20 @@ const WorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 		<Card
 			style={{
 				cursor: 'pointer',
-				boxShadow: isCardHovered ? '0px 4px 4px #8C8C8C' : '0px 4px 4px rgba(0, 0, 0, 0.25)',
-				transform: isCardHovered ? 'scale(1.025)' : 'unset',
 			}}
 			size={'small'}
 			onMouseEnter={() => setIsCardHovered(true)}
 			onMouseLeave={() => setIsCardHovered(false)}
-			onClick={navigateToWorkspacePage}
 		>
 			<Row gutter={[24, 16]} justify={'center'}>
-				<Col span={12} lg={isCardHovered ? 13 : 12} xl={isCardHovered ? 11 : 10} >
+				<Col span={12} lg={12} xl={10} >
 					<ImageCarousel images={workspace.images} />
 				</Col>
-				<Col span={12} lg={isCardHovered ? 11 : 12} xl={isCardHovered ? 13 : 14} style={{
+				<Col span={12} lg={12} xl={14} style={{
 					display: 'flex',
 					flexDirection: 'column',
 					justifyContent: 'space-between',
-				}}
+				}} onClick={navigateToWorkspacePage}
 				>
 					<Row align={'top'} justify={'space-between'}>
 						<Col>
@@ -51,7 +48,7 @@ const WorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 							<RatingField rating={workspace.rating} commentsCount={workspace.comments.length}/>
 						</Col>
 					</Row>
-					{ isCardHovered && <Divider style={{ margin: '5px 0 ' }}/> }
+					<Divider style={{ margin: '5px 0 ' }}/>
 					<Row>
 						<Col span={24}>
 							<Space>
@@ -62,19 +59,19 @@ const WorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 							</Space>
 						</Col>
 					</Row>
-					{ isCardHovered && <Divider style={{ margin: '5px 0 ' }}/> }
+					<Divider style={{ margin: '5px 0 ' }}/>
 					<Row>
 						<Typography.Paragraph ellipsis={{ rows: 2 }} style={{ marginBottom: '0' }}>
 							{workspace.description}
 						</Typography.Paragraph>
 					</Row>
-					{ isCardHovered &&
-						<Row>
-							<Divider style={{ margin: '5px 0 ' }}/>
-							<Parameters parameters={workspace.parameters} />
-							<Divider style={{ margin: '5px 0 ' }}/>
-						</Row>
-					}
+
+					<Row>
+						<Divider style={{ margin: '5px 0 ' }}/>
+						<Parameters parameters={workspace.parameters} />
+						<Divider style={{ margin: '5px 0 ' }}/>
+					</Row>
+
 					<Row align={'top'} justify={'space-between'}>
 						<Typography.Title
 							style={{ margin: 0 }}

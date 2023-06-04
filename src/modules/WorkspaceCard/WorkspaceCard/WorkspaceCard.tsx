@@ -12,10 +12,10 @@ interface Props {
 }
 
 const WorkspaceCard: React.FC<Props> = (props) => {
-	const { md } = useBreakpoint(true);
+	const { lg } = useBreakpoint(true);
 	return (
 		<Suspense fallback={<Card><Skeleton active /></Card>}>
-			{md ? <Desktop {...props} /> : <Mobile {...props}/> }
+			{lg ? <Desktop {...props} /> : <Mobile {...props}/> }
 		</Suspense>
 	);
 };

@@ -15,7 +15,7 @@ const PropertiesOfAdvantagesList: React.FC = () => {
 	return (
 		<Row>
 			{dictionaries?.parametersDictionary?.map((parameters) => {
-				return <Col key={parameters.category.id} xs={24} sm={24} md={8} lg={24}>
+				return <Col key={parameters.category.id} xs={24} sm={24} md={8} xxl={24}>
 					<Typography.Title level={4} style={{ marginTop: 15 }}>
 						{parameters.category.name}
 					</Typography.Title>
