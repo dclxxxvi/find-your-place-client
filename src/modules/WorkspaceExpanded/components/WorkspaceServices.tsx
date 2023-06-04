@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { type IBaseType } from '../../../types';
-import { AnchorTabs } from '../consts';
+import { EAnchorTabs, EAnchorTabsLabels } from '../consts';
 import Title from 'antd/es/typography/Title';
 import { Row, Space } from 'antd';
 import Parameters from '../../WorkspaceCard/WorkspaceCard/components/Parameters';
@@ -20,8 +20,8 @@ const WorkspaceServices: React.FC<Props> = ({ services }) => {
 	}, [services]);
 
 	return (
-		<Space id={AnchorTabs.SERVICES} direction={'vertical'} size={'large'} style={{ width: '100%' }}>
-			<Title style={{ margin: 0 }} level={3}>Услуги</Title>
+		<Space id={EAnchorTabs.SERVICES} direction={'vertical'} size={'large'} style={{ width: '100%' }}>
+			<Title style={{ margin: 0 }} level={3}>{EAnchorTabsLabels.SERVICES}</Title>
 			{renderNoService()}
 			{ services && <Row gutter={ [12, 12] }>
 				<Parameters parameters={ services }/>

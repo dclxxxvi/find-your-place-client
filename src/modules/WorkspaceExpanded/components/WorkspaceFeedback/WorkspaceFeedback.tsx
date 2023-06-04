@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AnchorTabs } from '../../consts';
+import { EAnchorTabs } from '../../consts';
 import Title from 'antd/es/typography/Title';
 import { Button, Col, Row, Space } from 'antd';
 import FeedbackInfo from './FeedbackInfo';
@@ -18,7 +18,7 @@ const WorkspaceFeedback: React.FC<Props> = ({ workspace }) => {
 	const closeFeedbackModal = () => setOpen(false);
 
 	return (
-		<Space id={AnchorTabs.FEEDBACK} direction={'vertical'} size={'large'} style={{ width: '100%' }}>
+		<Space id={EAnchorTabs.FEEDBACK} direction={'vertical'} size={'large'} style={{ width: '100%' }}>
 			<Row align='stretch'>
 				<Space size={'large'}>
 					<Title style={{ margin: 0 }} level={3}>Отзывы</Title>
