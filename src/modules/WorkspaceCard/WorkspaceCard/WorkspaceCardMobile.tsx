@@ -102,7 +102,7 @@ const WorkspaceCardMobile: React.FC<Props> = ({ workspace }) => {
 						</Row>
 						<Row>
 							<Divider style={{ margin: '5px 0 ' }}/>
-							<Parameters parameters={workspace.parameters} />
+							<Parameters parameters={workspace.parameters} isOverviewCard={true}/>
 							<Divider style={{ margin: '5px 0 ' }}/>
 						</Row>
 
