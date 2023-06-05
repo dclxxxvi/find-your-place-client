@@ -1,0 +1,9 @@
+.ant-checkbox-group-item {
+    margin-inline-start: 0 !important;
+}
+
+.ant-checkbox-wrapper {
+    display: flex;
+    align-items: center;
+}
+/* ультанул */

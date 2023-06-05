@@ -1,13 +1,7 @@
-import { type IBaseType } from './IBaseType';
+import { type SearchFilterState } from '../redux';
 
-interface IWorkspaceSearchParams {
-	search?: string;
-	format?: IBaseType;
-	cost?: IBaseType;
-	params?: IBaseType[];
-	rooms?: string;
-	additional?: string;
-	features?: string;
+interface IWorkspaceSearchParams extends SearchFilterState {
+
 }
 
 interface IWorkspacePaginationParams {
