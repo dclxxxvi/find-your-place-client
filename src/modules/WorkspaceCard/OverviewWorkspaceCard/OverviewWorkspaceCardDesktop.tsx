@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Button, Carousel, Col, Divider, Image, Row, Space } from 'antd';
+import { Button, Col, Divider, Image, Row, Space } from 'antd';
 import Typography from 'antd/es/typography';
-import { AimOutlined } from '@ant-design/icons';
 import useWorkspaceCard from '../hooks';
 import { type IWorkspace } from '../../../types';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import RatingField from '../components/RatingField';
 import Parameters from '../WorkspaceCard/components/Parameters';
+import ImageCarousel from '../components/ImageCarousel';
 
 interface Props {
 	workspace: IWorkspace;
@@ -14,8 +14,13 @@ interface Props {
 
 const OverviewWorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 	const { navigateToWorkspacePage } = useWorkspaceCard(workspace.id);
-	const { lg } = useBreakpoint(true);
-
+	const { lg, xxl } = useBreakpoint(true);
+	const copyNumber = async(event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+		if (event) {
+			event.stopPropagation();
+		}
+		await navigator.clipboard.writeText(workspace.phone_number);
+	};
 	return (
 		<Row gutter={[24, 16]} align={'stretch'}>
 			{
@@ -40,16 +45,7 @@ const OverviewWorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 			}
 
 			<Col span={12} xs={24} sm={24} lg={12} xl={11} >
-				<Carousel>
-					{workspace.images.map((image) =>
-						<Image
-							key={ image.id }
-							src={ image.media.link }
-							height='100%'
-							width='100%'
-							style={{ objectFit: 'cover' }}
-						/>)}
-				</Carousel>
+				<ImageCarousel images={workspace.images}/>
 			</Col>
 			<Col span={11} xs={24} sm={24} lg={10} xl={11} style={{
 				display: 'flex',
@@ -67,19 +63,62 @@ const OverviewWorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 						</Typography.Title>
 					</Col>
 					<Col>
-						<RatingField rating={workspace.rating} commentsCount={workspace.comments.length}/>
+						<RatingField rating={workspace.rating} commentsCount={workspace.comments.length} isNextLine={!xxl}/>
+					</Col>
+				</Row>
+				<Divider style={{ margin: '5px 0 ' }}/>
+				<Row
+					onClick={navigateToWorkspacePage}>
+					<Col span={24}>
+						<Typography.Link>
+							<Space align='center'>
+
+								<span className="material-symbols-outlined" style={{
+									display: 'flex',
+									alignItems: 'center',
+									justifyContent: 'center',
+									padding: '2px',
+									boxSizing: 'content-box',
+								}}>
+									location_on
+								</span>
+
+								{workspace.location_value}
+
+							</Space>
+						</Typography.Link>
 					</Col>
 				</Row>
 				<Row>
 					<Col span={24}>
-						<Space>
-							<AimOutlined />
-							<Typography.Text>
-								{workspace.location_value}
-							</Typography.Text>
-						</Space>
+						<Typography.Link>
+							<Space align='center'>
+
+								<span className="material-symbols-outlined" style={{
+									display: 'flex',
+									alignItems: 'center',
+									justifyContent: 'center',
+									padding: '2px',
+									boxSizing: 'content-box',
+								}}>
+										call</span>
+								{workspace.phone_number}
+
+								<span className="material-symbols-outlined" style={{
+									display: 'flex',
+									alignItems: 'center',
+									justifyContent: 'center',
+									padding: '2px',
+									boxSizing: 'content-box',
+								}} onClick={async(event) => await copyNumber(event)}>
+								content_copy
+								</span>
+
+							</Space>
+						</Typography.Link>
 					</Col>
 				</Row>
+				<Divider style={{ margin: '5px 0 ' }}/>
 				<Row>
 					<Typography.Paragraph ellipsis={{ rows: 2 }}>
 						{workspace.description}

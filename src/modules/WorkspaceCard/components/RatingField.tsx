@@ -6,12 +6,13 @@ import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 interface Props {
 	rating: number;
 	commentsCount?: number;
+	isNextLine?: boolean;
 }
 
-const RatingField: React.FC<Props> = ({ rating, commentsCount }) => {
+const RatingField: React.FC<Props> = ({ rating, commentsCount, isNextLine }) => {
 	const { xs } = useBreakpoint(true);
 	return (
-		<Space direction={xs ? 'horizontal' : 'vertical'} align={'end'} size={'small'}>
+		<Space direction={(xs || isNextLine) ? 'horizontal' : 'vertical'} align={'end'} size={'small'}>
 			<Rate allowHalf defaultValue={rating} disabled></Rate>
 			<Typography.Text type="secondary">
 				{`${commentsCount || 'Нет'} отзывов`}
