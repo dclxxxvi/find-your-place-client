@@ -16,6 +16,12 @@ const WorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 	const [isCardHovered, setIsCardHovered] = useState(false);
 	const { navigateToWorkspacePage } = useWorkspaceCard(workspace.id);
 
+	const copyNumber = async(event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+		if (event) {
+			event.stopPropagation();
+		}
+		await navigator.clipboard.writeText(workspace.phone_number);
+	};
 	return (
 		<Card
 			style={{
@@ -36,32 +42,69 @@ const WorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 				}} onClick={navigateToWorkspacePage}
 				>
 					<Row align={'top'} justify={'space-between'}>
-						<Col>
+						<Col span={14} lg={15} xl={17} xxl={16}>
 							<Typography.Title
 								style={{ margin: 0 }}
 								level={3}
 							>{workspace.title}
 							</Typography.Title>
 						</Col>
-						<Col>
-							<RatingField rating={workspace.rating} commentsCount={workspace.comments.length}/>
+						<Col span={10} lg={9} xl={7} xxl={8}>
+							<Row justify='end'>
+								<RatingField rating={workspace.rating} commentsCount={workspace.comments.length}/>
+							</Row>
 						</Col>
 					</Row>
 					<Divider style={{ margin: '5px 0 ' }}/>
+					<Row
+						onClick={navigateToWorkspacePage}>
+						<Col span={24}>
+							<Typography.Link>
+								<Space align='center'>
+
+									<span className="material-symbols-outlined" style={{
+										display: 'flex',
+										alignItems: 'center',
+										justifyContent: 'center',
+										padding: '2px',
+										boxSizing: 'content-box',
+									}}>
+									location_on
+									</span>
+
+									{workspace.location_value}
+
+								</Space>
+							</Typography.Link>
+						</Col>
+					</Row>
 					<Row>
 						<Col span={24}>
-							<Space align='center'>
-								<span className="material-symbols-outlined" style={{
-									display: 'flex',
-									alignItems: 'center',
-									justifyContent: 'center',
-								}}>
-									location_on
-								</span>
-								<Typography.Text>
-									{workspace.location_value}
-								</Typography.Text>
-							</Space>
+							<Typography.Link>
+								<Space align='center'>
+
+									<span className="material-symbols-outlined" style={{
+										display: 'flex',
+										alignItems: 'center',
+										justifyContent: 'center',
+										padding: '2px',
+										boxSizing: 'content-box',
+									}}>
+										call</span>
+									{workspace.phone_number}
+
+									<span className="material-symbols-outlined" style={{
+										display: 'flex',
+										alignItems: 'center',
+										justifyContent: 'center',
+										padding: '2px',
+										boxSizing: 'content-box',
+									}} onClick={async(event) => await copyNumber(event)}>
+								content_copy
+									</span>
+
+								</Space>
+							</Typography.Link>
 						</Col>
 					</Row>
 					<Divider style={{ margin: '5px 0 ' }}/>

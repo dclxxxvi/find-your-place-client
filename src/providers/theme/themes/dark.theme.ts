@@ -7,6 +7,8 @@ export const darkTheme: ThemeConfig = {
 	token: {
 		...commonTheme.token,
 		colorBgLayout: '#000000',
+		colorLink: '#FFFFFF',
+		colorLinkHover: '#0958d9',
 	},
 	components: {
 		...commonTheme.components,
