@@ -8,7 +8,7 @@ interface Props {
 
 const FeedbackComment: React.FC<Props> = ({ comment }) => {
 	return (
-		<Card style={{ boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', width: '100%' }}>
+		<Card>
 			<Row>
 				<Col span={18}>
 					<Space direction='vertical'>

@@ -1,38 +1,58 @@
 import * as React from 'react';
-import { Card, Col, Rate, Row, Space, Typography } from 'antd';
+import { Card, Col, Progress, Rate, Row, Space, Typography } from 'antd';
+import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
+import { useCallback } from 'react';
+import { getFeedbackPluralForm } from './consts';
+
+const renderProgressLine = (number: number, percent: number) => {
+	return (
+		<div key={number} style={{
+			display: 'flex',
+			alignItems: 'center',
+			justifyContent: 'end',
+		}}>
+			{number}
+			<Progress percent={percent} style={{ marginLeft: '10px', marginBottom: 0 }}/>
+		</div>
+	);
+};
 
 interface Props {
 	rating: number;
 	feedbackCount: number;
-
+	ratingsCounter: number[];
 }
 
-const FeedbackInfo: React.FC<Props> = ({ rating, feedbackCount }) => {
-	const getPluralForm = (count: number): string => {
-		if (count % 10 === 1 && count !== 11) {
-			return 'отзыв';
-		} else if ([2, 3, 4].includes(count % 10) && ![12, 13, 14].includes(count % 100)) {
-			return 'отзыва';
-		} else {
-			return 'отзывов';
-		}
-	};
-	return (
-		<Card style={{ boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)' }}>
-			<Row justify='center'>
-				<Col>
-					<Space direction='vertical' align='center'>
-						<Typography.Title level={2} style={{ margin: '0' }}>
-							{rating}
-						</Typography.Title>
-						<Rate allowHalf defaultValue={rating} disabled></Rate>
-						<Typography.Paragraph style={{ margin: '0' }}>
-							{feedbackCount} {getPluralForm(feedbackCount)}
-						</Typography.Paragraph>
-					</Space>
-				</Col>
-				<Col>
+const FeedbackInfo: React.FC<Props> = ({ rating, feedbackCount, ratingsCounter }) => {
+	const { xs } = useBreakpoint(true);
 
+	const getRatingPercent = useCallback((number: number) => {
+		return Math.floor(ratingsCounter[number - 1] / feedbackCount * 100);
+	}, [ratingsCounter, feedbackCount]);
+
+	return (
+		<Card>
+			<Row justify={'space-between'} align='middle'>
+				<Col span={xs ? 24 : 12}>
+					<Row justify={xs ? 'center' : 'space-between'}>
+						<Space direction='vertical' align='center' >
+							<Typography.Title level={2} style={{ margin: '0' }}>
+								{rating}
+							</Typography.Title>
+							<Rate allowHalf defaultValue={rating} disabled></Rate>
+							<Typography.Paragraph style={{ margin: '0' }}>
+								{feedbackCount} {getFeedbackPluralForm(feedbackCount)}
+							</Typography.Paragraph>
+						</Space>
+					</Row>
+
+				</Col>
+				<Col span={xs ? 24 : 11}>
+					<Space direction='vertical' style={{ width: '100%' }}>
+						{Array.from({ length: 5 }).map((_, index) => {
+							return renderProgressLine(index + 1, getRatingPercent(index + 1));
+						})}
+					</Space>
 				</Col>
 			</Row>
 		</Card>

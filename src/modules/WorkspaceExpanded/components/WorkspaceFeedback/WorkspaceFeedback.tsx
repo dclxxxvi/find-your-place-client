@@ -6,7 +6,8 @@ import FeedbackInfo from './FeedbackInfo';
 import FeedbackComment from './FeedbackComment';
 import { type IWorkspace } from '../../../../types';
 import FeedbackModal from '../../../FeedbackModal';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import { getRatingCounter } from './consts';
 
 interface Props {
 	workspace: IWorkspace;
@@ -16,6 +17,10 @@ const WorkspaceFeedback: React.FC<Props> = ({ workspace }) => {
 	const [open, setOpen] = useState(false);
 	const openFeedbackModal = () => setOpen(true);
 	const closeFeedbackModal = () => setOpen(false);
+
+	const ratingsCounter = useMemo(() => {
+		return getRatingCounter(workspace.comments);
+	}, [workspace.comments]);
 
 	return (
 		<Space id={EAnchorTabs.FEEDBACK} direction={'vertical'} size={'large'} style={{ width: '100%' }}>
@@ -34,12 +39,15 @@ const WorkspaceFeedback: React.FC<Props> = ({ workspace }) => {
 					</Col>
 				}
 				{ (workspace?.rating && workspace?.comments?.length) &&
-				<Col xs={ 24 } sm={ 24 } md={ 9 } lg={ 6 }>
-					<FeedbackInfo rating={ workspace?.rating } feedbackCount={ workspace.comments?.length }/>
+				<Col xs={ 24 } sm={ 24 } md={ 24 } lg={ 10 } xxl={8}>
+					<FeedbackInfo
+						rating={ workspace?.rating }
+						feedbackCount={ workspace.comments?.length }
+						ratingsCounter={ratingsCounter}/>
 				</Col>
 				}
 				{ (workspace?.comments && workspace?.comments?.length > 0) &&
-					<Col xs={ 24 } sm={ 24 } md={ 15 } lg={ 18 }>
+					<Col xs={ 24 } sm={ 24 } md={ 24 } lg={ 14 } xxl={16}>
 						<Space direction='vertical' size='large' style={ { width: '100%' } }>
 							{ workspace?.comments.map((comment) => {
 								return <FeedbackComment key={ comment.id } comment={ comment }/>;

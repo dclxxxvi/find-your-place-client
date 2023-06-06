@@ -12,8 +12,8 @@ interface Props {
 const FeedbackModal: React.FC<Props> = ({ open, handleClose, workspace }) => {
 	return (
 		<Modal width={900} open={open} footer={null} onCancel={handleClose} title={'Добавление отзыва'}>
-			<Space direction={'vertical'} size={'large'}>
-				<FeedbackForm workspaceId={workspace?.id} handleClose={handleClose}/>
+			<Space direction={'vertical'} size={'large'} style={{ display: 'flex', width: '100%' }} >
+				<FeedbackForm workspace={workspace} handleClose={handleClose} />
 			</Space>
 		</Modal>
 	);
