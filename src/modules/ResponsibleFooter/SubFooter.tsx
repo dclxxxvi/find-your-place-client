@@ -4,11 +4,15 @@ import { Col, Row, Typography } from 'antd';
 import AppTitle from '../ResponsibleNavbar/components/AppTitleLogo';
 import { Content } from 'antd/es/layout/layout';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
+import { blue } from '@ant-design/colors';
+import { useAppSelector } from '../../redux';
 
 const SubFooter: React.FC = () => {
 	const breakpoint = useBreakpoint(true);
 
-	const isSmall = breakpoint.xs || breakpoint.sm;
+	const isSmall = (breakpoint.xs || breakpoint.sm) !== breakpoint.lg;
+	const isDarkMode = useAppSelector(state => state.themeReducer.isDarkTheme);
+
 	return (
 		<Content>
 			<PageWrapper>
@@ -20,17 +24,17 @@ const SubFooter: React.FC = () => {
 					</Col>
 					<Col xs={24} sm={24} md={8} lg={7} xl={7}>
 						<Row justify={'center'}>
-							<Typography.Text>
+							<Typography.Title level={5} style={{ margin: 0, color: isDarkMode ? '#FFFFFF' : blue[9] }}>
 							2023 Все права защищены
-							</Typography.Text>
+							</Typography.Title>
 
 						</Row>
 					</Col>
 					<Col xs={24} sm={24} md={7} lg={7}>
 						<Row justify={isSmall ? 'center' : 'end'}>
-							<Typography.Text>
+							<Typography.Title level={5} style={{ margin: 0, color: isDarkMode ? '#FFFFFF' : blue[9] }}>
 						+ 7 900 800 32 12
-							</Typography.Text>
+							</Typography.Title>
 						</Row>
 					</Col>
 				</Row>

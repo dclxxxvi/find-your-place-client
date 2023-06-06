@@ -9,7 +9,6 @@ interface ImportanceBlockProps {
 	rowRevers: boolean;
 }
 const ImportanceBlock: React.FC <ImportanceBlockProps> = ({ image, title, rowRevers, paragraph }) => {
-	console.log(gray);
 	return (
 		<Row justify='space-between' style={{ flexDirection: rowRevers ? 'row-reverse' : 'row' }} align='middle'>
 			<Col sm={24} md={10}>
