@@ -13,7 +13,7 @@ interface Props {
 }
 
 const OverviewWorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
-	const { navigateToWorkspacePage } = useWorkspaceCard(workspace.id);
+	const { navigateToWorkspacePage, navigateToWorkspaceExecutionPage } = useWorkspaceCard(workspace.id);
 	const { lg, xxl } = useBreakpoint(true);
 	const copyNumber = async(event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
 		if (event) {
@@ -145,7 +145,7 @@ const OverviewWorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 				</Row>
 				<Row>
 					<Col flex={'auto'}>
-						<Button style={{ width: '100%' }} type={'primary'} onClick={navigateToWorkspacePage}>
+						<Button style={{ width: '100%' }} type={'primary'} onClick={navigateToWorkspaceExecutionPage}>
 								Забронировать
 						</Button>
 					</Col>
