@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Card, Space, Typography } from 'antd';
+import { gray } from '@ant-design/colors';
 
 interface CardToActionProps {
 	title: string;
@@ -8,7 +9,7 @@ interface CardToActionProps {
 }
 const CardToAction: React.FC<CardToActionProps> = ({ title, description, index }) => {
 	return (
-		<Card style={{ height: '100%', boxShadow: ' 0px 4px 4px rgba(0, 0, 0, 0.25)' }}>
+		<Card style={{ height: '100%', boxShadow: ` 0px 4px 4px ${gray[0]}` }}>
 			<Space align={'center'} size={'large'}>
 				<Typography.Title level={3} style={{ margin: 0 }}>
 					{index}
