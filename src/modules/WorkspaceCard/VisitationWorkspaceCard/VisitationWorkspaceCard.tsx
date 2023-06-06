@@ -8,6 +8,8 @@ import { type IVisitation } from '../../../types/IVisitation';
 import RatingField from '../components/RatingField';
 import { useGetWorkspaceByIdQuery } from '../../../redux';
 import { getStringDate } from './consts';
+import Address from '../components/Address';
+import PhoneNumber from '../components/PhoneNumber';
 
 interface Props {
 	visitation: IVisitation;
@@ -62,33 +64,8 @@ const VisitationWorkspaceCard: React.FC<Props> = ({ visitation }) => {
 						<Col span={24}/>
 						<Col span={24}>
 							<Space direction={'vertical'} size={4} style={{ width: '100%' }}>
-								<Typography.Link>
-									<Space align='center'>
-										<span className="material-symbols-outlined" style={{
-											display: 'flex',
-											alignItems: 'center',
-											justifyContent: 'center',
-											padding: '2px',
-											boxSizing: 'content-box',
-										}}>
-									location_on
-										</span>
-										{workspace.location_value}
-									</Space>
-								</Typography.Link>
-								<Typography.Link>
-									<Space align='center'>
-										<span className="material-symbols-outlined" style={{
-											display: 'flex',
-											alignItems: 'center',
-											justifyContent: 'center',
-											padding: '2px',
-											boxSizing: 'content-box',
-										}}>
-										call</span>
-										{workspace.phone_number}
-									</Space>
-								</Typography.Link>
+								<Address locationValue={workspace.location_value}/>
+								<PhoneNumber phoneNumber={workspace.phone_number}/>
 							</Space>
 						</Col>
 					</Row>

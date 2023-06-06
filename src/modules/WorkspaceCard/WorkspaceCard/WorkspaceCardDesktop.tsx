@@ -1,12 +1,14 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { Button, Col, Row, Space, Divider, Card } from 'antd';
+import { Button, Col, Row, Divider, Card } from 'antd';
 import Typography from 'antd/es/typography';
 import { type IWorkspace } from '../../../types';
 import useWorkspaceCard from '../hooks';
 import RatingField from '../components/RatingField';
 import Parameters from './components/Parameters';
 import ImageCarousel from '../components/ImageCarousel';
+import Address from '../components/Address';
+import PhoneNumber from '../components/PhoneNumber';
 
 interface Props {
 	workspace: IWorkspace;
@@ -15,13 +17,6 @@ interface Props {
 const WorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 	const [isCardHovered, setIsCardHovered] = useState(false);
 	const { navigateToWorkspacePage, navigateToWorkspaceExecutionPage } = useWorkspaceCard(workspace.id);
-
-	const copyNumber = async(event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
-		if (event) {
-			event.stopPropagation();
-		}
-		await navigator.clipboard.writeText(workspace.phone_number);
-	};
 
 	return (
 		<Card
@@ -60,52 +55,12 @@ const WorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 					<Row
 						onClick={navigateToWorkspacePage}>
 						<Col span={24}>
-							<Typography.Link>
-								<Space align='center'>
-
-									<span className="material-symbols-outlined" style={{
-										display: 'flex',
-										alignItems: 'center',
-										justifyContent: 'center',
-										padding: '2px',
-										boxSizing: 'content-box',
-									}}>
-									location_on
-									</span>
-
-									{workspace.location_value}
-
-								</Space>
-							</Typography.Link>
+							<Address locationValue={workspace.location_value}/>
 						</Col>
 					</Row>
 					<Row>
 						<Col span={24}>
-							<Typography.Link>
-								<Space align='center'>
-
-									<span className="material-symbols-outlined" style={{
-										display: 'flex',
-										alignItems: 'center',
-										justifyContent: 'center',
-										padding: '2px',
-										boxSizing: 'content-box',
-									}}>
-										call</span>
-									{workspace.phone_number}
-
-									<span className="material-symbols-outlined" style={{
-										display: 'flex',
-										alignItems: 'center',
-										justifyContent: 'center',
-										padding: '2px',
-										boxSizing: 'content-box',
-									}} onClick={async(event) => await copyNumber(event)}>
-								content_copy
-									</span>
-
-								</Space>
-							</Typography.Link>
+							<PhoneNumber phoneNumber={workspace.phone_number}/>
 						</Col>
 					</Row>
 					<Divider style={{ margin: '5px 0 ' }}/>
@@ -134,7 +89,8 @@ const WorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 								style={{ width: '100%', marginTop: '10px' }}
 								type={isCardHovered ? 'primary' : 'default'}
 								size={'large'}
-								onClick={navigateToWorkspaceExecutionPage}>
+								onClick={navigateToWorkspaceExecutionPage}
+							>
 								Перейти к оформлению
 							</Button>
 						</Col>

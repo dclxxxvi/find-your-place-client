@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Col, Pagination, Row } from 'antd';
+import { Card, Col, Pagination, Row, Skeleton } from 'antd';
 import VisitationWorkspaceCard from '../WorkspaceCard/VisitationWorkspaceCard/VisitationWorkspaceCard';
 import { useGetVisitationsQuery } from '../../redux';
 import { useState } from 'react';
@@ -17,6 +17,7 @@ const VisitationList: React.FC = () => {
 
 	return (
 		<Row gutter={[0, 24]}>
+			{!visitations?.length && <Card><Skeleton /></Card>}
 			{visitations.map(visitation => {
 				return (
 					<Col span={24} key={visitation.id}>

@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { Col, Row, Space, Card } from 'antd';
+import { Col, Row, Card } from 'antd';
 import Typography from 'antd/es/typography';
 import { type IWorkspace } from '../../../types';
 import useWorkspaceCard from '../hooks';
 import ImageCarousel from '../components/ImageCarousel';
 import StatusViewer from './components/StatusViewer';
+import Address from '../components/Address';
 
 interface Props {
 	workspace: IWorkspace;
@@ -58,20 +59,7 @@ const SuggestedWorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 									</Typography.Title>
 								</Col>
 								<Col span={24}>
-									<Space>
-										<span className="material-symbols-outlined" style={{
-											display: 'flex',
-											alignItems: 'center',
-											justifyContent: 'center',
-											padding: '2px',
-											boxSizing: 'content-box',
-										}}>
-											location_on
-										</span>
-										<Typography.Text>
-											{workspace.location_value}
-										</Typography.Text>
-									</Space>
+									<Address locationValue={workspace.location_value}/>
 								</Col>
 							</Row>
 						</Col>

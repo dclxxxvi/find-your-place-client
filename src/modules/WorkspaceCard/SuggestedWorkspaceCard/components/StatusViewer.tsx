@@ -18,9 +18,6 @@ const StatusViewer: React.FC<Props> = ({ status }) => {
 		if (status?.code_name === EStatus.CANCELED || status?.code_name === EStatus.APPROVED) {
 			return 2;
 		}
-		if (status?.code_name === EStatus.HANDLING) {
-			return 1;
-		}
 		return 0;
 	}, [status?.code_name]);
 
