@@ -12,7 +12,7 @@ interface Props {
 }
 
 const WorkspaceCardMobile: React.FC<Props> = ({ workspace }) => {
-	const { navigateToWorkspacePage } = useWorkspaceCard(workspace.id);
+	const { navigateToWorkspacePage, navigateToWorkspaceExecutionPage } = useWorkspaceCard(workspace.id);
 	const copyNumber = async(event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
 		if (event) {
 			event.stopPropagation();
@@ -105,7 +105,6 @@ const WorkspaceCardMobile: React.FC<Props> = ({ workspace }) => {
 							<Parameters parameters={workspace.parameters} isOverviewCard={true}/>
 							<Divider style={{ margin: '5px 0 ' }}/>
 						</Row>
-
 						<Row>
 							<Typography.Title level={5} style={{ width: '100%', margin: '5px 0' }}>
 								300 руб/час или 5000 руб/месяц
