@@ -1,25 +1,40 @@
 import * as React from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
-import { addWorkspaceSchema, type IAddWorkspaceFormValues } from '../../form/schemas/addWorkspaceSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Col, notification, Row, Space } from 'antd';
+import { Button, Col, notification, Row, Space } from 'antd';
 import Typography from 'antd/es/typography';
 import CheckboxField from '../../form/fields/CheckboxField';
-// import { useGetUserQuery, useGetWorkspaceByIdQuery } from '../../redux';
-// import { useLocation } from 'react-router-dom';
+import { useExecuteVisitationMutation, useGetUserQuery, useGetWorkspaceByIdQuery } from '../../redux';
+import { executeVisitationSchema, type IExecuteVisitationFormValues } from '../../form/schemas/executeVisitation';
+import { useLocation } from 'react-router-dom';
+import UserData from './components/UserData';
+import CardWithTitle from './components/CardWithTitile';
+import WorkspaceCard from './components/WorkspaceCard';
+import DatePicker from './components/DatePicker';
+import { prepareValues } from './consts';
 
 const WorkspaceExecution: React.FC = () => {
-	// const location = useLocation();
-	// const workspaceId = location?.pathname?.split('/')?.[2];
-	// const { data: userData, isLoading: userDataLoading } = useGetUserQuery(null);
-	// const { data: workspace, isLoading: workspaceLoading } = useGetWorkspaceByIdQuery({ id: workspaceId });
+	const location = useLocation();
+	const workspaceId = location?.pathname?.split('/')?.[2];
+	const { data: workspaceData } = useGetWorkspaceByIdQuery({ id: workspaceId });
+	const { data: userData } = useGetUserQuery(null);
 
-	const { handleSubmit, control, reset } = useForm<IAddWorkspaceFormValues>({
-		resolver: yupResolver(addWorkspaceSchema),
+	const [executeVisitation, { isLoading }] = useExecuteVisitationMutation();
+	const { handleSubmit, control, reset } = useForm<IExecuteVisitationFormValues>({
+		resolver: yupResolver(executeVisitationSchema),
 	});
 
-	const onSubmit: SubmitHandler<IAddWorkspaceFormValues> = async(values) => {
-		new Promise((resolve) => resolve(values))
+	const onSubmit: SubmitHandler<IExecuteVisitationFormValues> = async(values) => {
+		if (!workspaceData?.data?.id || !userData?.data?.id) {
+			return notification.error({
+				message: 'Произошла ошибка',
+				description: 'При оформлении произошла ошибка...',
+			});
+		}
+
+		const body = prepareValues(values, workspaceData?.data?.id, userData?.data?.id);
+
+		executeVisitation(body).unwrap()
 			.then(() => {
 				notification.success({
 					message: 'Посещение оформлено',
@@ -34,21 +49,53 @@ const WorkspaceExecution: React.FC = () => {
 
 	return (
 		<form onSubmit={ handleSubmit(onSubmit) }>
-			<Row>
+			<Row gutter={[24, 24]}>
 				<Col span={24} xs={24} lg={16}>
-					<Space direction={'vertical'} size={'middle'} style={{ display: 'flex' }}>
-						<Space direction={'vertical'}>
-							<Typography.Text>Согласие на обработку персональных данных</Typography.Text>
-							<CheckboxField
-								name={'agree'}
-								control={control}
-								label={'Я согласен на обработку персональных данных'}
-							/>
-						</Space>
-					</Space>
+					<Row gutter={[24, 24]}>
+						<Col span={24}>
+							<CardWithTitle title={'Получатель услуги'}>
+								<UserData control={control} />
+							</CardWithTitle>
+						</Col>
+						<Col span={24}>
+							<CardWithTitle title={'Организация'}>
+								<WorkspaceCard workspace={workspaceData?.data} />
+							</CardWithTitle>
+						</Col>
+						<Col span={24}>
+							<CardWithTitle title={'Выбор тарифа'}>
+								<div>В разработке</div>
+							</CardWithTitle>
+						</Col>
+						<Col span={24}>
+							<CardWithTitle title={'Выбор даты и времени'}>
+								<DatePicker control={control} />
+							</CardWithTitle>
+						</Col>
+						<Col span={24}>
+							<Space direction={'vertical'}>
+								<Typography.Text>Согласие на обработку персональных данных</Typography.Text>
+								<CheckboxField
+									name={'agree'}
+									control={control}
+									label={'Я согласен на обработку персональных данных'}
+								/>
+							</Space>
+						</Col>
+					</Row>
 				</Col>
 				<Col span={24} xs={24} lg={8}>
-
+					<CardWithTitle title={'Ваш заказ'}>
+						<Space direction={'vertical'}>
+							<Space direction={'vertical'}>
+								<Typography.Text>Организация</Typography.Text>
+								<Typography.Text>({workspaceData?.data?.title || '...'})</Typography.Text>
+							</Space>
+							<Button loading={isLoading} type={'primary'} htmlType={'submit'}>
+								Оформить доступ
+							</Button>
+						</Space>
+					</CardWithTitle>
 				</Col>
 			</Row>
 		</form>

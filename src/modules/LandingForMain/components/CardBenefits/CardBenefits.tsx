@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Card, Typography } from 'antd';
+import { gray } from '@ant-design/colors';
 
 interface CardBenefitsProps {
 	title: string;
@@ -7,7 +8,7 @@ interface CardBenefitsProps {
 }
 const CardBenefits: React.FC<CardBenefitsProps> = ({ title, description }) => {
 	return (
-		<Card style={{ height: '100%', boxShadow: ' 0px 4px 4px rgba(0, 0, 0, 0.25)' }}>
+		<Card style={{ height: '100%', boxShadow: ` 0px 4px 4px ${gray[0]}` }}>
 			<Typography.Paragraph>
 				{description}
 			</Typography.Paragraph>

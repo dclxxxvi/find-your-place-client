@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Col, Image, Row, Typography } from 'antd';
+import { gray } from '@ant-design/colors';
 
 interface ImportanceBlockProps {
 	image: string;
@@ -23,7 +24,7 @@ const ImportanceBlock: React.FC <ImportanceBlockProps> = ({ image, title, rowRev
 					src={image}
 					alt={image}
 					width={'100%'}
-					style={{ boxShadow: '4px 4px 4px #BFBFBF', borderRadius: '5px' }}
+					style={{ boxShadow: `4px 4px 4px ${gray[0]}`, borderRadius: '5px' }}
 				/>
 			</Col>
 		</Row>

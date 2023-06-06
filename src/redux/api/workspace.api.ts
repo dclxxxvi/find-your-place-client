@@ -1,12 +1,12 @@
 import { commonApi } from './common.api';
 import { ETagTypes, prepareAddWorkspaceBody, prepareParams } from './consts';
-import { type IResponse, type IWorkspace, type IWorkspaceFetchResult, type IWorkspaceParams } from '../../types';
+import { type IResponse, type IWorkspace, type IWorkspaceParams, type IPaginatedResult } from '../../types';
 import { type IAddWorkspaceFormValues } from '../../form/schemas/addWorkspaceSchema';
 
 const workspaceApi = commonApi.injectEndpoints({
 	overrideExisting: false,
 	endpoints: builder => ({
-		getWorkspaces: builder.query<IResponse<IWorkspaceFetchResult>, IWorkspaceParams>({
+		getWorkspaces: builder.query<IResponse<IPaginatedResult<IWorkspace>>, IWorkspaceParams>({
 			query: (params) => ({
 				url: 'workspace',
 				method: 'GET',
@@ -24,7 +24,7 @@ const workspaceApi = commonApi.injectEndpoints({
 			// 	return currentArg !== previousArg;
 			// },
 		}),
-		getUserWorkspaces: builder.query<IResponse<IWorkspaceFetchResult>, IWorkspaceParams>({
+		getUserWorkspaces: builder.query<IResponse<IPaginatedResult<IWorkspace>>, IWorkspaceParams>({
 			query: (params) => ({
 				url: 'user/workspaces',
 				method: 'GET',

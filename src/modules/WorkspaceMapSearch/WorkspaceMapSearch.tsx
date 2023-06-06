@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Clusterer, GeolocationControl, Map, Placemark, ZoomControl } from '@pbe/react-yandex-maps';
 import WorkspaceDrawer from './components/WorkspaceDrawer';
 import { useWorkspaceDrawer } from './hooks/useWorkspaceDrawer';
-import { useGetWorkspacesQuery } from '../../redux';
+import { useAppSelector, useGetWorkspacesQuery } from '../../redux';
 
 const center = [56.836927, 60.599308]; // TODO: центр Еката, надо получать координаты пользователя
 
@@ -14,7 +14,9 @@ const WorkspaceMapSearch: React.FC = () => {
 		closeWorkspaceDrawer,
 	} = useWorkspaceDrawer();
 
-	const { data: workspaces } = useGetWorkspacesQuery({ size: 100 });
+	const filterState = useAppSelector((state) => state.searchFilterReducer);
+
+	const { data: workspaces } = useGetWorkspacesQuery({ size: 100, ...filterState });
 
 	return (
 		<>

@@ -1,63 +1,56 @@
 import * as React from 'react';
-import { Card, Col, Rate, Row, Space } from 'antd';
+import { Card, Col, Row, Skeleton, Space } from 'antd';
 import Typography from 'antd/es/typography';
-import { AimOutlined, PhoneOutlined } from '@ant-design/icons';
 import { useState } from 'react';
-import { type IWorkspace } from '../../../types';
 import FeedbackModal from '../../FeedbackModal';
 import ImageCarousel from '../components/ImageCarousel';
+import { type IVisitation } from '../../../types/IVisitation';
+import RatingField from '../components/RatingField';
+import { useGetWorkspaceByIdQuery } from '../../../redux';
+import { getStringDate } from './consts';
+import Address from '../components/Address';
+import PhoneNumber from '../components/PhoneNumber';
 
 interface Props {
-	workspace: IWorkspace;
-	hideFeedback?: boolean;
+	visitation: IVisitation;
 }
 
-const VisitationWorkspaceCard: React.FC<Props> = ({ workspace, hideFeedback }) => {
+const VisitationWorkspaceCard: React.FC<Props> = ({ visitation }) => {
+	const { data, isLoading } = useGetWorkspaceByIdQuery({ id: visitation?.workspace_id });
+	const workspace = data?.data;
+
 	const [openFeedbackModal, setOpenFeedbackModal] = useState(false);
 	const handleOpenFeedbackModal = (open: boolean) => () => setOpenFeedbackModal(open);
+
+	if (!workspace || isLoading) {
+		return <Card size={'small'}><Skeleton/></Card>;
+	}
 
 	return (
 		<Card size={'small'}>
 			<Row gutter={24} align={'middle'}>
-				<Col span={6}>
+				<Col xs={24} lg={6}>
 					<ImageCarousel showOne images={workspace.images} />
 				</Col>
-				<Col span={18}>
-					<Row justify={'space-between'} align={'stretch'}>
-						<Col span={12}>
-							<Row justify={'start'} gutter={[8, 10]} align={'stretch'}>
-								<Space direction={'vertical'} size={4}>
-									<Typography.Title style={{ margin: 0 }} level={4}>
-										{workspace.title}
-									</Typography.Title>
-									<Typography.Text strong>
-										{ 'Посещение 21 января 2022' }
-									</Typography.Text>
-								</Space>
-								<Col span={24}/>
-								<Space direction={'vertical'} size={4}>
-									<Space>
-										<AimOutlined />
-										<Typography.Text>
-											{workspace.location_value}
-										</Typography.Text>
-									</Space>
-									<Space>
-										<PhoneOutlined />
-										<Typography.Text>
-											{workspace.phone_number}
-										</Typography.Text>
-									</Space>
-								</Space>
-							</Row>
+				<Col xs={24} lg={18}>
+					<Row justify={'space-between'} align={'stretch'} gutter={[10, 10]}>
+						<Col span={12} xs={24} lg={12}>
+							<Space direction={'vertical'} size={4}>
+								<Typography.Title style={{ margin: 0 }} level={4}>
+									{workspace.title}
+								</Typography.Title>
+								<Typography.Text strong>
+									{ `Посещение: ${getStringDate(new Date(visitation.start_date))}` }
+								</Typography.Text>
+							</Space>
 						</Col>
-						{!(hideFeedback ?? false) && <Col span={ 12 }>
+						<Col span={ 12 } xs={24} lg={12}>
 							<Row justify={ 'end' }>
 								<Space direction={ 'vertical' } align={ 'end' }>
-									<Rate allowHalf defaultValue={ workspace.rating } disabled></Rate>
-									<Typography.Text type="secondary">
-										{ `${workspace.feedback_count as number} отзывов` }
-									</Typography.Text>
+									<RatingField
+										rating={workspace.rating}
+										commentsCount={workspace.comments.length}
+									/>
 									<Typography.Text
 										onClick={ handleOpenFeedbackModal(true) }
 										strong
@@ -67,7 +60,14 @@ const VisitationWorkspaceCard: React.FC<Props> = ({ workspace, hideFeedback }) =
 									</Typography.Text>
 								</Space>
 							</Row>
-						</Col> }
+						</Col>
+						<Col span={24}/>
+						<Col span={24}>
+							<Space direction={'vertical'} size={4} style={{ width: '100%' }}>
+								<Address locationValue={workspace.location_value}/>
+								<PhoneNumber phoneNumber={workspace.phone_number}/>
+							</Space>
+						</Col>
 					</Row>
 				</Col>
 			</Row>
