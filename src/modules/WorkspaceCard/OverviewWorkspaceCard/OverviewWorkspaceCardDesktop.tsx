@@ -63,7 +63,11 @@ const OverviewWorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 						</Typography.Title>
 					</Col>
 					<Col>
-						<RatingField rating={workspace.rating} commentsCount={workspace.comments.length} isNextLine={!xxl}/>
+						<RatingField
+							rating={workspace.rating}
+							commentsCount={workspace.comments.length}
+							isNextLine={!xxl}
+						/>
 					</Col>
 				</Row>
 				<Divider style={{ margin: '5px 0 ' }}/>

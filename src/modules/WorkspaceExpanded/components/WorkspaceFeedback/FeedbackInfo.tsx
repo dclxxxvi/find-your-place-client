@@ -1,39 +1,35 @@
 import * as React from 'react';
 import { Card, Col, Progress, Rate, Row, Space, Typography } from 'antd';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
+import { useCallback } from 'react';
+import { getFeedbackPluralForm } from './consts';
+
+const renderProgressLine = (number: number, percent: number) => {
+	return (
+		<div key={number} style={{
+			display: 'flex',
+			alignItems: 'center',
+			justifyContent: 'end',
+		}}>
+			{number}
+			<Progress percent={percent} style={{ marginLeft: '10px', marginBottom: 0 }}/>
+		</div>
+	);
+};
 
 interface Props {
 	rating: number;
 	feedbackCount: number;
-	ratingsCounter: any[][number];
+	ratingsCounter: number[];
 }
 
 const FeedbackInfo: React.FC<Props> = ({ rating, feedbackCount, ratingsCounter }) => {
 	const { xs } = useBreakpoint(true);
-	const getPluralForm = (count: number): string => {
-		if (count % 10 === 1 && count !== 11) {
-			return 'отзыв';
-		} else if ([2, 3, 4].includes(count % 10) && ![12, 13, 14].includes(count % 100)) {
-			return 'отзыва';
-		} else {
-			return 'отзывов';
-		}
-	};
-	const getRatingPercent = (number: number) => {
-		return Math.floor(ratingsCounter[number - 1] / ratingsCounter[5] * 100);
-	};
-	const getProgressLine = (number: number) => {
-		return (
-			<div style={{
-				display: 'flex',
-				alignItems: 'center',
-				justifyContent: 'end',
-			}}>
-				{number}
-				<Progress percent={getRatingPercent(number)} style={{ marginLeft: '10px', marginBottom: 0 }}/>
-			</div>
-		);
-	};
+
+	const getRatingPercent = useCallback((number: number) => {
+		return Math.floor(ratingsCounter[number - 1] / feedbackCount * 100);
+	}, [ratingsCounter, feedbackCount]);
+
 	return (
 		<Card>
 			<Row justify={'space-between'} align='middle'>
@@ -45,7 +41,7 @@ const FeedbackInfo: React.FC<Props> = ({ rating, feedbackCount, ratingsCounter }
 							</Typography.Title>
 							<Rate allowHalf defaultValue={rating} disabled></Rate>
 							<Typography.Paragraph style={{ margin: '0' }}>
-								{feedbackCount} {getPluralForm(feedbackCount)}
+								{feedbackCount} {getFeedbackPluralForm(feedbackCount)}
 							</Typography.Paragraph>
 						</Space>
 					</Row>
@@ -53,13 +49,10 @@ const FeedbackInfo: React.FC<Props> = ({ rating, feedbackCount, ratingsCounter }
 				</Col>
 				<Col span={xs ? 24 : 11}>
 					<Space direction='vertical' style={{ width: '100%' }}>
-						{getProgressLine(5)}
-						{getProgressLine(4)}
-						{getProgressLine(3)}
-						{getProgressLine(2)}
-						{getProgressLine(1)}
+						{Array.from({ length: 5 }).map((_, index) => {
+							return renderProgressLine(index + 1, getRatingPercent(index + 1));
+						})}
 					</Space>
-
 				</Col>
 			</Row>
 		</Card>
