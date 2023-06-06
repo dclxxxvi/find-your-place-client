@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AnchorTabs } from '../consts';
+import { EAnchorTabs, EAnchorTabsLabels } from '../consts';
 import Title from 'antd/es/typography/Title';
 import Typography from 'antd/es/typography';
 import { Space } from 'antd';
@@ -10,8 +10,8 @@ interface Props {
 
 const WorkspaceTariffs: React.FC<Props> = ({ tariffs }) => {
 	return (
-		<Space id={AnchorTabs.TARIFFS} direction={'vertical'} size={'large'}>
-			<Title style={{ margin: 0 }} level={3}>Тарифы</Title>
+		<Space id={EAnchorTabs.TARIFFS} direction={'vertical'} size={'large'}>
+			<Title style={{ margin: 0 }} level={3}>{EAnchorTabsLabels.TARIFFS}</Title>
 			<Typography.Text>{'В разработке'}</Typography.Text>
 		</Space>
 	);

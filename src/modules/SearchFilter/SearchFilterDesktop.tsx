@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Button, Col, Input, Row } from 'antd';
-import BaseTypeSelect from '../../shared/BaseTypeSelect';
 import { useSearchFilter } from './hooks/useSearchFilter';
 import { useDictionaries } from '../../hooks';
+import BaseTypeMultiSelect from '../../shared/BaseTypeMultiSelect';
 
 interface Props {
 	isGlobal?: boolean;
@@ -11,7 +11,7 @@ interface Props {
 const SearchFilterDesktop: React.FC<Props> = ({ isGlobal }) => {
 	const {
 		filterValues: { search, additional, features, rooms },
-		handleSelectChange,
+		handleMultipleSelectChange,
 		handleSearchInputChange,
 		navigateToWorkspacesPage,
 	} = useSearchFilter();
@@ -21,30 +21,30 @@ const SearchFilterDesktop: React.FC<Props> = ({ isGlobal }) => {
 	return (
 		<Row gutter={[10, 20]}>
 			<Col xxl={5} lg={4} md={5}>
-				<BaseTypeSelect
-					handleChange={handleSelectChange('additional')}
-					initialValue={additional}
+				<BaseTypeMultiSelect
+					handleChange={handleMultipleSelectChange('additional')}
 					dictionary={parametersDictionary[0]?.dictionary}
+					initialValue={additional}
 					placeholder={parametersDictionary[0]?.category.name}
 					loading={isLoading}
 					allowClear
 					style={{ width: '100%' }} />
 			</Col>
 			<Col xxl={3} lg={3} md={3}>
-				<BaseTypeSelect
-					handleChange={handleSelectChange('features')}
-					initialValue={features}
+				<BaseTypeMultiSelect
+					handleChange={handleMultipleSelectChange('features')}
 					dictionary={parametersDictionary[1]?.dictionary}
+					initialValue={features}
 					placeholder={parametersDictionary[1]?.category.name}
 					loading={isLoading}
 					allowClear
 					style={{ width: '100%' }}/>
 			</Col>
 			<Col xxl={3} lg={3} md={3}>
-				<BaseTypeSelect
-					handleChange={handleSelectChange('rooms')}
-					initialValue={rooms}
+				<BaseTypeMultiSelect
+					handleChange={handleMultipleSelectChange('rooms')}
 					dictionary={parametersDictionary[2]?.dictionary}
+					initialValue={rooms}
 					placeholder={parametersDictionary[2]?.category.name}
 					loading={isLoading}
 					allowClear

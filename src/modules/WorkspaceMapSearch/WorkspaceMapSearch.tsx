@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Clusterer, Map, Placemark, ZoomControl } from '@pbe/react-yandex-maps';
+import { Clusterer, GeolocationControl, Map, Placemark, ZoomControl } from '@pbe/react-yandex-maps';
 import WorkspaceDrawer from './components/WorkspaceDrawer';
 import { useWorkspaceDrawer } from './hooks/useWorkspaceDrawer';
 import { useGetWorkspacesQuery } from '../../redux';
@@ -37,6 +37,7 @@ const WorkspaceMapSearch: React.FC = () => {
 					})}
 				</Clusterer>
 				<ZoomControl/>
+				<GeolocationControl />
 			</Map>
 			<WorkspaceDrawer workspaceId={workspaceId} open={open} onClose={closeWorkspaceDrawer} />
 		</>

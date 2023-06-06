@@ -24,15 +24,15 @@ const workspaceApi = commonApi.injectEndpoints({
 			// 	return currentArg !== previousArg;
 			// },
 		}),
-		getUserWorkspaces: builder.query<IWorkspace[], IWorkspaceParams>({
+		getUserWorkspaces: builder.query<IResponse<IWorkspaceFetchResult>, IWorkspaceParams>({
 			query: (params) => ({
 				url: 'user/workspaces',
 				method: 'GET',
 				params,
 			}),
-			providesTags: (result = []) => [
+			providesTags: (result) => [
 				ETagTypes.USER_WORKSPACES,
-				...result.map(({ id }) => ({ type: ETagTypes.USER_WORKSPACES, id })),
+				...result?.data.items.map(({ id }) => ({ type: ETagTypes.USER_WORKSPACES, id })) || [],
 			],
 		}),
 		getWorkspaceById: builder.query<IResponse<IWorkspace>, Pick<IWorkspace, 'id'>>({

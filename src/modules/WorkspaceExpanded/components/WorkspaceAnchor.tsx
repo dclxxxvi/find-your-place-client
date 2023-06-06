@@ -1,29 +1,45 @@
 import * as React from 'react';
 import { Anchor } from 'antd';
-import { AnchorTabs, AnchorTabsLabels } from '../consts';
+import { EAnchorTabs, EAnchorTabsLabels } from '../consts';
 
 const WorkspaceAnchor: React.FC = () => {
 	return (
 		<Anchor direction={'horizontal'} items={[
 			{
-				key: AnchorTabs.DESCRIPTION,
-				href: `#${AnchorTabs.DESCRIPTION}`,
-				title: AnchorTabsLabels.DESCRIPTION,
+				key: EAnchorTabs.DESCRIPTION,
+				// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+				href: `#${EAnchorTabs.DESCRIPTION}`,
+				title: EAnchorTabsLabels.DESCRIPTION,
 			},
 			{
-				key: AnchorTabs.SERVICES,
-				href: `#${AnchorTabs.SERVICES}`,
-				title: AnchorTabsLabels.SERVICES,
+				key: EAnchorTabs.SERVICES,
+				// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+				href: `#${EAnchorTabs.SERVICES}`,
+				title: EAnchorTabsLabels.SERVICES,
 			},
 			{
-				key: AnchorTabs.TARIFFS,
-				href: `#${AnchorTabs.TARIFFS}`,
-				title: AnchorTabsLabels.TARIFFS,
+				key: EAnchorTabs.MAP,
+				// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+				href: `#${EAnchorTabs.MAP}`,
+				title: EAnchorTabsLabels.MAP,
 			},
 			{
-				key: AnchorTabs.FEEDBACK,
-				href: `#${AnchorTabs.FEEDBACK}`,
-				title: AnchorTabsLabels.FEEDBACK,
+				key: EAnchorTabs.CONTACTS,
+				// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+				href: `#${EAnchorTabs.CONTACTS}`,
+				title: EAnchorTabsLabels.CONTACTS,
+			},
+			{
+				key: EAnchorTabs.TARIFFS,
+				// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+				href: `#${EAnchorTabs.TARIFFS}`,
+				title: EAnchorTabsLabels.TARIFFS,
+			},
+			{
+				key: EAnchorTabs.FEEDBACK,
+				// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+				href: `#${EAnchorTabs.FEEDBACK}`,
+				title: EAnchorTabsLabels.FEEDBACK,
 			},
 		]}
 		/>

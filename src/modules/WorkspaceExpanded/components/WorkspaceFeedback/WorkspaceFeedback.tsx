@@ -1,12 +1,13 @@
 import * as React from 'react';
-import { AnchorTabs } from '../../consts';
+import { EAnchorTabs } from '../../consts';
 import Title from 'antd/es/typography/Title';
 import { Button, Col, Row, Space } from 'antd';
 import FeedbackInfo from './FeedbackInfo';
 import FeedbackComment from './FeedbackComment';
 import { type IWorkspace } from '../../../../types';
 import FeedbackModal from '../../../FeedbackModal';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import { getRatingCounter } from './consts';
 
 interface Props {
 	workspace: IWorkspace;
@@ -17,8 +18,12 @@ const WorkspaceFeedback: React.FC<Props> = ({ workspace }) => {
 	const openFeedbackModal = () => setOpen(true);
 	const closeFeedbackModal = () => setOpen(false);
 
+	const ratingsCounter = useMemo(() => {
+		return getRatingCounter(workspace.comments);
+	}, [workspace.comments]);
+
 	return (
-		<Space id={AnchorTabs.FEEDBACK} direction={'vertical'} size={'large'} style={{ width: '100%' }}>
+		<Space id={EAnchorTabs.FEEDBACK} direction={'vertical'} size={'large'} style={{ width: '100%' }}>
 			<Row align='stretch'>
 				<Space size={'large'}>
 					<Title style={{ margin: 0 }} level={3}>Отзывы</Title>
@@ -34,12 +39,15 @@ const WorkspaceFeedback: React.FC<Props> = ({ workspace }) => {
 					</Col>
 				}
 				{ (workspace?.rating && workspace?.comments?.length) &&
-				<Col xs={ 24 } sm={ 24 } md={ 9 } lg={ 6 }>
-					<FeedbackInfo rating={ workspace?.rating } feedbackCount={ workspace.comments?.length }/>
+				<Col xs={ 24 } sm={ 24 } md={ 24 } lg={ 10 } xxl={8}>
+					<FeedbackInfo
+						rating={ workspace?.rating }
+						feedbackCount={ workspace.comments?.length }
+						ratingsCounter={ratingsCounter}/>
 				</Col>
 				}
 				{ (workspace?.comments && workspace?.comments?.length > 0) &&
-					<Col xs={ 24 } sm={ 24 } md={ 15 } lg={ 18 }>
+					<Col xs={ 24 } sm={ 24 } md={ 24 } lg={ 14 } xxl={16}>
 						<Space direction='vertical' size='large' style={ { width: '100%' } }>
 							{ workspace?.comments.map((comment) => {
 								return <FeedbackComment key={ comment.id } comment={ comment }/>;

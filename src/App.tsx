@@ -7,6 +7,7 @@ import { ErrorPage } from './pages';
 import { Layout } from 'antd';
 import ThemeProvider from './providers/theme';
 import { YMaps } from '@pbe/react-yandex-maps';
+import './App.css';
 
 const App: React.FC = () => {
 	return (

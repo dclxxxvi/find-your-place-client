@@ -15,6 +15,7 @@ export interface IWorkspace extends IBaseEntity, IAddress {
 	images: IImageMedia[];
 	comments: IComment[];
 	parameters: IBaseType[];
+	status: IBaseType;
 }
 
 export interface IWorkspaceFetchResult {

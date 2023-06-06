@@ -11,7 +11,7 @@ interface OptionType {
 interface Props extends Omit<SelectProps<string[], OptionType>, 'children' | 'options' | 'filterOption' | 'value'> {
 	dictionary?: IBaseType[];
 	handleChange: (values: string[]) => void;
-	initialValue?: IBaseType[];
+	initialValue?: string[];
 }
 
 const BaseTypeMultiSelect: React.FC<Props> = ({ dictionary, handleChange, initialValue, ...rest }) => {
@@ -30,9 +30,9 @@ const BaseTypeMultiSelect: React.FC<Props> = ({ dictionary, handleChange, initia
 		return Boolean(option?.label.toLowerCase().includes(inputValue.toLowerCase()));
 	}, []);
 
-	// const mapInitialValues = useMemo(() => {
-	// 	return initialValue?.map(value => value.code_name);
-	// }, [initialValue]);
+	const mapInitialValues = useMemo(() => {
+		return initialValue?.map(value => value);
+	}, [initialValue]);
 
 	return (
 		<Select
@@ -40,6 +40,7 @@ const BaseTypeMultiSelect: React.FC<Props> = ({ dictionary, handleChange, initia
 			onChange={onChange}
 			options={options}
 			filterOption={filterOption}
+			value={mapInitialValues}
 			{...rest}
 		/>
 	);

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Button, Col, Input, Row } from 'antd';
-import BaseTypeSelect from '../../shared/BaseTypeSelect';
 import { useSearchFilter } from './hooks/useSearchFilter';
 import { useDictionaries } from '../../hooks';
+import BaseTypeMultiSelect from '../../shared/BaseTypeMultiSelect';
 
 interface Props {
 	isGlobal?: boolean;
@@ -11,7 +11,7 @@ interface Props {
 const SearchFilterMobile: React.FC<Props> = ({ isGlobal }) => {
 	const {
 		filterValues: { features, search, rooms, additional },
-		handleSelectChange,
+		handleMultipleSelectChange,
 		handleSearchInputChange,
 		navigateToWorkspacesPage,
 	} = useSearchFilter();
@@ -42,8 +42,8 @@ const SearchFilterMobile: React.FC<Props> = ({ isGlobal }) => {
 			</Col>
 			}
 			<Col span={10}>
-				<BaseTypeSelect
-					handleChange={handleSelectChange('additional')}
+				<BaseTypeMultiSelect
+					handleChange={handleMultipleSelectChange('additional')}
 					dictionary={parametersDictionary[0]?.dictionary}
 					initialValue={additional}
 					placeholder={parametersDictionary[0]?.category.name}
@@ -52,8 +52,8 @@ const SearchFilterMobile: React.FC<Props> = ({ isGlobal }) => {
 					style={{ width: '100%' }} />
 			</Col>
 			<Col span={7}>
-				<BaseTypeSelect
-					handleChange={handleSelectChange('features')}
+				<BaseTypeMultiSelect
+					handleChange={handleMultipleSelectChange('features')}
 					dictionary={parametersDictionary[1]?.dictionary}
 					initialValue={features}
 					placeholder={parametersDictionary[1]?.category.name}
@@ -62,8 +62,8 @@ const SearchFilterMobile: React.FC<Props> = ({ isGlobal }) => {
 					style={{ width: '100%' }}/>
 			</Col>
 			<Col span={7}>
-				<BaseTypeSelect
-					handleChange={handleSelectChange('rooms')}
+				<BaseTypeMultiSelect
+					handleChange={handleMultipleSelectChange('rooms')}
 					dictionary={parametersDictionary[2]?.dictionary}
 					initialValue={rooms}
 					placeholder={parametersDictionary[2]?.category.name}

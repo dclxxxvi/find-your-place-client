@@ -1,10 +1,15 @@
 import * as React from 'react';
-import SuperAdvantage from './SuperAdvantage';
-import { Typography, Row, Col, Space, Checkbox, Skeleton } from 'antd';
+import { Typography, Row, Col, Skeleton } from 'antd';
 import { useDictionaries } from '../../hooks';
+import BaseTypeCheckboxGroup from '../../shared/BaseTypeCheckboxGroup';
+import { useSearchFilter } from '../../modules/SearchFilter/hooks/useSearchFilter';
 
 const PropertiesOfAdvantagesList: React.FC = () => {
 	const dictionaries = useDictionaries();
+	const {
+		filterValues: { features, rooms, additional },
+		handleMultipleSelectChange,
+	} = useSearchFilter();
 
 	if (!dictionaries?.parametersDictionary?.length) {
 		return <Row>
@@ -14,20 +19,36 @@ const PropertiesOfAdvantagesList: React.FC = () => {
 
 	return (
 		<Row>
-			{dictionaries?.parametersDictionary?.map((parameters) => {
-				return <Col key={parameters.category.id} xs={24} sm={24} md={8} lg={24}>
-					<Typography.Title level={4} style={{ marginTop: 15 }}>
-						{parameters.category.name}
-					</Typography.Title>
-					<Space direction='vertical'>
-						{ parameters.dictionary.map((parameter) => {
-							return <Checkbox key={parameter.id}>
-								<SuperAdvantage parameter={parameter} rowReverse={true}/>
-							</Checkbox>;
-						}) }
-					</Space>
-				</Col>;
-			})}
+			<Col xs={24} sm={24} md={8} xxl={24}>
+				<Typography.Title level={4} style={{ marginTop: 15 }}>
+					{dictionaries?.parametersDictionary[0].category.name}
+				</Typography.Title>
+				<BaseTypeCheckboxGroup
+					dictionary={dictionaries?.parametersDictionary[0].dictionary}
+					value={additional}
+					handleChange={handleMultipleSelectChange('additional')}
+				/>
+			</Col>
+			<Col xs={24} sm={24} md={8} xxl={24}>
+				<Typography.Title level={4} style={{ marginTop: 15 }}>
+					{dictionaries?.parametersDictionary[1].category.name}
+				</Typography.Title>
+				<BaseTypeCheckboxGroup
+					dictionary={dictionaries?.parametersDictionary[1].dictionary}
+					value={features}
+					handleChange={handleMultipleSelectChange('features')}
+				/>
+			</Col>
+			<Col xs={24} sm={24} md={8} xxl={24}>
+				<Typography.Title level={4} style={{ marginTop: 15 }}>
+					{dictionaries?.parametersDictionary[2].category.name}
+				</Typography.Title>
+				<BaseTypeCheckboxGroup
+					dictionary={dictionaries?.parametersDictionary[2].dictionary}
+					value={rooms}
+					handleChange={handleMultipleSelectChange('rooms')}
+				/>
+			</Col>
 		</Row>
 	);
 };

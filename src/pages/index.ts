@@ -6,6 +6,7 @@ import MapSearch from './MapSearch';
 import AddWorkspace from './AddWorkspace';
 import NotFound from './NotFound';
 import ErrorPage from './ErrorPage';
+import WorkspaceExecution from './WorkspaceExecution';
 
 export {
 	Main,
@@ -20,4 +21,5 @@ export {
 	ErrorPage,
 	Bonuses,
 	Purchases,
+	WorkspaceExecution,
 };
