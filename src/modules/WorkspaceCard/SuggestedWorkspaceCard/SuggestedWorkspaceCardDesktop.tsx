@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Col, Row, Space, Card } from 'antd';
 import Typography from 'antd/es/typography';
-import { AimOutlined } from '@ant-design/icons';
 import { type IWorkspace } from '../../../types';
 import useWorkspaceCard from '../hooks';
 import ImageCarousel from '../components/ImageCarousel';
@@ -32,7 +31,7 @@ const SuggestedWorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 					<Row gutter={24}>
 						<Col span={14}>
 							<Row align={'top'} justify={'space-between'}>
-								<Col>
+								<Col span={24}>
 									<Typography.Title
 										style={{ margin: 0 }}
 										level={3}
@@ -41,26 +40,34 @@ const SuggestedWorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 								</Col>
 							</Row>
 							<Row>
-								<Col>
+								<Col span={24}>
 									<Typography.Title level={5}>
 										Описание
 									</Typography.Title>
 								</Col>
-								<Col>
+								<Col span={24}>
 									<Typography.Paragraph ellipsis={{ rows: 2 }} style={{ marginBottom: '0' }}>
 										{workspace.description}
 									</Typography.Paragraph>
 								</Col>
 							</Row>
 							<Row>
-								<Col>
+								<Col span={24}>
 									<Typography.Title level={5}>
 										Адрес
 									</Typography.Title>
 								</Col>
-								<Col>
+								<Col span={24}>
 									<Space>
-										<AimOutlined />
+										<span className="material-symbols-outlined" style={{
+											display: 'flex',
+											alignItems: 'center',
+											justifyContent: 'center',
+											padding: '2px',
+											boxSizing: 'content-box',
+										}}>
+											location_on
+										</span>
 										<Typography.Text>
 											{workspace.location_value}
 										</Typography.Text>
