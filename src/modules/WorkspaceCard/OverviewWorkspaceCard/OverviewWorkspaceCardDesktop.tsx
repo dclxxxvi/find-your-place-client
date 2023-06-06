@@ -137,11 +137,10 @@ const OverviewWorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 				<Row align={'top'} justify={'space-between'}>
 
 					<Typography.Title
-						style={{ margin: 0 }}
+						style={{ marginTop: 0 }}
 						level={4}
 					>10000 Рублей
 					</Typography.Title>
-
 				</Row>
 				<Row>
 					<Col flex={'auto'}>
