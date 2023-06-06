@@ -33,22 +33,22 @@ const UserDataForm: React.FC = () => {
 
 	return (
 		<form onSubmit={ handleSubmit(onSubmit) }>
-			<Space direction={'vertical'} size={36}>
+			<Space direction={'vertical'} size={36} style={{ width: '100%' }}>
 				<Row gutter={[24, 24]}>
-					<Col sm={24} md={12}>
+					<Col sm={24} lg={12} style={{ width: '100%' }}>
 						<TextField disabled={isLoading} name={'first_name'} control={control} label={'Имя'}/>
 					</Col>
-					<Col sm={24} md={12}>
+					<Col sm={24} lg={12} style={{ width: '100%' }}>
 						<TextField disabled={isLoading} name={'last_name'} control={control} label={'Фамилия'}/>
 					</Col>
-					<Col sm={24} md={12}>
+					<Col sm={24} lg={12} style={{ width: '100%' }}>
 						<TextField disabled={isLoading} name={'username'} control={control} label={'Имя пользователя'}/>
 					</Col>
-					<Col sm={24} md={12}>
+					<Col sm={24} lg={12} style={{ width: '100%' }}>
 						<TextField disabled={isLoading} name={'phone'} control={control} label={'Телефон'}/>
 					</Col>
 				</Row>
-				<Row gutter={[24, 24]}>
+				<Row gutter={[24, 24]} justify='end'>
 					<Col>
 						<Button loading={isLoading} onClick={() => reset()}>
 							Отменить
