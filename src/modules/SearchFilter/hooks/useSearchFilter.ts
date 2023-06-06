@@ -8,7 +8,7 @@ import { AppRoutes } from '../../../router/routes';
 
 interface UseSearchFilterReturn {
 	handleSelectChange: (filterName: TFilterFieldType) => (value?: string) => void;
-	handleMultipleSelectChange: (filterName: TFilterFieldType) => (value?: string) => void;
+	handleMultipleSelectChange: (filterName: TFilterFieldType) => (value?: string[]) => void;
 	handleSearchInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
 	filterValues: SearchFilterState;
 	navigateToWorkspacesPage: () => void;
@@ -23,7 +23,7 @@ export const useSearchFilter = (): UseSearchFilterReturn => {
 		dispatch(updateFilter({ field: filterName, value }));
 	}, [dispatch]);
 
-	const handleMultipleSelectChange = useCallback((filterName: TFilterFieldType) => (value?: string) => {
+	const handleMultipleSelectChange = useCallback((filterName: TFilterFieldType) => (value?: string[]) => {
 		dispatch(updateFilter({ field: filterName, value }));
 	}, [dispatch]);
 

@@ -1,24 +1,23 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { type IBaseType } from '../../types';
 
 export interface SearchFilterState {
 	search?: string;
-	format?: IBaseType;
-	cost?: IBaseType;
-	params?: IBaseType[];
-	rooms?: string;
-	additional?: string;
-	features?: string;
+	// format?: IBaseType;
+	// cost?: IBaseType;
+	// params?: IBaseType[];
+	rooms?: string[];
+	additional?: string[];
+	features?: string[];
 }
 
 const initialState: SearchFilterState = {
 	search: undefined,
-	format: undefined,
-	cost: undefined,
-	params: [],
-	rooms: undefined,
-	additional: undefined,
-	features: undefined,
+	// format: undefined,
+	// cost: undefined,
+	// params: [],
+	rooms: [],
+	additional: [],
+	features: [],
 };
 
 type TFilterValueType = SearchFilterState[keyof SearchFilterState];

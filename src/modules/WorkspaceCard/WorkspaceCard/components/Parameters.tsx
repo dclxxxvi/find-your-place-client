@@ -5,18 +5,37 @@ import SuperAdvantage from '../../../../components/SuperAdvantages';
 
 interface Props {
 	parameters: IBaseType[];
+	isOverviewCard: boolean;
 }
 
-const Parameters: React.FC<Props> = ({ parameters }) => {
+const Parameters: React.FC<Props> = ({ parameters, isOverviewCard }) => {
 	if (!parameters || parameters?.length === 0) {
 		return null;
 	}
-
+	if (isOverviewCard) {
+		return (
+			<>
+				{parameters.map((parameter) => {
+					return (
+						<Col xs={24} sm={12} key={parameter.id} span={12}>
+							<SuperAdvantage parameter={parameter} />
+						</Col>
+					);
+				})}
+			</>
+		);
+	}
 	return (
 		<>
 			{parameters.map((parameter) => {
 				return (
-					<Col key={parameter.id} span={12}>
+					<Col
+						xs={24}
+						sm={12}
+						md={8}
+						lg={7}
+						xl={6}
+						xxl={5} key={parameter.id} span={12}>
 						<SuperAdvantage parameter={parameter} />
 					</Col>
 				);

@@ -24,7 +24,7 @@ const WorkspaceServices: React.FC<Props> = ({ services }) => {
 			<Title style={{ margin: 0 }} level={3}>{EAnchorTabsLabels.SERVICES}</Title>
 			{renderNoService()}
 			{ services && <Row gutter={ [12, 12] }>
-				<Parameters parameters={ services }/>
+				<Parameters parameters={ services } isOverviewCard={false}/>
 			</Row> }
 		</Space>
 	);

@@ -10,7 +10,7 @@ import {
 	NotFound,
 	SuggestedPlaces,
 	UserData,
-	VisitationHistory, Bonuses, Purchases,
+	VisitationHistory, Bonuses, Purchases, WorkspaceExecution,
 } from '../pages';
 import { PersonalCabinetRoutes } from './routes';
 
@@ -23,7 +23,10 @@ const AppRouter: React.FC = () => {
 					<Route element={<GlobalSearchFilter />}>
 						<Route path={'workspaces'} >
 							<Route index element={<Workspaces />}/>
-							<Route path={':id'} element={<Workspace />}/>
+							<Route path={':id'}>
+								<Route index element={<Workspace />}/>
+								<Route path={'execution'} element={<WorkspaceExecution />}/>
+							</Route>
 							<Route path={'map'} element={<MapSearch />}/>
 							<Route path={'new'} element={<AddWorkspace />}/>
 						</Route>
