@@ -1,6 +1,6 @@
 import { commonApi } from './common.api';
 import { ETagTypes } from './consts';
-import { type IResponse, type IWorkspaceFetchResult } from '../../types';
+import { type IPaginatedResult, type IPaginationParams, type IResponse } from '../../types';
 import { type IVisitation, type IVIsitationCreation } from '../../types/IVisitation';
 
 const commentsApi = commonApi.injectEndpoints({
@@ -8,17 +8,17 @@ const commentsApi = commonApi.injectEndpoints({
 	endpoints: builder => ({
 		executeVisitation: builder.mutation<IVisitation, IVIsitationCreation>({
 			query: body => ({
-				url: 'visitations',
+				url: 'visit',
 				method: 'POST',
 				body,
 			}),
 			invalidatesTags: [ETagTypes.VISITATIONS],
 		}),
-		getVisitations: builder.query<IResponse<IWorkspaceFetchResult>, null>({
+		getVisitations: builder.query<IResponse<IPaginatedResult<IVisitation>>, IPaginationParams>({
 			query: (params) => ({
-				url: 'visitations',
+				url: 'user/visits',
 				method: 'GET',
-				// params: prepareParams(params),
+				params,
 			}),
 			providesTags: (result) => [
 				ETagTypes.VISITATIONS,

@@ -1,12 +1,8 @@
 import { type SearchFilterState } from '../redux';
+import { type IPaginationParams } from './IPaginationParams';
 
 interface IWorkspaceSearchParams extends SearchFilterState {
 
 }
 
-interface IWorkspacePaginationParams {
-	page?: number;
-	size?: number;
-}
-
-export type IWorkspaceParams = IWorkspaceSearchParams & IWorkspacePaginationParams;
+export type IWorkspaceParams = IWorkspaceSearchParams & IPaginationParams;

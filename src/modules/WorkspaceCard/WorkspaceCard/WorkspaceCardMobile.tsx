@@ -117,7 +117,7 @@ const WorkspaceCardMobile: React.FC<Props> = ({ workspace }) => {
 									style={{ width: '100%', marginTop: '10px' }}
 									type={'primary'}
 									size={'large'}
-									onClick={navigateToWorkspacePage}>
+									onClick={navigateToWorkspaceExecutionPage}>
 										Перейти к оформлению
 								</Button>
 							</Col>

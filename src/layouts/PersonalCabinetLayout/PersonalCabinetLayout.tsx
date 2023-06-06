@@ -10,7 +10,7 @@ const PersonalCabinetLayout: React.FC = () => {
 	return (
 		<PageWrapper marginTop={80} marginBottom={100}>
 			<Layout>
-				<Space size={100} align={'start'}>
+				<Space size={48} align={'start'}>
 					<Sider breakpoint={'md'} collapsedWidth={0}>
 						<PersonalCabinetMenu />
 					</Sider>

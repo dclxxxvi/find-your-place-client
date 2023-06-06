@@ -1,14 +1,13 @@
 import * as React from 'react';
 import Title from 'antd/es/typography/Title';
 import { Space } from 'antd';
-import Typography from 'antd/es/typography';
+import VisitationList from '../../../modules/VisitationList';
 
 const VisitationHistory: React.FC = () => {
 	return (
 		<Space direction={'vertical'} size={36}>
 			<Title level={3} style={{ margin: 0 }}>Мои посещения</Title>
-			<Typography.Text>Раздел в разработке</Typography.Text>
-			{/* <VisitationList /> */}
+			<VisitationList />
 		</Space>
 	);
 };

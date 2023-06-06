@@ -14,7 +14,7 @@ interface Props {
 
 const WorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 	const [isCardHovered, setIsCardHovered] = useState(false);
-	const { navigateToWorkspacePage } = useWorkspaceCard(workspace.id);
+	const { navigateToWorkspacePage, navigateToWorkspaceExecutionPage } = useWorkspaceCard(workspace.id);
 
 	const copyNumber = async(event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
 		if (event) {
@@ -22,6 +22,7 @@ const WorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 		}
 		await navigator.clipboard.writeText(workspace.phone_number);
 	};
+
 	return (
 		<Card
 			style={{
@@ -133,7 +134,7 @@ const WorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 								style={{ width: '100%', marginTop: '10px' }}
 								type={isCardHovered ? 'primary' : 'default'}
 								size={'large'}
-								onClick={navigateToWorkspacePage}>
+								onClick={navigateToWorkspaceExecutionPage}>
 								Перейти к оформлению
 							</Button>
 						</Col>

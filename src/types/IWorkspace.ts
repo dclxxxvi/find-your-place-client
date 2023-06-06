@@ -17,14 +17,3 @@ export interface IWorkspace extends IBaseEntity, IAddress {
 	parameters: IBaseType[];
 	status: IBaseType;
 }
-
-export interface IWorkspaceFetchResult {
-	items: IWorkspace[];
-	message: string;
-	next_page: number;
-	page: number;
-	pages: number;
-	previous_page: number;
-	size: number;
-	total: number;
-}
