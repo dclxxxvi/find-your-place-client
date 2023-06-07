@@ -3,6 +3,7 @@ import { Card, Col, Progress, Rate, Row, Space, Typography } from 'antd';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import { useCallback } from 'react';
 import { getFeedbackPluralForm } from './consts';
+import _ from 'lodash';
 
 const renderProgressLine = (number: number, percent: number) => {
 	return (
@@ -49,9 +50,12 @@ const FeedbackInfo: React.FC<Props> = ({ rating, feedbackCount, ratingsCounter }
 				</Col>
 				<Col span={xs ? 24 : 11}>
 					<Space direction='vertical' style={{ width: '100%' }}>
-						{Array.from({ length: 5 }).map((_, index) => {
-							return renderProgressLine(index + 1, getRatingPercent(index + 1));
-						})}
+						{_.reverse(
+							Array.from({ length: 5 })
+								.map((__, index) => {
+									return renderProgressLine(index + 1, getRatingPercent(index + 1));
+								}),
+						)}
 					</Space>
 				</Col>
 			</Row>
