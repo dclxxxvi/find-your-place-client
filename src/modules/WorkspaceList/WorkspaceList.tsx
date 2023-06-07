@@ -48,6 +48,7 @@ const WorkspaceList: React.FC = () => {
 					current={page}
 					onChange={onPaginationChange}
 					showSizeChanger
+					hideOnSinglePage
 				/>
 			</Col>
 		</Row>

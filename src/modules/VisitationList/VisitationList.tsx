@@ -42,6 +42,7 @@ const VisitationList: React.FC = () => {
 					current={page}
 					onChange={onPaginationChange}
 					showSizeChanger
+					hideOnSinglePage
 				/>
 			</Col>
 		</Row>
