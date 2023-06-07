@@ -19,7 +19,7 @@ const UserData: React.FC<UserDataProps> = ({ control }) => {
 
 	return (
 		<Row gutter={[24, 24]}>
-			<Col sm={24} md={12}>
+			<Col xs={24} sm={24} md={12}>
 				<TextField
 					disabled
 					name={'first_name'}
@@ -27,7 +27,7 @@ const UserData: React.FC<UserDataProps> = ({ control }) => {
 					control={control}
 					label={'Имя'}/>
 			</Col>
-			<Col sm={24} md={12}>
+			<Col xs={24} sm={24} md={12}>
 				<TextField
 					disabled
 					name={'last_name'}
@@ -35,7 +35,7 @@ const UserData: React.FC<UserDataProps> = ({ control }) => {
 					control={control}
 					label={'Фамилия'}/>
 			</Col>
-			<Col sm={24} md={12}>
+			<Col xs={24} sm={24} md={12}>
 				<TextField
 					disabled
 					name={'username'}
