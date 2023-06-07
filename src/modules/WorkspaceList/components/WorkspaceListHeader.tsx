@@ -1,12 +1,13 @@
 import * as React from 'react';
 import Title from 'antd/es/typography/Title';
 import { Space } from 'antd';
-import { useGetWorkspacesQuery } from '../../../redux';
+import { useAppSelector, useGetWorkspacesQuery } from '../../../redux';
 import { useNavigate } from 'react-router-dom';
 import { AppRoutes } from '../../../router/routes';
 
 const WorkspaceListHeader: React.FC = () => {
-	const { data } = useGetWorkspacesQuery({});
+	const filterState = useAppSelector((state) => state.searchFilterReducer);
+	const { data } = useGetWorkspacesQuery(filterState);
 	const navigate = useNavigate();
 
 	return (
