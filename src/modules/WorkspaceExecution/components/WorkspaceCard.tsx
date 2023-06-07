@@ -5,12 +5,15 @@ import Typography from 'antd/es/typography';
 import RatingField from '../../WorkspaceCard/components/RatingField';
 import { type IWorkspace } from '../../../types';
 import { useNavigate } from 'react-router-dom';
+import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 
 interface Props {
 	workspace?: IWorkspace;
 }
 
 const WorkspaceCard: React.FC<Props> = ({ workspace }) => {
+	const { xs, sm, md, lg, xl } = useBreakpoint(true);
+
 	const navigate = useNavigate();
 
 	if (!workspace) {
@@ -20,16 +23,16 @@ const WorkspaceCard: React.FC<Props> = ({ workspace }) => {
 	return (
 		<Card size={'small'}>
 			<Row gutter={[24, 16]} justify={'center'}>
-				<Col xs={8} sm={6} md={5} span={4}>
+				<Col xs={24} sm={12} md={7} lg={12} xl={9} xxl={5}>
 					<ImageCarousel images={workspace.images} showOne />
 				</Col>
-				<Col xs={16} sm={18} md={19} span={20} style={{
+				<Col xs={24} sm={12} md={17} lg={12} xl={15} xxl={19} style={{
 					display: 'flex',
 					flexDirection: 'column',
 					justifyContent: 'space-between',
 				}}>
 					<Row align={'top'} justify={'space-between'}>
-						<Col span={14} lg={15} xl={17} xxl={16}>
+						<Col span={14} lg={15} xl={13} xxl={16}>
 							<Typography.Title
 								style={{ margin: 0, cursor: 'pointer' }}
 								level={5}
@@ -37,9 +40,12 @@ const WorkspaceCard: React.FC<Props> = ({ workspace }) => {
 							>{workspace.title}
 							</Typography.Title>
 						</Col>
-						<Col span={10} lg={9} xl={7} xxl={8}>
-							<Row justify='end'>
-								<RatingField rating={workspace.rating} commentsCount={workspace.comments.length}/>
+						<Col span={10} xs={24} sm={24} md={10} lg={24} xl={11} xxl={8}>
+							<Row justify={(lg && !xl) ? 'start' : 'end'}>
+								<RatingField
+									rating={workspace.rating}
+									commentsCount={workspace.comments.length}
+									isNextLine={((lg || sm || xs) && !xl && !md)}/>
 							</Row>
 						</Col>
 					</Row>
