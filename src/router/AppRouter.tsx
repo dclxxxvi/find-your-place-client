@@ -13,6 +13,7 @@ import {
 	VisitationHistory, Bonuses, Purchases, WorkspaceExecution,
 } from '../pages';
 import { PersonalCabinetRoutes } from './routes';
+import PrivateRoute from './PrivateRoute';
 
 const AppRouter: React.FC = () => {
 	return (
@@ -25,12 +26,18 @@ const AppRouter: React.FC = () => {
 							<Route index element={<Workspaces />}/>
 							<Route path={':id'}>
 								<Route index element={<Workspace />}/>
-								<Route path={'execution'} element={<WorkspaceExecution />}/>
+								<Route
+									path={'execution'}
+									element={ <PrivateRoute><WorkspaceExecution /></PrivateRoute>}
+								/>
 							</Route>
 							<Route path={'map'} element={<MapSearch />}/>
-							<Route path={'new'} element={<AddWorkspace />}/>
+							<Route path={'new'} element={<PrivateRoute><AddWorkspace /></PrivateRoute>}/>
 						</Route>
-						<Route path={PersonalCabinetRoutes.PROFILE} element={<PersonalCabinetLayout />}>
+						<Route
+							path={PersonalCabinetRoutes.PROFILE}
+							element={<PrivateRoute><PersonalCabinetLayout /></PrivateRoute>}
+						>
 							<Route path={PersonalCabinetRoutes.USER_DATA} element={<UserData />}/>
 							<Route path={PersonalCabinetRoutes.BONUSES} element={<Bonuses />}/>
 							<Route path={PersonalCabinetRoutes.PURCHASES} element={<Purchases />}/>

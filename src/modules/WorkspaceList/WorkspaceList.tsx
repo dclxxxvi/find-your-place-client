@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Card, Col, Pagination, Row, Skeleton } from 'antd';
 import WorkspaceCard from '../WorkspaceCard/WorkspaceCard';
 import { useAppSelector, useGetWorkspacesQuery } from '../../redux';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Typography from 'antd/es/typography';
 
 const WorkspaceList: React.FC = () => {
@@ -16,6 +16,11 @@ const WorkspaceList: React.FC = () => {
 	const { data, isLoading } = useGetWorkspacesQuery({ size: pageSize, page, ...filterState });
 
 	const workspaces = data?.data.items ?? [];
+
+	useEffect(() => {
+		setPage(1);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [filterState]);
 
 	if (isLoading) {
 		return <Card><Skeleton /></Card>;
@@ -43,6 +48,7 @@ const WorkspaceList: React.FC = () => {
 					current={page}
 					onChange={onPaginationChange}
 					showSizeChanger
+					hideOnSinglePage
 				/>
 			</Col>
 		</Row>

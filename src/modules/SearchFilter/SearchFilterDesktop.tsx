@@ -28,6 +28,7 @@ const SearchFilterDesktop: React.FC<Props> = ({ isGlobal }) => {
 					placeholder={parametersDictionary[0]?.category.name}
 					loading={isLoading}
 					allowClear
+					maxTagCount={'responsive'}
 					style={{ width: '100%' }} />
 			</Col>
 			<Col xxl={3} lg={3} md={3}>
@@ -38,6 +39,7 @@ const SearchFilterDesktop: React.FC<Props> = ({ isGlobal }) => {
 					placeholder={parametersDictionary[1]?.category.name}
 					loading={isLoading}
 					allowClear
+					maxTagCount={'responsive'}
 					style={{ width: '100%' }}/>
 			</Col>
 			<Col xxl={3} lg={3} md={3}>
@@ -48,6 +50,7 @@ const SearchFilterDesktop: React.FC<Props> = ({ isGlobal }) => {
 					placeholder={parametersDictionary[2]?.category.name}
 					loading={isLoading}
 					allowClear
+					maxTagCount={'responsive'}
 					style={{ width: '100%' }}/>
 			</Col>
 			{ isGlobal
