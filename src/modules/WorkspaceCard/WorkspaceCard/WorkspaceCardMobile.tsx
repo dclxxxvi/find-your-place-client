@@ -8,6 +8,7 @@ import RatingField from '../components/RatingField';
 import ImageCarousel from '../components/ImageCarousel';
 import PhoneNumber from '../components/PhoneNumber';
 import Address from '../components/Address';
+import MinTariffLabel from '../components/MinTariffLabel';
 
 interface Props {
 	workspace: IWorkspace;
@@ -66,9 +67,7 @@ const WorkspaceCardMobile: React.FC<Props> = ({ workspace }) => {
 							<Divider style={{ margin: '5px 0 ' }}/>
 						</Row>
 						<Row>
-							<Typography.Title level={5} style={{ width: '100%', margin: '5px 0' }}>
-								300 руб/час или 5000 руб/месяц
-							</Typography.Title>
+							<MinTariffLabel tariffs={workspace.tariffs}/>
 						</Row>
 						<Row>
 							<Col flex={'auto'}>

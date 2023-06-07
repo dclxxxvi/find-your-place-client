@@ -12,6 +12,7 @@ import CheckboxField from '../../form/fields/CheckboxField';
 import Typography from 'antd/es/typography';
 import { useAddress } from './hooks/useAddress';
 import ParametersFieldGroup from './components/ParametersFieldGroup';
+import TariffArrayField from './components/TariffArrayField';
 
 const DividerWithoutMargins = () => <Divider style={{ margin: 0 }}/>;
 
@@ -19,7 +20,7 @@ const AddWorkspaceForm: React.FC = () => {
 	const getAddressByString = useAddress();
 	const [addWorkspace, { isLoading }] = useAddWorkspaceMutation();
 
-	const { handleSubmit, control, reset } = useForm<IAddWorkspaceFormValues>({
+	const { handleSubmit, control, reset, getFieldState } = useForm<IAddWorkspaceFormValues>({
 		resolver: yupResolver(addWorkspaceSchema),
 	});
 
@@ -68,6 +69,8 @@ const AddWorkspaceForm: React.FC = () => {
 				<DividerWithoutMargins/>
 				<ParametersFieldGroup control={control} />
 				<DividerWithoutMargins/>
+				<TariffArrayField control={control} fieldState={getFieldState('tariffs')} />
+				<DividerWithoutMargins/>
 				<Typography.Text>Контакты места</Typography.Text>
 				{/* <MaskedInputField */}
 				{/*	name={'phone_number'} */}
@@ -87,7 +90,7 @@ const AddWorkspaceForm: React.FC = () => {
 						label={'Я согласен на обработку персональных данных'}
 					/>
 				</Space>
-				<Row justify={'end'} gutter={16}>
+				<Row justify={'end'} gutter={[16, 16]}>
 					<Col>
 						<Button onClick={() => reset()}>
 							Отмена

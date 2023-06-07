@@ -9,3 +9,4 @@ export * from './IAuthResponse';
 
 export * from './IPaginatedResult';
 export * from './IPaginationParams';
+export * from './ITariff';

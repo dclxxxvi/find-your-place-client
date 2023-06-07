@@ -16,7 +16,7 @@ const AddWorkspace: React.FC = () => {
 					</Breadcrumbs>
 				}/>
 				<Row>
-					<Col span={18}>
+					<Col span={24}>
 						<AddWorkspaceForm />
 					</Col>
 				</Row>

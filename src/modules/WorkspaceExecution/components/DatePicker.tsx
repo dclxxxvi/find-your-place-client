@@ -7,7 +7,7 @@ interface Props {
 
 const DatePicker: React.FC<Props> = ({ control }) => {
 	return (
-		<RangeField name={'dates'} control={control} />
+		<RangeField name={'startDate'} control={control} />
 	);
 };
 

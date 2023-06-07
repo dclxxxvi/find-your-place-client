@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Col, Divider, Image, Row } from 'antd';
+import { Button, Col, Divider, Image, Row, Space } from 'antd';
 import Typography from 'antd/es/typography';
 import useWorkspaceCard from '../hooks';
 import { type IWorkspace } from '../../../types';
@@ -9,6 +9,7 @@ import Parameters from '../WorkspaceCard/components/Parameters';
 import ImageCarousel from '../components/ImageCarousel';
 import Address from '../components/Address';
 import PhoneNumber from '../components/PhoneNumber';
+import MinTariffLabel from '../components/MinTariffLabel';
 
 interface Props {
 	workspace: IWorkspace;
@@ -89,22 +90,22 @@ const OverviewWorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 					<Parameters parameters={workspace.parameters} isOverviewCard={true}/>
 					<Divider style={{ margin: '5px 0 ' }}/>
 				</Row>
-
-				<Row align={'top'} justify={'space-between'}>
-
-					<Typography.Title
-						style={{ marginTop: 0 }}
-						level={4}
-					>10000 Рублей
-					</Typography.Title>
-				</Row>
-				<Row>
-					<Col flex={'auto'}>
-						<Button style={{ width: '100%' }} type={'primary'} onClick={navigateToWorkspaceExecutionPage}>
+				<Space direction={'vertical'} size={'middle'}>
+					<Row align={'top'} justify={'space-between'}>
+						<MinTariffLabel tariffs={workspace.tariffs}/>
+					</Row>
+					<Row>
+						<Col flex={'auto'}>
+							<Button
+								style={{ width: '100%' }}
+								type={'primary'}
+								onClick={navigateToWorkspaceExecutionPage}
+							>
 								Забронировать
-						</Button>
-					</Col>
-				</Row>
+							</Button>
+						</Col>
+					</Row>
+				</Space>
 			</Col>
 		</Row>
 	);

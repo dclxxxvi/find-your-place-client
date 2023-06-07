@@ -26,7 +26,7 @@ const WorkspaceExpanded: React.FC = () => {
 	}
 
 	return (
-		<Row gutter={[0, 36]}>
+		<Row gutter={[0, 50]}>
 			<Col span={24}>
 				<OverviewWorkspaceCard workspace={workspace} />
 			</Col>
@@ -46,7 +46,7 @@ const WorkspaceExpanded: React.FC = () => {
 				<WorkspaceContacts siteUrl={workspace.site_url} phoneNumber={workspace.phone_number} />
 			</Col>
 			<Col span={24}>
-				<WorkspaceTariffs/>
+				<WorkspaceTariffs tariffs={workspace.tariffs}/>
 			</Col>
 			<Col span={24}>
 				<WorkspaceFeedback workspace={workspace}/>
