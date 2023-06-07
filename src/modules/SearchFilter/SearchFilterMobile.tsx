@@ -49,6 +49,7 @@ const SearchFilterMobile: React.FC<Props> = ({ isGlobal }) => {
 					placeholder={parametersDictionary[0]?.category.name}
 					loading={isLoading}
 					allowClear
+					maxTagCount={'responsive'}
 					style={{ width: '100%' }} />
 			</Col>
 			<Col span={7}>
@@ -59,6 +60,7 @@ const SearchFilterMobile: React.FC<Props> = ({ isGlobal }) => {
 					placeholder={parametersDictionary[1]?.category.name}
 					loading={isLoading}
 					allowClear
+					maxTagCount={'responsive'}
 					style={{ width: '100%' }}/>
 			</Col>
 			<Col span={7}>
@@ -69,6 +71,7 @@ const SearchFilterMobile: React.FC<Props> = ({ isGlobal }) => {
 					placeholder={parametersDictionary[2]?.category.name}
 					loading={isLoading}
 					allowClear
+					maxTagCount={'responsive'}
 					style={{ width: '100%' }}/>
 			</Col>
 		</Row>
