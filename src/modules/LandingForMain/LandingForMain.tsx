@@ -5,6 +5,7 @@ import CardBenefitsList from './components/CardBenefits/CardBenefitsList';
 import CardToActionList from './components/CardToAction/CardToActionList';
 import ImportanceBlockList from './components/ImportanceBlock/ImportanceBlockList';
 import { Space, Typography } from 'antd';
+import ReferralProgramList from './components/ReferralProgram/ReferralProgramList';
 const LandingForMain: React.FC = () => {
 	return (
 		<Content>
@@ -14,6 +15,7 @@ const LandingForMain: React.FC = () => {
 					<Typography.Title level={2}>Несколько причин почему вам нужен коворкинг</Typography.Title>
 					<ImportanceBlockList />
 					<CardToActionList/>
+					<ReferralProgramList/>
 				</Space>
 			</PageWrapper>
 		</Content>
