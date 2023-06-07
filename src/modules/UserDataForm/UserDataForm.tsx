@@ -4,11 +4,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Col, notification, Row, Space } from 'antd';
 import TextField from '../../form/fields/TextField';
 import { type IUserDataFormValues, userDataSchema } from '../../form/schemas/userDataSchema';
-import { useGetUserQuery } from '../../redux';
+import { useEditUserMutation, useGetUserQuery } from '../../redux';
 import { useEffect } from 'react';
 
 const UserDataForm: React.FC = () => {
-	const { data, isLoading } = useGetUserQuery(null);
+	const { data, isLoading: isUserFetching } = useGetUserQuery(null);
+	const [editUser, { isLoading: isUserEditing }] = useEditUserMutation();
+	const isLoading = isUserFetching || isUserEditing;
 
 	const { handleSubmit, control, reset } = useForm<IUserDataFormValues>({
 		resolver: yupResolver(userDataSchema),
@@ -19,7 +21,7 @@ const UserDataForm: React.FC = () => {
 	}, [data?.data, reset]);
 
 	const onSubmit: SubmitHandler<IUserDataFormValues> = async(values) => {
-		new Promise((resolve) => resolve(values))
+		editUser(values).unwrap()
 			.then(() => {
 				notification.success({
 					message: 'Данные отредактированы',
@@ -44,9 +46,9 @@ const UserDataForm: React.FC = () => {
 					<Col sm={24} lg={12} style={{ width: '100%' }}>
 						<TextField disabled={isLoading} name={'username'} control={control} label={'Имя пользователя'}/>
 					</Col>
-					<Col sm={24} lg={12} style={{ width: '100%' }}>
-						<TextField disabled={isLoading} name={'phone'} control={control} label={'Телефон'}/>
-					</Col>
+					{/* <Col sm={24} lg={12} style={{ width: '100%' }}> */}
+					{/*	<TextField disabled={isLoading} name={'phone'} control={control} label={'Телефон'}/> */}
+					{/* </Col> */}
 				</Row>
 				<Row gutter={[24, 24]} justify='end'>
 					<Col>

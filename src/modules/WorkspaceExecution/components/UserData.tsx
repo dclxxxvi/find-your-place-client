@@ -43,14 +43,14 @@ const UserData: React.FC<UserDataProps> = ({ control }) => {
 					control={control}
 					label={'Имя пользователя'}/>
 			</Col>
-			<Col sm={24} md={12}>
-				<TextField
-					disabled
-					name={'phone'}
-					defaultValue={userData.phone}
-					control={control}
-					label={'Телефон'}/>
-			</Col>
+			{/* <Col sm={24} md={12}> */}
+			{/*	<TextField */}
+			{/*		disabled */}
+			{/*		name={'phone'} */}
+			{/*		defaultValue={userData.phone} */}
+			{/*		control={control} */}
+			{/*		label={'Телефон'}/> */}
+			{/* </Col> */}
 		</Row>
 	);
 };
