@@ -38,19 +38,19 @@ const UserData: React.FC<UserDataProps> = ({ control }) => {
 			<Col sm={24} md={12}>
 				<TextField
 					disabled
-					name={'username'}
-					defaultValue={userData.username}
+					name={'phone'}
+					defaultValue={userData.phone}
 					control={control}
-					label={'Имя пользователя'}/>
+					label={'Телефон'}/>
 			</Col>
-			{/* <Col sm={24} md={12}> */}
-			{/*	<TextField */}
-			{/*		disabled */}
-			{/*		name={'phone'} */}
-			{/*		defaultValue={userData.phone} */}
-			{/*		control={control} */}
-			{/*		label={'Телефон'}/> */}
-			{/* </Col> */}
+			<Col sm={24} md={12}>
+				<TextField
+					disabled
+					name={'email'}
+					defaultValue={userData.email}
+					control={control}
+					label={'Электронная почта'}/>
+			</Col>
 		</Row>
 	);
 };

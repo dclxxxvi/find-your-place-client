@@ -43,12 +43,16 @@ const UserDataForm: React.FC = () => {
 					<Col sm={24} lg={12} style={{ width: '100%' }}>
 						<TextField disabled={isLoading} name={'last_name'} control={control} label={'Фамилия'}/>
 					</Col>
-					<Col sm={24} lg={12} style={{ width: '100%' }}>
-						<TextField disabled={isLoading} name={'username'} control={control} label={'Имя пользователя'}/>
-					</Col>
 					{/* <Col sm={24} lg={12} style={{ width: '100%' }}> */}
-					{/*	<TextField disabled={isLoading} name={'phone'} control={control} label={'Телефон'}/> */}
+					{/*	<TextField disabled={isLoading} name={'username'} control={control}
+					label={'Имя пользователя'}/> */}
 					{/* </Col> */}
+					<Col sm={24} lg={12} style={{ width: '100%' }}>
+						<TextField disabled={isLoading} name={'phone'} control={control} label={'Телефон'}/>
+					</Col>
+					<Col sm={24} lg={12} style={{ width: '100%' }}>
+						<TextField disabled={isLoading} name={'email'} control={control} label={'Электронная почта'}/>
+					</Col>
 				</Row>
 				<Row gutter={[24, 24]} justify='end'>
 					<Col>
