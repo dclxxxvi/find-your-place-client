@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Controller, type ControllerRenderProps } from 'react-hook-form';
-import { DatePicker, type DatePickerProps } from 'antd';
+import { InputNumber, type InputNumberProps } from 'antd';
 import { type ReactNode } from 'react';
 import Label from '../../components/Label';
 import FieldWrapper from '../../components/FieldWrapper';
@@ -8,17 +8,13 @@ import ErrorMessage from '../../components/ErrorMessage';
 
 type ExcludedProps = keyof ControllerRenderProps | 'status';
 
-interface Props extends Omit<DatePickerProps, ExcludedProps> {
+interface Props extends Omit<InputNumberProps, ExcludedProps> {
 	name: string;
 	control: any; // TODO: поправить
 	label?: ReactNode;
 }
 
-const RangeField: React.FC<Props> = ({ name, label, control, ...rest }) => {
-	const onChange = (inputChange: (values: any) => void) => (values: any) => {
-		inputChange(values);
-	};
-
+const NumberField: React.FC<Props> = ({ name, label, control, ...rest }) => {
 	return (
 		<Controller
 			name={name}
@@ -26,13 +22,7 @@ const RangeField: React.FC<Props> = ({ name, label, control, ...rest }) => {
 			render={({ field, fieldState }) => (
 				<FieldWrapper>
 					<Label label={label} />
-					<DatePicker
-						{...field}
-						{...rest}
-						showTime
-						onChange={onChange(field.onChange)}
-						status={fieldState.invalid ? 'error' : ''}
-					/>
+					<InputNumber {...field} {...rest} status={fieldState.invalid ? 'error' : ''} />
 					<ErrorMessage fieldState={fieldState} />
 				</FieldWrapper>
 			)}
@@ -40,4 +30,4 @@ const RangeField: React.FC<Props> = ({ name, label, control, ...rest }) => {
 	);
 };
 
-export default React.memo(RangeField);
+export default React.memo(NumberField);

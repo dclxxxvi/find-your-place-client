@@ -40,4 +40,9 @@ export const workspaceMocks: IWorkspace[] = Array.from({ length: 10 }).map((_, i
 		tag: 'workspace_status',
 		id: '9af4bc80-57ad-4188-b0fa-58683dcf3070',
 	} as unknown as IBaseType,
+	tariffs: [
+		{ id: '1', title: 'Почасовой', cost: '200', interval: 'hour' },
+		{ id: '2', title: 'Дневной', cost: '1000', interval: 'day' },
+		{ id: '3', title: 'Целый месяц', cost: '13000', interval: 'month' },
+	],
 }));

@@ -5,10 +5,13 @@ import type dayjs from 'dayjs';
 
 export interface IExecuteVisitationFormValues extends IVisitation {
 	agree: boolean;
-	dates: [dayjs.Dayjs, dayjs.Dayjs];
+	startDate: dayjs.Dayjs;
+	endDate: dayjs.Dayjs;
+	tariff_id: string;
 }
 
 export const executeVisitationSchema = yup.object<IExecuteVisitationFormValues>({
 	agree: yup.boolean().required(REQUIRED_FIELD).isTrue(REQUIRED_FIELD),
-	dates: yup.array().required(REQUIRED_FIELD),
+	startDate: yup.object().required(REQUIRED_FIELD),
+	tariff_id: yup.string().required(REQUIRED_FIELD),
 }).required();

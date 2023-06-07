@@ -9,6 +9,7 @@ import Parameters from './components/Parameters';
 import ImageCarousel from '../components/ImageCarousel';
 import Address from '../components/Address';
 import PhoneNumber from '../components/PhoneNumber';
+import MinTariffLabel from '../components/MinTariffLabel';
 
 interface Props {
 	workspace: IWorkspace;
@@ -69,19 +70,13 @@ const WorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 							{workspace.description}
 						</Typography.Paragraph>
 					</Row>
-
 					<Row>
 						<Divider style={{ margin: '5px 0 ' }}/>
 						<Parameters parameters={workspace.parameters} isOverviewCard={true}/>
 						<Divider style={{ margin: '5px 0 ' }}/>
 					</Row>
-
 					<Row align={'top'} justify={'space-between'}>
-						<Typography.Title
-							style={{ margin: 0 }}
-							level={4}
-						>10000 Рублей
-						</Typography.Title>
+						<MinTariffLabel tariffs={workspace.tariffs}/>
 					</Row>
 					<Row>
 						<Col flex={'auto'}>

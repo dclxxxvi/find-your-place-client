@@ -35,10 +35,10 @@ const WorkspaceFeedback: React.FC<Props> = ({ workspace }) => {
 			<Row gutter={[24, 24]}>
 				{(!workspace.comments || workspace.comments.length === 0) &&
 					<Col>
-						<Title level={5}>Нет отзывов</Title>
+						<Title style={{ margin: 0 }} level={5}>Нет отзывов</Title>
 					</Col>
 				}
-				{ (workspace?.rating && workspace?.comments?.length) &&
+				{ (!!workspace?.rating && !!workspace?.comments?.length) &&
 				<Col xs={ 24 } sm={ 24 } md={ 24 } lg={ 10 } xxl={8}>
 					<FeedbackInfo
 						rating={ workspace?.rating }
