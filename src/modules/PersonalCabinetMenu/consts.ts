@@ -9,6 +9,7 @@ export enum MenuLabels {
 	PURCHASES = 'Мои покупки',
 	VISITATION_HISTORY = 'История посещений',
 	SUGGESTED_PLACES = 'Предложенные места',
+	QUIT = 'Выйти',
 }
 
 export const menuItems: ItemType[] = [
@@ -36,6 +37,11 @@ export const menuItems: ItemType[] = [
 			{
 				key: PersonalCabinetRoutes.SUGGESTED_PLACES,
 				label: MenuLabels.SUGGESTED_PLACES,
+			},
+			{
+				key: 'quit',
+				label: MenuLabels.QUIT,
+				danger: true,
 			},
 		],
 	},

@@ -29,8 +29,8 @@ const SuggestedWorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 					flexDirection: 'column',
 					justifyContent: 'space-between',
 				}}>
-					<Row gutter={24}>
-						<Col span={14}>
+					<Row gutter={24} justify='space-between'>
+						<Col span={14} xl={14} xxl={15}>
 							<Row align={'top'} justify={'space-between'}>
 								<Col span={24}>
 									<Typography.Title
@@ -52,19 +52,16 @@ const SuggestedWorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 									</Typography.Paragraph>
 								</Col>
 							</Row>
-							<Row>
-								<Col span={24}>
-									<Typography.Title level={5}>
-										Адрес
-									</Typography.Title>
-								</Col>
-								<Col span={24}>
-									<Address locationValue={workspace.location_value}/>
-								</Col>
+						</Col>
+						<Col span={10} xl={10} xxl={9}>
+							<Row justify='end'>
+								<StatusViewer status={workspace.status} />
 							</Row>
 						</Col>
-						<Col span={10}>
-							<StatusViewer status={workspace.status} />
+					</Row>
+					<Row>
+						<Col span={24}>
+							<Address locationValue={workspace.location_value}/>
 						</Col>
 					</Row>
 				</Col>

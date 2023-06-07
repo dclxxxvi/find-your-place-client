@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { useGetUserWorkspacesQuery } from '../../redux';
-import { Col, Pagination, Row } from 'antd';
+import { Card, Col, Pagination, Row, Skeleton } from 'antd';
 import SuggestedWorkspaceCard from '../WorkspaceCard/SuggestedWorkspaceCard';
+import Typography from 'antd/es/typography';
 
 const SuggestedList: React.FC = () => {
 	const [page, setPage] = useState(1);
@@ -12,9 +13,17 @@ const SuggestedList: React.FC = () => {
 		setPageSize(_pageSize);
 	};
 
-	const { data } = useGetUserWorkspacesQuery({ size: pageSize, page });
+	const { data, isLoading } = useGetUserWorkspacesQuery({ size: pageSize, page });
 
 	const workspaces = data?.data.items ?? [];
+
+	if (isLoading) {
+		return <Card><Skeleton /></Card>;
+	}
+
+	if (!workspaces.length && !isLoading) {
+		return <Typography.Text>Ничего не найдено</Typography.Text>;
+	}
 
 	return (
 		<Row gutter={[0, 24]}>
@@ -25,7 +34,7 @@ const SuggestedList: React.FC = () => {
 					</Col>
 				);
 			})}
-			{ data?.data && <Col>
+			<Col>
 				<Pagination
 					total={ data?.data.total }
 					showTotal={ (total, range) => `${range[0]}-${range[1]} из ${total} элементов` }
@@ -35,7 +44,7 @@ const SuggestedList: React.FC = () => {
 					onChange={onPaginationChange}
 					showSizeChanger
 				/>
-			</Col> }
+			</Col>
 		</Row>
 	);
 };

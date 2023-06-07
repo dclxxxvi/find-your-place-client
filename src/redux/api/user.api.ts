@@ -24,10 +24,22 @@ const userApi = commonApi.injectEndpoints({
 			},
 			invalidatesTags: [ETagTypes.USER],
 		}),
-		registration: builder.mutation<IUser, IUser>({
+		registration: builder.mutation<IAuthResponse, IUser>({
 			query: body => ({
-				url: 'user/registration',
+				url: 'user/registartion',
 				method: 'POST',
+				body,
+			}),
+			transformResponse: (response: IAuthResponse) => {
+				localStorage.setItem('access-token', `Bearer ${response.access_token}`);
+				return response;
+			},
+			invalidatesTags: [ETagTypes.USER],
+		}),
+		editUser: builder.mutation<IUser, IUser>({
+			query: body => ({
+				url: 'user',
+				method: 'PATCH',
 				body,
 			}),
 			invalidatesTags: [ETagTypes.USER],
@@ -36,6 +48,8 @@ const userApi = commonApi.injectEndpoints({
 });
 
 export const {
-	useLoginMutation,
 	useGetUserQuery,
+	useRegistrationMutation,
+	useLoginMutation,
+	useEditUserMutation,
 } = userApi;
