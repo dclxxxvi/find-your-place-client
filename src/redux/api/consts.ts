@@ -29,13 +29,21 @@ export function getFromFormData(formData: FormData, key: string): string {
 	return '';
 }
 
-export const prepareParams = (params: IWorkspaceParams): any => {
-	return {
-		...params,
-		rooms: params.rooms?.length ? params.rooms : undefined,
-		additional: params.additional?.length ? params.additional : undefined,
-		features: params.features?.length ? params.features : undefined,
-	};
+export const prepareParams = (params: IWorkspaceParams): string => {
+	const searchParams = new URLSearchParams();
+
+	Object.entries(params).forEach(([key, param]) => {
+		if (typeof param === 'string' || typeof param === 'number') {
+			searchParams.append(key, String(param));
+		}
+		if (typeof param === 'object') {
+			param.forEach((p: any) => {
+				searchParams.append(key, p);
+			});
+		}
+	});
+
+	return searchParams.toString();
 };
 
 export const prepareAddWorkspaceBody = (body: IAddWorkspaceFormValues): any => {
