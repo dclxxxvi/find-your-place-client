@@ -14,7 +14,7 @@ const UserData: React.FC<UserDataProps> = ({ control }) => {
 	const userData = data?.data;
 
 	if (isLoading || !userData) {
-		return <Skeleton />;
+		return <Skeleton active/>;
 	}
 
 	return (

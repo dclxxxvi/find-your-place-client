@@ -20,7 +20,7 @@ const PrivateRoute: React.FC<PropsWithChildren> = ({ children }) => {
 		}
 	}, [userData, isLoading]);
 
-	if (!userData?.data?.username) {
+	if (!userData?.data?.username && !isLoading) {
 		return <Navigate to={'../'} />;
 	}
 

@@ -1,15 +1,18 @@
 import * as React from 'react';
 import Title from 'antd/es/typography/Title';
-import { Space } from 'antd';
-import Typography from 'antd/es/typography';
+import { Col, Row } from 'antd';
+import PurchaseList from '../../../modules/PurchaseList';
 
 const Purchases: React.FC = () => {
 	return (
-		<Space direction={'vertical'} size={36}>
-			<Title level={3} style={{ margin: 0 }}>Мои покупки</Title>
-			<Typography.Text>Раздел в разработке</Typography.Text>
-			{/* <PurchaseList /> */}
-		</Space>
+		<Row gutter={[36, 36]}>
+			<Col span={24}>
+				<Title level={3} style={{ margin: 0 }}>Мои покупки</Title>
+			</Col>
+			<Col span={24}>
+				<PurchaseList />
+			</Col>
+		</Row>
 	);
 };
 

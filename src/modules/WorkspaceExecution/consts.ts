@@ -3,7 +3,6 @@ import { type IExecuteVisitationFormValues } from '../../form/schemas/executeVis
 import { type IVIsitationCreation } from '../../types/IVisitation';
 import { type ITariff } from '../../types';
 import type dayjs from 'dayjs';
-require('dayjs/locale/ru');
 
 export const prepareValues = (
 	values: IExecuteVisitationFormValues,
@@ -30,8 +29,4 @@ export const getEndDate = (startDate?: dayjs.Dayjs, tariff?: ITariff) => {
 		return startDate.add(1, 'hour');
 	}
 	return startDate.add(1, tariff.interval as dayjs.ManipulateType);
-};
-
-export const getFormattedDate = (date?: dayjs.Dayjs): string | undefined => {
-	return date?.locale('ru').format('HH:MM D MMMM') || '...';
 };

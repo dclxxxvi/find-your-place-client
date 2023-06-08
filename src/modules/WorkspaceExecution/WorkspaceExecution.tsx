@@ -11,9 +11,10 @@ import UserData from './components/UserData';
 import CardWithTitle from './components/CardWithTitile';
 import WorkspaceCard from './components/WorkspaceCard';
 import DatePicker from './components/DatePicker';
-import { getEndDate, getFormattedDate, getTariff, prepareValues } from './consts';
+import { getEndDate, getTariff, prepareValues } from './consts';
 import TariffChoose from './components/TariffChoose';
 import { useEffect, useMemo } from 'react';
+import { getFormattedDate } from '../WorkspaceCard/consts';
 
 const WorkspaceExecution: React.FC = () => {
 	const location = useLocation();

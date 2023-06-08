@@ -17,7 +17,7 @@ const WorkspaceCard: React.FC<Props> = ({ workspace }) => {
 	const navigate = useNavigate();
 
 	if (!workspace) {
-		return <Skeleton/>;
+		return <Skeleton active/>;
 	}
 
 	return (

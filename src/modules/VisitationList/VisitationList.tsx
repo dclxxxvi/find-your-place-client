@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { Card, Col, Pagination, Row, Skeleton } from 'antd';
+import { Col, Pagination, Row } from 'antd';
 import VisitationWorkspaceCard from '../WorkspaceCard/VisitationWorkspaceCard/VisitationWorkspaceCard';
 import { useGetVisitationsQuery } from '../../redux';
 import { useState } from 'react';
 import Typography from 'antd/es/typography';
+import SkeletonCardList from '../../components/SkeletonCardList';
 
 const VisitationList: React.FC = () => {
 	const [page, setPage] = useState(1);
@@ -17,7 +18,7 @@ const VisitationList: React.FC = () => {
 	const visitations = data?.data.items ?? [];
 
 	if (isLoading) {
-		return <Card><Skeleton /></Card>;
+		return <SkeletonCardList />;
 	}
 
 	if (!visitations.length && !isLoading) {
