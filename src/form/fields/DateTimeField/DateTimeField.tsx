@@ -14,7 +14,7 @@ interface Props extends Omit<DatePickerProps, ExcludedProps> {
 	label?: ReactNode;
 }
 
-const RangeField: React.FC<Props> = ({ name, label, control, ...rest }) => {
+const DateTimeField: React.FC<Props> = ({ name, label, control, ...rest }) => {
 	const onChange = (inputChange: (values: any) => void) => (values: any) => {
 		inputChange(values);
 	};
@@ -40,4 +40,4 @@ const RangeField: React.FC<Props> = ({ name, label, control, ...rest }) => {
 	);
 };
 
-export default React.memo(RangeField);
+export default React.memo(DateTimeField);

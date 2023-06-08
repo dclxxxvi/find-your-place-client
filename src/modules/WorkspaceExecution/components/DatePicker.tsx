@@ -1,5 +1,5 @@
 import * as React from 'react';
-import RangeField from '../../../form/fields/RangeField/RangeField';
+import RangeField from '../../../form/fields/DateTimeField/DateTimeField';
 
 interface Props {
 	control: any;
