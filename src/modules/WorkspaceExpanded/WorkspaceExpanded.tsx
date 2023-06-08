@@ -18,7 +18,7 @@ const WorkspaceExpanded: React.FC = () => {
 	const workspace = data?.data;
 
 	if (isLoading) {
-		return <Skeleton/>;
+		return <Skeleton active/>;
 	}
 
 	if (!workspace) {

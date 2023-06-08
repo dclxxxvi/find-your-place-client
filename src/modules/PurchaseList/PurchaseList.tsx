@@ -1,47 +1,55 @@
 import * as React from 'react';
-import { type IBaseType } from '../../types';
-import { Col, Row, Space } from 'antd';
-import BaseTypeSelect from '../../shared/BaseTypeSelect';
+import { Col, Pagination, Row } from 'antd';
 import { useState } from 'react';
-import { workspaceMocks } from '../../mocks/workspaces';
+import { useGetVisitationsQuery } from '../../redux';
+import Typography from 'antd/es/typography';
 import PurchaseWorkspaceCard from '../WorkspaceCard/PurchaseWorkspaceCard/PurchaseWorkspaceCard';
-
-const dictMocks: IBaseType[] = [
-	{ id: '1', code_name: 'ExampleCode1', name: 'Первый пример' },
-	{ id: '2', code_name: 'ExampleCode2', name: 'Второй пример' },
-	{ id: '3', code_name: 'ExampleCode3', name: 'Третий пример' },
-	{ id: '4', code_name: 'ExampleCode4', name: 'Четвертый пример' },
-	{ id: '5', code_name: 'ExampleCode5', name: 'Пятый пример' },
-	{ id: '6', code_name: 'ExampleCode6', name: 'Шестой пример' },
-] as IBaseType[];
+import SkeletonCardList from '../../components/SkeletonCardList/SkeletonCardList';
 
 const PurchaseList: React.FC = () => {
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const [status, setStatus] = useState<string | undefined>();
-	const handleStatusChange = (value?: string) => setStatus(value);
+	// const [status, setStatus] = useState<string | undefined>();
+	// const handleStatusChange = (value?: string) => setStatus(value);
+
+	const [page, setPage] = useState(1);
+	const [pageSize, setPageSize] = useState(5);
+	const onPaginationChange = (_page: number, _pageSize: number) => {
+		setPage(_page);
+		setPageSize(_pageSize);
+	};
+	const { data, isLoading } = useGetVisitationsQuery({ size: pageSize, page });
+
+	const visitations = data?.data.items ?? [];
+
+	if (isLoading) {
+		return <SkeletonCardList />;
+	}
+
+	if (!visitations.length && !isLoading) {
+		return <Typography.Text>Ничего не найдено</Typography.Text>;
+	}
 
 	return (
-		<Space direction={'vertical'} size={'large'}>
-			<Row justify={'end'}>
-				<Col lg={6} md={12} sm={24}>
-					<BaseTypeSelect
-						style={{ width: '100%' }}
-						dictionary={dictMocks}
-						handleChange={handleStatusChange}
-						placeholder={'Статус'}
-					/>
-				</Col>
-			</Row>
-			<Row gutter={[0, 24]}>
-				{workspaceMocks.map(ws => {
-					return (
-						<Col span={24} key={ws.id}>
-							<PurchaseWorkspaceCard workspace={ws}/>
-						</Col>
-					);
-				})}
-			</Row>
-		</Space>
+		<Row gutter={[0, 24]}>
+			{visitations.map(visitation => {
+				return (
+					<Col span={24} key={visitation.id}>
+						<PurchaseWorkspaceCard visitation={visitation}/>
+					</Col>
+				);
+			})}
+			<Col>
+				<Pagination
+					total={ data?.data.total }
+					showTotal={ (total, range) => `${range[0]}-${range[1]} из ${total} элементов` }
+					pageSizeOptions={[3, 5, 10]}
+					pageSize={pageSize}
+					current={page}
+					onChange={onPaginationChange}
+					showSizeChanger
+					hideOnSinglePage
+				/>
+			</Col>
+		</Row>
 	);
 };
 

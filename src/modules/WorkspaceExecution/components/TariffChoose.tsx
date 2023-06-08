@@ -45,7 +45,7 @@ interface Props {
 
 const TariffChoose: React.FC<Props> = ({ tariffs, control }) => {
 	if (!tariffs) {
-		return <Skeleton/>;
+		return <Skeleton active/>;
 	}
 
 	const onChange = (handleChange: (value: any) => void) => (e: RadioChangeEvent) => {

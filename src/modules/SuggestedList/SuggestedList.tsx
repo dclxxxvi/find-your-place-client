@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { useGetUserWorkspacesQuery } from '../../redux';
-import { Card, Col, Pagination, Row, Skeleton } from 'antd';
+import { Col, Pagination, Row } from 'antd';
 import SuggestedWorkspaceCard from '../WorkspaceCard/SuggestedWorkspaceCard';
 import Typography from 'antd/es/typography';
+import SkeletonCardList from '../../components/SkeletonCardList';
 
 const SuggestedList: React.FC = () => {
 	const [page, setPage] = useState(1);
@@ -18,7 +19,7 @@ const SuggestedList: React.FC = () => {
 	const workspaces = data?.data.items ?? [];
 
 	if (isLoading) {
-		return <Card><Skeleton /></Card>;
+		return <SkeletonCardList />;
 	}
 
 	if (!workspaces.length && !isLoading) {

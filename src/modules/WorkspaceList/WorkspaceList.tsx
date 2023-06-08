@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { Card, Col, Pagination, Row, Skeleton } from 'antd';
+import { Col, Pagination, Row } from 'antd';
 import WorkspaceCard from '../WorkspaceCard/WorkspaceCard';
 import { useAppSelector, useGetWorkspacesQuery } from '../../redux';
 import { useEffect, useState } from 'react';
 import Typography from 'antd/es/typography';
+import SkeletonCardList from '../../components/SkeletonCardList';
 
 const WorkspaceList: React.FC = () => {
 	const [page, setPage] = useState(1);
@@ -23,7 +24,7 @@ const WorkspaceList: React.FC = () => {
 	}, [filterState]);
 
 	if (isLoading) {
-		return <Card><Skeleton /></Card>;
+		return <SkeletonCardList />;
 	}
 
 	if (!workspaces.length && !isLoading) {

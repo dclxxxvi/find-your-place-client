@@ -13,7 +13,7 @@ const PropertiesOfAdvantagesList: React.FC = () => {
 
 	if (!dictionaries?.parametersDictionary?.length) {
 		return <Row>
-			<Skeleton />
+			<Skeleton active/>
 		</Row>;
 	}
 

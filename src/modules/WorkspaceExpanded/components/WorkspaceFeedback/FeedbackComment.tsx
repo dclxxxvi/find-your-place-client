@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Card, Col, Rate, Row, Space, Typography } from 'antd';
 import { type IComment } from '../../../../types/IComment';
+import { getFormattedDate } from '../../../WorkspaceCard/consts';
+import dayjs from 'dayjs';
 
 interface Props {
 	comment: IComment;
@@ -40,7 +42,7 @@ const FeedbackComment: React.FC<Props> = ({ comment }) => {
 				</Col>
 				<Col span={6} style={{ display: 'flex', justifyContent: 'end' }}>
 					<Typography.Paragraph>
-						{comment.createdAt?.toLocaleDateString()}
+						{getFormattedDate(dayjs(comment.createdAt))}
 					</Typography.Paragraph>
 				</Col>
 			</Row>

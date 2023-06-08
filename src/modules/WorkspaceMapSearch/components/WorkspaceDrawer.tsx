@@ -16,7 +16,7 @@ const WorkspaceDrawer: React.FC<Props> = ({ open, onClose, workspaceId }) => {
 	);
 
 	if (isLoading) {
-		return <Skeleton/>;
+		return <Skeleton active/>;
 	}
 
 	const workspace = data?.data;
