@@ -90,7 +90,7 @@ const OverviewWorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 					<Parameters parameters={workspace.parameters} isOverviewCard={true}/>
 					<Divider style={{ margin: '5px 0 ' }}/>
 				</Row>
-				<Space direction={'vertical'} size={'middle'}>
+				<Space direction={'vertical'} size={'middle'} style={{ marginTop: 16 }}>
 					<Row align={'top'} justify={'space-between'}>
 						<MinTariffLabel tariffs={workspace.tariffs}/>
 					</Row>

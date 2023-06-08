@@ -75,11 +75,11 @@ const WorkspaceCardDesktop: React.FC<Props> = ({ workspace }) => {
 						<Parameters parameters={workspace.parameters} isOverviewCard={true}/>
 						<Divider style={{ margin: '5px 0 ' }}/>
 					</Row>
-					<Row align={'top'} justify={'space-between'}>
-						<MinTariffLabel tariffs={workspace.tariffs}/>
-					</Row>
-					<Row>
-						<Col flex={'auto'}>
+					<Row align={'top'} justify={'space-between'} style={{ marginTop: 16 }}>
+						<Col span={24}>
+							<MinTariffLabel tariffs={workspace.tariffs}/>
+						</Col>
+						<Col span={24} flex={'auto'}>
 							<Button
 								style={{ width: '100%', marginTop: '10px' }}
 								type={isCardHovered ? 'primary' : 'default'}

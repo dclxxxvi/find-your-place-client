@@ -8,9 +8,8 @@ const workspaceApi = commonApi.injectEndpoints({
 	endpoints: builder => ({
 		getWorkspaces: builder.query<IResponse<IPaginatedResult<IWorkspace>>, IWorkspaceParams>({
 			query: (params) => ({
-				url: 'workspace',
+				url: `workspace?${prepareParams(params)}`,
 				method: 'GET',
-				params: prepareParams(params),
 			}),
 			providesTags: (result) => [
 				ETagTypes.WORKSPACES,

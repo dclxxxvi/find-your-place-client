@@ -17,10 +17,10 @@ const MinTariffLabel: React.FC<Props> = ({ tariffs }) => {
 
 	return (
 		<Typography.Title
-			style={{ marginTop: 0 }}
+			style={{ margin: 0 }}
 			level={4}
 		>
-			От {minTariff?.cost} рублей в {tariffLabel}
+			от {minTariff?.cost} рублей в {tariffLabel}
 		</Typography.Title>
 	);
 };
