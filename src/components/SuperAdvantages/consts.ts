@@ -9,4 +9,5 @@ export enum icons {
 	wifi = 'Wi-Fi',
 	meeting_room = 'Переговорные комнаты',
 	local_cafe = 'Чай, кофе',
+	paid = 'Почасовая оплата',
 }
