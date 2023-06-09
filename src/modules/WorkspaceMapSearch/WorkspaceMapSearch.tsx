@@ -23,7 +23,7 @@ const WorkspaceMapSearch: React.FC = () => {
 			<Map
 				state={{
 					center,
-					zoom: 9,
+					zoom: 11,
 					controls: [],
 				}}
 				height="80vh"
