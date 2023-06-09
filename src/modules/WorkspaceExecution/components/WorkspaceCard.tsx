@@ -1,11 +1,13 @@
 import * as React from 'react';
-import { Card, Col, Row, Space, Skeleton } from 'antd';
+import { Card, Col, Row, Skeleton } from 'antd';
 import ImageCarousel from '../../WorkspaceCard/components/ImageCarousel';
 import Typography from 'antd/es/typography';
 import RatingField from '../../WorkspaceCard/components/RatingField';
 import { type IWorkspace } from '../../../types';
 import { useNavigate } from 'react-router-dom';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
+import Address from '../../WorkspaceCard/components/Address';
+import PhoneNumber from '../../WorkspaceCard/components/PhoneNumber';
 
 interface Props {
 	workspace?: IWorkspace;
@@ -51,37 +53,12 @@ const WorkspaceCard: React.FC<Props> = ({ workspace }) => {
 					</Row>
 					<Row>
 						<Col span={24}>
-							<Typography.Link>
-								<Space align='center'>
-									<span className="material-symbols-outlined" style={{
-										display: 'flex',
-										alignItems: 'center',
-										justifyContent: 'center',
-										padding: '2px',
-										boxSizing: 'content-box',
-									}}>
-									location_on
-									</span>
-									{workspace.location_value}
-								</Space>
-							</Typography.Link>
+							<Address locationValue={workspace.location_value}/>
 						</Col>
 					</Row>
 					<Row>
 						<Col span={24}>
-							<Typography.Link>
-								<Space align='center'>
-									<span className="material-symbols-outlined" style={{
-										display: 'flex',
-										alignItems: 'center',
-										justifyContent: 'center',
-										padding: '2px',
-										boxSizing: 'content-box',
-									}}>
-										call</span>
-									{workspace.phone_number}
-								</Space>
-							</Typography.Link>
+							<PhoneNumber phoneNumber={workspace.phone_number}/>
 						</Col>
 					</Row>
 				</Col>

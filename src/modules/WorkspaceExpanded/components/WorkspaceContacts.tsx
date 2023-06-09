@@ -3,6 +3,7 @@ import { EAnchorTabs, EAnchorTabsLabels } from '../consts';
 import Title from 'antd/es/typography/Title';
 import { Col, Row, Space } from 'antd';
 import Typography from 'antd/es/typography';
+import PhoneNumber from '../../WorkspaceCard/components/PhoneNumber';
 
 interface Props {
 	siteUrl?: string;
@@ -14,12 +15,12 @@ const WorkspaceContacts: React.FC<Props> = ({ phoneNumber, siteUrl }) => {
 		<Space id={EAnchorTabs.CONTACTS} direction={'vertical'} size={'large'} style={{ width: '100%' }}>
 			<Title style={{ margin: 0 }} level={3}>{EAnchorTabsLabels.CONTACTS}</Title>
 			<Row gutter={[24, 24]}>
-				<Col span={12} xs={24} sm={12} md={6} xxl={4}>
-					<Space direction={'vertical'}>
-						<Typography.Title level={5} style={{ margin: 0 }}>Номер телефона</Typography.Title>
-						<Typography.Text>{phoneNumber || 'Не указан'}</Typography.Text>
+				{ phoneNumber && <Col span={ 12 } xs={ 24 } sm={ 12 } md={ 6 } xxl={ 4 }>
+					<Space direction={ 'vertical' }>
+						<Typography.Title level={ 5 } style={ { margin: 0 } }>Номер телефона</Typography.Title>
+						<PhoneNumber phoneNumber={ phoneNumber }/>
 					</Space>
-				</Col>
+				</Col> }
 				<Col span={12} xs={24} sm={12} md={6} xxl={4}>
 					<Space direction={'vertical'}>
 						<Typography.Title level={5} style={{ margin: 0 }}>Сайт</Typography.Title>
