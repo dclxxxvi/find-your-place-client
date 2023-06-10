@@ -42,7 +42,7 @@ const FeedbackComment: React.FC<Props> = ({ comment }) => {
 				</Col>
 				<Col span={6} style={{ display: 'flex', justifyContent: 'end' }}>
 					<Typography.Paragraph>
-						{getFormattedDate(dayjs(comment.createdAt))}
+						{getFormattedDate(dayjs(comment.created_at))}
 					</Typography.Paragraph>
 				</Col>
 			</Row>
