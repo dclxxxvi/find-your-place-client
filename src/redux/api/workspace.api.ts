@@ -49,11 +49,11 @@ const workspaceApi = commonApi.injectEndpoints({
 			}),
 			invalidatesTags: [ETagTypes.WORKSPACES, ETagTypes.USER_WORKSPACES],
 		}),
-		editWorkspace: builder.mutation<IWorkspace, IWorkspace>({
+		editWorkspace: builder.mutation<IWorkspace, IAddWorkspaceFormValues>({
 			query: body => ({
-				url: `workspaces/${body.id}`,
+				url: `workspace/${body.id}`,
 				method: 'PUT',
-				body,
+				body: prepareAddWorkspaceBody(body),
 			}),
 			invalidatesTags: (result, error, { id }) => [
 				{ type: ETagTypes.WORKSPACES, id },

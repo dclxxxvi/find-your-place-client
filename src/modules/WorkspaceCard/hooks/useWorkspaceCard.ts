@@ -13,8 +13,13 @@ export const useWorkspaceCard = (workspaceId: string) => {
 		() => navigate(`${AppRoutes.WORKSPACES}/${workspaceId}/execution`),
 		[workspaceId, navigate]);
 
+	const navigateToWorkspaceEditPage = useCallback(
+		() => navigate(`${AppRoutes.WORKSPACES}/${workspaceId}/edit`),
+		[workspaceId, navigate]);
+
 	return {
 		navigateToWorkspacePage,
 		navigateToWorkspaceExecutionPage,
+		navigateToWorkspaceEditPage,
 	};
 };

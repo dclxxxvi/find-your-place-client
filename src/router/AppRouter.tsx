@@ -14,6 +14,7 @@ import {
 } from '../pages';
 import { PersonalCabinetRoutes } from './routes';
 import PrivateRoute from './PrivateRoute';
+import EditWorkspace from '../pages/EditWorkspace/EditWorkspace';
 
 const AppRouter: React.FC = () => {
 	return (
@@ -29,6 +30,10 @@ const AppRouter: React.FC = () => {
 								<Route
 									path={'execution'}
 									element={ <PrivateRoute><WorkspaceExecution /></PrivateRoute>}
+								/>
+								<Route
+									path={'edit'}
+									element={ <PrivateRoute><EditWorkspace /></PrivateRoute>}
 								/>
 							</Route>
 							<Route path={'map'} element={<MapSearch />}/>

@@ -1,10 +1,10 @@
 import * as yup from 'yup';
-import { type IBaseType, type IWorkspace } from '../../types';
+import { type IWorkspace } from '../../types';
 import { MAX_ELEMENTS, MIN_ELEMENTS, REQUIRED_FIELD } from './errorMessages';
 
 export interface IAddWorkspaceFormValues extends IWorkspace {
 	agree: boolean;
-	parametersToAdd: IBaseType[][];
+	parametersToAdd: string[][];
 }
 
 export const addWorkspaceSchema = yup.object<IAddWorkspaceFormValues>({

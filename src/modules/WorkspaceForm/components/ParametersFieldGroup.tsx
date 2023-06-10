@@ -6,9 +6,10 @@ import { useDictionaries } from '../../../hooks';
 
 interface Props {
 	control: any;
+	disabled?: boolean;
 }
 
-const ParametersFieldGroup: React.FC<Props> = ({ control }) => {
+const ParametersFieldGroup: React.FC<Props> = ({ control, disabled }) => {
 	const { parametersDictionary, isLoading } = useDictionaries();
 
 	return (
@@ -28,6 +29,7 @@ const ParametersFieldGroup: React.FC<Props> = ({ control }) => {
 									dictionary={parameters.dictionary}
 									label={parameters.category.name}
 									loading={isLoading}
+									disabled={disabled}
 								/>
 							</Col>
 						);

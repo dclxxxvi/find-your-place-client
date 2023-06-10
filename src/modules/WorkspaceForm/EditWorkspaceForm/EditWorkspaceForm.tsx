@@ -1,22 +1,22 @@
 import * as React from 'react';
 import { Button, Col, Divider, notification, Row, Space } from 'antd';
 import { type SubmitHandler, useForm } from 'react-hook-form';
-import TextField from '../../form/fields/TextField';
-import TextAreaField from '../../form/fields/TextAreaField';
-import { addWorkspaceSchema, type IAddWorkspaceFormValues } from '../../form/schemas/addWorkspaceSchema';
+import TextField from '../../../form/fields/TextField';
+import TextAreaField from '../../../form/fields/TextAreaField';
+import { addWorkspaceSchema, type IAddWorkspaceFormValues } from '../../../form/schemas/addWorkspaceSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
-import AddressField from '../../form/fields/AddressField';
-import ImageUploadField from '../../form/fields/ImageUploadField';
-import { useAddWorkspaceMutation } from '../../redux';
-import CheckboxField from '../../form/fields/CheckboxField';
+import AddressField from '../../../form/fields/AddressField';
+import ImageUploadField from '../../../form/fields/ImageUploadField';
+import { useAddWorkspaceMutation } from '../../../redux';
+import CheckboxField from '../../../form/fields/CheckboxField';
 import Typography from 'antd/es/typography';
-import { useAddress } from './hooks/useAddress';
-import ParametersFieldGroup from './components/ParametersFieldGroup';
-import TariffArrayField from './components/TariffArrayField';
+import { useAddress } from '../hooks/useAddress';
+import ParametersFieldGroup from './../components/ParametersFieldGroup';
+import TariffArrayField from './../components/TariffArrayField';
 
 const DividerWithoutMargins = () => <Divider style={{ margin: 0 }}/>;
 
-const AddWorkspaceForm: React.FC = () => {
+const EditWorkspaceForm: React.FC = () => {
 	const getAddressByString = useAddress();
 	const [addWorkspace, { isLoading }] = useAddWorkspaceMutation();
 
@@ -107,4 +107,4 @@ const AddWorkspaceForm: React.FC = () => {
 	);
 };
 
-export default AddWorkspaceForm;
+export default EditWorkspaceForm;

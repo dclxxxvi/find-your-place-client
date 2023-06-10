@@ -5,19 +5,19 @@ import { Col, Row } from 'antd';
 import PageHeader from '../../components/PageHeader';
 import AddWorkspaceForm from '../../modules/WorkspaceForm/AddWorkspaceForm';
 
-const AddWorkspace: React.FC = () => {
+const EditWorkspace: React.FC = () => {
 	return (
 		<Content>
 			<PageWrapper>
-				<PageHeader title={'Добавление пространства'} breadcrumbs={
+				<PageHeader title={'Редактирование пространства'} breadcrumbs={
 					<Breadcrumbs>
 						<BreadcrumbItem to={'/'} >Главная</BreadcrumbItem>
-						<BreadcrumbItem to={'/workspaces/new'}>Добавление пространства</BreadcrumbItem>
+						<BreadcrumbItem to={'/profile/suggested_places'} >Предложенные места</BreadcrumbItem>
 					</Breadcrumbs>
 				}/>
 				<Row>
 					<Col span={24}>
-						<AddWorkspaceForm />
+						<AddWorkspaceForm edit/>
 					</Col>
 				</Row>
 			</PageWrapper>
@@ -25,4 +25,4 @@ const AddWorkspace: React.FC = () => {
 	);
 };
 
-export default AddWorkspace;
+export default EditWorkspace;

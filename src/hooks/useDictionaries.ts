@@ -2,7 +2,7 @@ import { useGetCategoriesQuery, useGetParametersQuery } from '../redux/api/servi
 import { useMemo } from 'react';
 import { type IBaseType } from '../types';
 
-interface ParametersDictionary {
+export interface ParametersDictionary {
 	category: IBaseType;
 	dictionary: IBaseType[];
 }

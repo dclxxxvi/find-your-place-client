@@ -7,6 +7,7 @@ import AddWorkspace from './AddWorkspace';
 import NotFound from './NotFound';
 import ErrorPage from './ErrorPage';
 import WorkspaceExecution from './WorkspaceExecution';
+import EditWorkspace from './EditWorkspace';
 
 export {
 	Main,
@@ -22,4 +23,5 @@ export {
 	Bonuses,
 	Purchases,
 	WorkspaceExecution,
+	EditWorkspace,
 };
