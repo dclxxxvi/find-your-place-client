@@ -6,7 +6,8 @@ export * from './IWorkspaceParams';
 export * from './IResponse';
 export * from './IUser';
 export * from './IAuthResponse';
-
 export * from './IPaginatedResult';
 export * from './IPaginationParams';
 export * from './ITariff';
+export * from './ITransaction';
+export * from './TInterval';

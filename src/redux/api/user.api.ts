@@ -1,5 +1,12 @@
 import { commonApi } from './common.api';
-import { type IUser, type IAuthResponse, type IResponse } from '../../types';
+import {
+	type IUser,
+	type IAuthResponse,
+	type IResponse,
+	type IPaginatedResult,
+	type ITransaction,
+	type IPaginationParams,
+} from '../../types';
 import { ETagTypes } from './consts';
 
 const userApi = commonApi.injectEndpoints({
@@ -44,6 +51,13 @@ const userApi = commonApi.injectEndpoints({
 			}),
 			invalidatesTags: [ETagTypes.USER],
 		}),
+		getTransactions: builder.query<IResponse<IPaginatedResult<ITransaction>>, IPaginationParams>({
+			query: () => ({
+				url: 'user/transactions',
+				method: 'GET',
+			}),
+			providesTags: [ETagTypes.TRANSACTIONS],
+		}),
 	}),
 });
 
@@ -52,4 +66,5 @@ export const {
 	useRegistrationMutation,
 	useLoginMutation,
 	useEditUserMutation,
+	useGetTransactionsQuery,
 } = userApi;
