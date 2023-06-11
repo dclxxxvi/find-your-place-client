@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Drawer, Row, Space } from 'antd';
+import { Button, Drawer, Space } from 'antd';
 import { Content } from 'antd/es/layout/layout';
 import { useNavigate } from 'react-router-dom';
 import { PageWrapper } from '../../components';
@@ -35,25 +35,27 @@ const NavbarMobile: React.FC = () => {
 				contentWrapperStyle={{ maxWidth: 378 }}
 				closeIcon={<MenuFoldOutlined />}
 			>
-				<Row justify={'end'}>
-					<ThemeSwitcher/>
-				</Row>
-				<Space size={'large'} direction={'vertical'}>
-					{userData && <Space>
-						<Button
-							onClick={ () => {
-								closeDrawer();
-								navigate('workspaces/new');
-							} }
-							shape={ 'circle' }
-							icon={ <PlusOutlined/> }
-						/>
-						<Typography.Text>Добавить пространство</Typography.Text>
-					</Space> }
-					<Space>
-						<UserMenu closeDrawer={closeDrawer}/>
-						<Typography.Text>Личный кабинет</Typography.Text>
+				<Space size={'large'} direction={'vertical'} style={{ width: '100%' }}>
+					<Space style={{ justifyContent: 'space-between', width: '100%' }}>
+						<Space>
+							<UserMenu closeDrawer={closeDrawer}/>
+							<Typography.Text>Личный кабинет</Typography.Text>
+						</Space>
+						<ThemeSwitcher/>
 					</Space>
+					{userData && (
+						<Space>
+							<Button
+								onClick={ () => {
+									closeDrawer();
+									navigate('workspaces/new');
+								} }
+								shape={ 'circle' }
+								icon={ <PlusOutlined/> }
+							/>
+							<Typography.Text>Добавить пространство</Typography.Text>
+						</Space>
+					) }
 				</Space>
 			</Drawer>
 		</Content>
