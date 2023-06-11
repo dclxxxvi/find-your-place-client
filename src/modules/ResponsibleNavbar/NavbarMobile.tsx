@@ -41,14 +41,17 @@ const NavbarMobile: React.FC = () => {
 				<Space size={'large'} direction={'vertical'}>
 					{userData && <Space>
 						<Button
-							onClick={ () => navigate('workspaces/new') }
+							onClick={ () => {
+								closeDrawer();
+								navigate('workspaces/new');
+							} }
 							shape={ 'circle' }
 							icon={ <PlusOutlined/> }
 						/>
 						<Typography.Text>Добавить пространство</Typography.Text>
 					</Space> }
 					<Space>
-						<UserMenu/>
+						<UserMenu closeDrawer={closeDrawer}/>
 						<Typography.Text>Личный кабинет</Typography.Text>
 					</Space>
 				</Space>

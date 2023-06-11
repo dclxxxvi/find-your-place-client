@@ -7,7 +7,11 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useGetUserQuery } from '../../../redux';
 
-const UserMenu: React.FC = () => {
+interface Props {
+	closeDrawer?: () => void;
+}
+
+const UserMenu: React.FC<Props> = ({ closeDrawer }) => {
 	const { isLoading, data, isFetching } = useGetUserQuery(null);
 	const navigate = useNavigate();
 	const [authorizationModalOpen, setAuthorizationModalOpen] = useState(false);
@@ -17,7 +21,10 @@ const UserMenu: React.FC = () => {
 		return <Button
 			shape={'circle'}
 			icon={<UserOutlined />}
-			onClick={() => navigate(`${PersonalCabinetRoutes.PROFILE}/${PersonalCabinetRoutes.USER_DATA}`)}
+			onClick={() => {
+				closeDrawer?.();
+				navigate(`${PersonalCabinetRoutes.PROFILE}/${PersonalCabinetRoutes.USER_DATA}`);
+			}}
 		/>;
 	}
 
