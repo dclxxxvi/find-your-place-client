@@ -15,12 +15,14 @@ const Tariff: React.FC<Props> = ({ tariff }) => {
 				<Typography.Title level={ 5 } style={ { margin: 0 } }>
 					{ tariff.title }
 				</Typography.Title>
-				<Typography.Text>
-					<strong>{ tariff.cost } ₽</strong>
-				</Typography.Text>
-				<Typography.Text>
-					за { TARIFF_INTERVALS.find((int) => int.code_name === tariff.interval)?.name }
-				</Typography.Text>
+				<Space size={4} direction={'vertical'}>
+					<Typography.Text>
+						<strong>{ tariff.cost } ₽</strong>
+					</Typography.Text>
+					<Typography.Text>
+						за { TARIFF_INTERVALS.find((int) => int.code_name === tariff.interval)?.name }
+					</Typography.Text>
+				</Space>
 			</Space>
 		</Card>
 	);
