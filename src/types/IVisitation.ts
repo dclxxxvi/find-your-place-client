@@ -8,6 +8,7 @@ export interface IVisitation extends IBaseEntity {
 	status: IBaseType;
 	start_date: Date;
 	end_date: Date;
+	total_cost: number;
 }
 
 export interface IVIsitationCreation {
@@ -15,5 +16,6 @@ export interface IVIsitationCreation {
 	workspace_id: string;
 	start_date: string;
 	end_date: string;
+	total_cost: number;
 	tariff_id: string;
 }

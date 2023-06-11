@@ -15,7 +15,7 @@ const Parameters: React.FC<Props> = ({ parameters, isOverviewCard }) => {
 	if (isOverviewCard) {
 		return (
 			<>
-				{parameters.map((parameter) => {
+				{parameters.slice(0, 8).map((parameter) => {
 					return (
 						<Col xs={24} sm={12} key={parameter.id} span={12}>
 							<SuperAdvantage parameter={parameter} />

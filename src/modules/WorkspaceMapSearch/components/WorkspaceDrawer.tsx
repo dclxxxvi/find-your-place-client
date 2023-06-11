@@ -15,11 +15,22 @@ const WorkspaceDrawer: React.FC<Props> = ({ open, onClose, workspaceId }) => {
 		{ skip: !workspaceId },
 	);
 
-	if (isLoading) {
-		return <Skeleton active/>;
-	}
-
 	const workspace = data?.data;
+
+	if (isLoading) {
+		return (
+			<Drawer
+				title={<Skeleton.Button active />}
+				placement={'left'}
+				onClose={onClose}
+				open={open}
+				width={'100%'}
+				contentWrapperStyle={{ maxWidth: 378 }}
+			>
+				<Skeleton active/>
+			</Drawer>
+		);
+	}
 
 	if (!workspace) {
 		return null;
@@ -33,6 +44,7 @@ const WorkspaceDrawer: React.FC<Props> = ({ open, onClose, workspaceId }) => {
 			open={open}
 			width={'100%'}
 			contentWrapperStyle={{ maxWidth: 378 }}
+			bodyStyle={{ padding: 0 }}
 		>
 			<WorkspaceCardMobile workspace={ workspace }/>
 		</Drawer>

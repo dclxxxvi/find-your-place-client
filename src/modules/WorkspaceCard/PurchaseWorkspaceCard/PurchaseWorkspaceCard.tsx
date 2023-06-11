@@ -11,6 +11,7 @@ import Address from '../components/Address';
 import PhoneNumber from '../components/PhoneNumber';
 import { getFormattedDate } from '../consts';
 import dayjs from 'dayjs';
+import { type TInterval } from '../../../types/TInterval';
 
 interface Props {
 	visitation: IVisitation;
@@ -23,6 +24,7 @@ const PurchaseWorkspaceCard: React.FC<Props> = ({ visitation }) => {
 	const { data, isLoading } = useGetWorkspaceByIdQuery({ id: visitation?.workspace_id });
 	const workspace = data?.data;
 	const tariff = workspace?.tariffs?.find(t => t.id === visitation.tariff_id);
+	const interval = tariff?.interval as TInterval;
 
 	const { navigateToWorkspacePage } = useWorkspaceCard(workspace?.id || '');
 
@@ -67,9 +69,16 @@ const PurchaseWorkspaceCard: React.FC<Props> = ({ visitation }) => {
 								</Typography.Text>
 								<Typography.Text>
 									{ 'Срок действия: с '}
-									<strong>{getFormattedDate(dayjs(visitation?.start_date))}</strong>
+									<strong>
+										{ getFormattedDate(dayjs(visitation?.start_date), interval) }
+									</strong>
 									{ ' до ' }
-									<strong>{getFormattedDate(dayjs(visitation?.end_date))}</strong>
+									<strong>
+										{ getFormattedDate(dayjs(visitation?.end_date), interval)}
+									</strong>
+								</Typography.Text>
+								<Typography.Text>
+									Сумма: <strong>{Math.round(visitation?.total_cost) || 0} ₽</strong>
 								</Typography.Text>
 							</Space>
 						</Col>
@@ -80,47 +89,6 @@ const PurchaseWorkspaceCard: React.FC<Props> = ({ visitation }) => {
 							</Space>
 						</Col>
 					</Row>
-					{/* <Row justify={'space-between'} align={'stretch'}> */}
-					{/*	<Col span={24} xs={24} lg={12}> */}
-					{/*		<Row justify={'start'} gutter={[8, 10]} align={'stretch'}> */}
-					{/*			<Space direction={'vertical'} size={4}> */}
-					{/*				<Typography.Title */}
-					{/*					onClick={navigateToWorkspacePage} */}
-					{/*					style={{ margin: 0, cursor: 'pointer' }} */}
-					{/*					level={4} */}
-					{/*				> */}
-					{/*					{workspace.title} */}
-					{/*				</Typography.Title> */}
-					{/*				<Typography.Text> */}
-					{/*					Тариф <strong>{ `"${tariff?.title || ''}"` }</strong> */}
-					{/*				</Typography.Text> */}
-					{/*			</Space> */}
-					{/*			<Col span={24}/> */}
-					{/*			<Space direction={'vertical'} size={4}> */}
-					{/*				<Address locationValue={workspace.location_value}/> */}
-					{/*				<PhoneNumber phoneNumber={workspace.phone_number} /> */}
-					{/*			</Space> */}
-					{/*		</Row> */}
-					{/*	</Col> */}
-					{/*	<Col span={24} xs={24} lg={12}> */}
-					{/*		<Row justify={'end'} gutter={[0, 12]}> */}
-					{/*			/!* <Typography.Title style={{ margin: 0 }} level={4}> *!/ */}
-					{/*			/!*	{'Показать QR-код'} *!/ */}
-					{/*			/!* </Typography.Title> *!/ */}
-					{/*			/!* <Col span={24}/> *!/ */}
-					{/*			<Typography.Text> */}
-					{/*				{ 'Срок действия: с '} */}
-					{/*				<strong>{getFormattedDate(dayjs(visitation?.start_date))}</strong> */}
-					{/*				{ ' до ' } */}
-					{/*				<strong>{getFormattedDate(dayjs(visitation?.end_date))}</strong> */}
-					{/*			</Typography.Text> */}
-					{/*			<Col span={24}/> */}
-					{/* <Typography.Text strong onClick={handleOpenFeedbackModal(true)}> */}
-					{/*	{'Оставить отзыв'} */}
-					{/* </Typography.Text> */}
-					{/*		</Row> */}
-					{/*	</Col> */}
-					{/* </Row> */}
 				</Col>
 			</Row>
 			<FeedbackModal open={openFeedbackModal} handleClose={handleOpenFeedbackModal(false)} workspace={workspace}/>

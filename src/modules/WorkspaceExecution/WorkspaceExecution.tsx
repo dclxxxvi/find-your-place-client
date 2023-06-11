@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { type SubmitHandler, useForm, useWatch } from 'react-hook-form';
+import { type SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Col, Divider, notification, Row, Space } from 'antd';
 import Typography from 'antd/es/typography';
@@ -10,11 +10,11 @@ import { useLocation } from 'react-router-dom';
 import UserData from './components/UserData';
 import CardWithTitle from './components/CardWithTitile';
 import WorkspaceCard from './components/WorkspaceCard';
-import DatePicker from './components/DatePicker';
-import { getEndDate, getTariff, prepareValues } from './consts';
+import { prepareValues } from './consts';
 import TariffChoose from './components/TariffChoose';
-import { useEffect, useMemo } from 'react';
 import { getFormattedDate } from '../WorkspaceCard/consts';
+import DatePicker from './components/DatePicker';
+import { useWorkspaceExecution } from './hooks/useWorkspaceExecution';
 
 const WorkspaceExecution: React.FC = () => {
 	const location = useLocation();
@@ -23,21 +23,27 @@ const WorkspaceExecution: React.FC = () => {
 	const { data: userData } = useGetUserQuery(null);
 
 	const [executeVisitation, { isLoading }] = useExecuteVisitationMutation();
-	const { handleSubmit, control, reset, setValue } = useForm<IExecuteVisitationFormValues>({
+	const { handleSubmit, control, reset } = useForm<IExecuteVisitationFormValues>({
 		resolver: yupResolver(executeVisitationSchema),
 	});
 
-	const tariffId = useWatch({ control, name: 'tariff_id' });
-	const choosenTariff = useMemo(() => getTariff(tariffId, workspaceData?.data?.tariffs),
-		[tariffId, workspaceData?.data?.tariffs],
-	);
-
-	const startDate = useWatch({ control, name: 'startDate' });
-	const endDate = useMemo(() => getEndDate(startDate, choosenTariff),
-		[startDate, choosenTariff],
-	);
+	const {
+		tariffTitle,
+		endDate,
+		startDate,
+		totalCost,
+		interval,
+	} = useWorkspaceExecution(control, workspaceData?.data);
 
 	const onSubmit: SubmitHandler<IExecuteVisitationFormValues> = async(values) => {
+		if (!totalCost) {
+			notification.error({
+				message: 'Ошибка валидации',
+				description: 'Проверьте правильность заполненных полей',
+			});
+			return reset(values);
+		}
+
 		if (!workspaceData?.data?.id || !userData?.data?.id) {
 			return notification.error({
 				message: 'Произошла ошибка',
@@ -45,7 +51,7 @@ const WorkspaceExecution: React.FC = () => {
 			});
 		}
 
-		const body = prepareValues(values, workspaceData?.data?.id, userData?.data?.id);
+		const body = prepareValues(values, workspaceData?.data?.id, userData?.data?.id, totalCost);
 
 		executeVisitation(body).unwrap()
 			.then(() => {
@@ -59,11 +65,6 @@ const WorkspaceExecution: React.FC = () => {
 				description: 'При оформлении произошла ошибка...',
 			}));
 	};
-
-	useEffect(() => {
-		if (!endDate) return;
-		setValue('endDate', endDate);
-	}, [setValue, endDate]);
 
 	return (
 		<form onSubmit={ handleSubmit(onSubmit) }>
@@ -87,7 +88,7 @@ const WorkspaceExecution: React.FC = () => {
 						</Col>
 						<Col span={24}>
 							<CardWithTitle title={'Выбор даты и времени'}>
-								<DatePicker control={control} />
+								<DatePicker control={control} interval={interval}/>
 							</CardWithTitle>
 						</Col>
 						<Col span={24}>
@@ -122,28 +123,28 @@ const WorkspaceExecution: React.FC = () => {
 									</Col>
 									<Col span={24}>
 										<Typography.Text>
-											({choosenTariff?.title || '...'})
+											({tariffTitle || '...'})
 										</Typography.Text>
 									</Col>
 								</Row>
 								<Typography.Text>
 									{ 'Доступ с ' }
-									<strong>{getFormattedDate(startDate)}</strong>
+									<strong>{getFormattedDate(startDate, interval)}</strong>
 									{ ' до ' }
-									<strong>{getFormattedDate(endDate)}</strong>
+									<strong>{getFormattedDate(endDate, interval)}</strong>
 								</Typography.Text>
 							</Space>
 							<Divider style={{ margin: 0 }}/>
 							<Row justify={'space-between'}>
 								<Typography.Text>Итого</Typography.Text>
 								<Typography.Title style={{ margin: 0 }} level={5}>
-									<strong>{choosenTariff?.cost || '...'} ₽</strong>
+									<strong>{totalCost || '...'} ₽</strong>
 								</Typography.Title>
 							</Row>
 							<Divider style={{ margin: 0 }}/>
 							<Row align={'stretch'}>
 								<Button loading={isLoading} type={'primary'} htmlType={'submit'}>
-										Оформить доступ
+									Оформить доступ
 								</Button>
 							</Row>
 						</Space>
