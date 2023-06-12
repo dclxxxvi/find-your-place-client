@@ -1,4 +1,4 @@
-# [Find Your Place](https://find-your-place-client.vercel.app/)
+# [Find Your Place](https://find-your-place-client-prod.vercel.app/)
 
 
 ## Available Scripts
@@ -29,3 +29,9 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
+
+
+## [Find your place admin (Github)](https://github.com/dclxxxvi/find-your-place-admin-client)
+## [Find your place backend (Github)](https://github.com/MeloPomelo/find-your-place-api)
+
+## [Notion page](https://www.notion.so/035c970db7f34b9fb81e16770b3d32d8)
