@@ -6,8 +6,8 @@ export interface IVisitation extends IBaseEntity {
 	workspace_id: string;
 	tariff_id: string;
 	status: IBaseType;
-	start_date: Date;
-	end_date: Date;
+	start_date: string;
+	end_date: string;
 	total_cost: number;
 }
 

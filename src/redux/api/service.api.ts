@@ -19,10 +19,18 @@ const serviceApi = commonApi.injectEndpoints({
 			}),
 			providesTags: [ETagTypes.DICTIONARIES],
 		}),
+		getStatuses: builder.query<IBaseType[], null>({
+			query: () => ({
+				url: 'service/statuses',
+				method: 'GET',
+			}),
+			providesTags: [ETagTypes.STATUSES],
+		}),
 	}),
 });
 
 export const {
 	useGetCategoriesQuery,
 	useGetParametersQuery,
+	useGetStatusesQuery,
 } = serviceApi;

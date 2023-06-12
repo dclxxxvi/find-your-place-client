@@ -10,6 +10,7 @@ export enum ETagTypes {
 	COMMENTS = 'Comments',
 	VISITATIONS = 'Visitations',
 	TRANSACTIONS = 'Transactions',
+	STATUSES = 'Statuses',
 }
 
 export const tagTypes = [
@@ -21,6 +22,7 @@ export const tagTypes = [
 	ETagTypes.COMMENTS,
 	ETagTypes.VISITATIONS,
 	ETagTypes.TRANSACTIONS,
+	ETagTypes.STATUSES,
 ];
 
 export function getFromFormData(formData: FormData, key: string): string {

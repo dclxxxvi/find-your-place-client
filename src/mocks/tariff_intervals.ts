@@ -16,5 +16,6 @@ export const TARIFF_INTERVALS: IBaseType[] = [
 		icon_link: '',
 		sort_order: '',
 		number_value: '',
+		tag: '',
 	};
 });

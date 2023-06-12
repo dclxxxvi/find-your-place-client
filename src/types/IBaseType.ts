@@ -7,4 +7,5 @@ export interface IBaseType extends IBaseEntity {
 	icon_link: string;
 	sort_order: string;
 	number_value: string;
+	tag: string;
 }

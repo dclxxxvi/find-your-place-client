@@ -12,6 +12,7 @@ import PhoneNumber from '../components/PhoneNumber';
 import useWorkspaceCard from '../hooks';
 import { getFormattedDate } from '../consts';
 import dayjs from 'dayjs';
+import { getVisitStatus } from './consts';
 
 interface Props {
 	visitation: IVisitation;
@@ -25,6 +26,8 @@ const VisitationWorkspaceCard: React.FC<Props> = ({ visitation }) => {
 	const [openFeedbackModal, setOpenFeedbackModal] = useState(false);
 	const handleOpenFeedbackModal = (open: boolean) => () => setOpenFeedbackModal(open);
 
+	const visitStatus = getVisitStatus(visitation?.start_date, visitation?.end_date);
+
 	if (!workspace || isLoading) {
 		return <Card size={'small'}><Skeleton active/></Card>;
 	}
@@ -32,29 +35,34 @@ const VisitationWorkspaceCard: React.FC<Props> = ({ visitation }) => {
 	return (
 		<Card size={'small'}>
 			<Row gutter={[24, 24]} align={'middle'}>
-				<Col md={24} xl={8}>
+				<Col sm={24} md={8}>
 					<ImageCarousel showOne images={workspace.images} />
 				</Col>
-				<Col md={24} xl={16}>
+				<Col sm={24} md={16}>
 					<Row justify={'space-between'} align={'stretch'} gutter={[10, 10]}>
-						<Col span={12} xs={24} lg={12}>
-							<Space direction={'vertical'} size={4}>
-								<Typography.Title
-									level={4}
-									onClick={navigateToWorkspacePage}
-									style={{
-										margin: 0,
-										cursor: 'pointer',
-									}}
-								>
-									{workspace.title}
-								</Typography.Title>
-								<Typography.Text strong>
-									{ `Посещение: ${getFormattedDate(dayjs(visitation.start_date))}` }
+						<Col span={14} xs={24} sm={14}>
+							<Space direction={'vertical'} size={'middle'}>
+								<Space direction={'vertical'} size={4}>
+									<Typography.Title
+										level={4}
+										onClick={navigateToWorkspacePage}
+										style={{
+											margin: 0,
+											cursor: 'pointer',
+										}}
+									>
+										{workspace.title}
+									</Typography.Title>
+									<Typography.Text strong>
+										{ `Посещение: ${getFormattedDate(dayjs(visitation.start_date))}` }
+									</Typography.Text>
+								</Space>
+								<Typography.Text>
+									<strong>Статус: </strong>{visitStatus}
 								</Typography.Text>
 							</Space>
 						</Col>
-						<Col span={ 12 } xs={24} lg={12}>
+						<Col span={ 10 } xs={24} sm={10}>
 							<Row justify={ 'end' }>
 								<Space direction={ 'vertical' } align={ 'end' }>
 									<RatingField
